@@ -1,15 +1,16 @@
 .android-large {
   background-color: #ffffff;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  // flex-direction: row;
+  // justify-content: center;
   width: 100%;
 }
 
 .android-large .div {
   background-color: #ffffff;
   overflow: hidden;
-  width: 360px;
+  // width: 360px;
+  width: 100%;
   height: 1269px;
   position: relative;
 }
@@ -239,32 +240,37 @@
 }
 
 .android-large .overlap-2 {
-  position: absolute;
-  width: 360px;
+  // position: absolute;
+  // width: 360px;
+  width: 100%;
   height: 48px;
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   background-color: #282828;
 }
 
 .android-large .text-wrapper-3 {
-  position: absolute;
-  top: 9px;
-  left: 20px;
+  // position: absolute;
+  // top: 9px;
+  // left: 20px;
   font-family: "Inter", Helvetica;
   font-weight: 700;
   color: #ffffff;
   font-size: 22.4px;
   letter-spacing: 0;
   line-height: normal;
+  width: 85%;
+  display: inline-block;
+  padding: 9px 0 0 20px;
 }
 
 .android-large .group-wrapper {
-  position: absolute;
+  // position: absolute;
   width: 25px;
   height: 17px;
-  top: 16px;
-  left: 315px;
+  display: inline-block;
+  // top: 16px;
+  // left: 315px;
 }
 
 .android-large .group-2 {
