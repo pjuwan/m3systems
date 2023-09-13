@@ -1,6 +1,16 @@
 <template>
   <div class="android-large">
     <div class="div">
+      <div class="overlap-2">
+        <div class="text-wrapper-3">M House</div>
+        <div class="group-wrapper">
+          <div class="group-2"> 
+            <div class="rectangle"></div>
+            <div class="rectangle-2"></div>
+            <div class="rectangle-3"></div>
+          </div>
+        </div>
+      </div>      
       <div class="carousel">
         <div class="indicator">
           <div class="div-2"><img class="element" src="../assets/img/1-2-4.png" /></div>
@@ -87,16 +97,6 @@
               </div>
               <img class="element-6" src="../assets/img/1-9.png" />
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="overlap-2">
-        <div class="text-wrapper-3">M House</div>
-        <div class="group-wrapper">
-          <div class="group-2"> 
-            <div class="rectangle"></div>
-            <div class="rectangle-2"></div>
-            <div class="rectangle-3"></div>
           </div>
         </div>
       </div>
