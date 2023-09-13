@@ -1,6 +1,56 @@
 <template>
   <div class="android-large">
     <div class="div">
+      <div class="overlap-2">
+        <div class="text-wrapper-3">M House</div>
+        <div class="group-wrapper">
+          <div class="group-2"> 
+            <div class="rectangle"></div>
+            <div class="rectangle-2"></div>
+            <div class="rectangle-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-3">
+        <div class="frame-3">
+          <div class="div-wrapper-2">
+            <div class="group-11">
+              <div class="overlap-group-5"><img class="group-12" src="../assets/img/group-268-4.png" /></div>
+            </div>
+          </div>
+          <div class="div-wrapper-2">
+            <div class="overlap-7">
+              <div class="group-13">
+                <div class="overlap-group-6">
+                  <img class="CWK-XX-XX" src="../assets/img/buy-our-houses-now-8.png" />
+                  <img class="buy-our-houses-now" src="../assets/img/buy-our-houses-now-8.png" />
+                </div>
+              </div>
+              <div class="rectangle-8"></div>
+            </div>
+          </div>
+          <div class="div-wrapper-2">
+            <div class="overlap-7">
+              <div class="group-13">
+                <div class="overlap-group-7">
+                  <img class="CWK-XX-XX" src="../assets/img/buy-our-houses-now-8.png" />
+                  <img class="buy-our-houses-now" src="../assets/img/buy-our-houses-now-8.png" />
+                </div>
+              </div>
+              <div class="rectangle-8"></div>
+            </div>
+          </div>
+        </div>
+        <div class="indicator-2">
+          <div class="dot"></div>
+          <div class="dot-2"></div>
+          <div class="dot-2"></div>
+        </div>
+      </div>
+      <div class="group-3">
+        <div class="text-wrapper-4">새로운 모델</div>
+        <div class="text-wrapper-5">새로운 모델을 만나보세요</div>
+      </div>      
       <div class="carousel">
         <div class="indicator">
           <div class="div-2"><img class="element" src="../assets/img/1-2-4.png" /></div>
@@ -90,20 +140,6 @@
           </div>
         </div>
       </div>
-      <div class="overlap-2">
-        <div class="text-wrapper-3">M House</div>
-        <div class="group-wrapper">
-          <div class="group-2"> 
-            <div class="rectangle"></div>
-            <div class="rectangle-2"></div>
-            <div class="rectangle-3"></div>
-          </div>
-        </div>
-      </div>
-      <div class="group-3">
-        <div class="text-wrapper-4">새로운 모델</div>
-        <div class="text-wrapper-5">새로운 모델을 만나보세요</div>
-      </div>
       <div class="overlap-3">
         <div class="group-4">
           <div class="overlap-4">
@@ -120,13 +156,13 @@
         </div>
         <div class="carousel-2">
           <div class="frame-2">
-            <img class="source" src="../assets/img/source3-1.svg" />
+            <img class="source best" src="../assets/img/source3-1.svg" />
             <div class="img-wrapper"><img class="element-9" src="../assets/img/1-11-1.png" /></div>
             <div class="img-wrapper"><img class="element-10" src="../assets/img/1-11.png" /></div>
           </div>
           <div class="group-6">
-            <div class="text-wrapper-7">298,370,000 Won</div>
             <div class="text-wrapper-8">CNK-01-XX-XX</div>
+            <div class="text-wrapper-7">298,370,000 Won</div>
           </div>
         </div>
       </div>
@@ -177,42 +213,6 @@
           <div class="ellipse-3"></div>
           <div class="ellipse-4"></div>
           <div class="ellipse-5"></div>
-        </div>
-      </div>
-      <div class="carousel-3">
-        <div class="frame-3">
-          <div class="div-wrapper-2">
-            <div class="group-11">
-              <div class="overlap-group-5"><img class="group-12" src="../assets/img/group-268-4.png" /></div>
-            </div>
-          </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-6">
-                  <img class="CWK-XX-XX" src="../assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="../assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-7">
-                  <img class="CWK-XX-XX" src="../assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="../assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
-        </div>
-        <div class="indicator-2">
-          <div class="dot"></div>
-          <div class="dot-2"></div>
-          <div class="dot-2"></div>
         </div>
       </div>
       <div class="group-14">
