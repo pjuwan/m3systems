@@ -93,7 +93,7 @@
       <div class="overlap-2">
         <div class="text-wrapper-3">M House</div>
         <div class="group-wrapper">
-          <div class="group-2">
+          <div class="group-2"> 
             <div class="rectangle"></div>
             <div class="rectangle-2"></div>
             <div class="rectangle-3"></div>
