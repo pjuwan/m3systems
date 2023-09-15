@@ -564,36 +564,28 @@
 
 .android-large .overlap-6 {
   position: relative;
-  width: 451px;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .android-large .image {
-  position: relative;
-  width: 267px;
-  height: 115px;
-  top: 58px;
-  left: -30px;
-}
-
-.android-large .rectangle-7 {
-  width: 100%;
-  height: 82px;
+  width: 451px;
+  background: linear-gradient(270deg, white -5%, rgba(255, 255, 255, 0) 100%), url(../img/image-6.png);
+  background-size: 350px 122px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
 }
 
 .android-large .group-7 {
   position: relative;
-  width: 62px;
-  height: 16px;
-  top: 125px;
-  left: -124px;
+  top: 72px;
+  left: 216px;
 }
 
 .android-large .overlap-group-4 {
-  position: relative;
   width: 80px;
-  height: 19px;
+  height: 13px;
   background-color: #000000;
   border-radius: 9.49px;
 }
@@ -601,7 +593,6 @@
 .android-large .text-wrapper-12 {
   position: relative;
   top: 2px;
-  left: 1px;
   font-family: "Pretendard-Medium", Helvetica;
   font-weight: 500;
   color: #ffffff;
@@ -613,23 +604,10 @@
 }
 
 .android-large .group-8 {
-  position: absolute;
+  position: relative;
   height: 33px;
-  top: 85px;
-  left: 203px;
-}
-
-.android-large .text-wrapper-13 {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
-  color: #262626;
-  font-size: 15.8px;
-  letter-spacing: 0;
-  line-height: normal;
-  display: flex;
+  top: 66px;
+  left: 210px;
 }
 
 .android-large .text-wrapper-14 {
@@ -637,6 +615,16 @@
   font-weight: 200;
   color: #262626;
   font-size: 11.6px;
+  letter-spacing: 0;
+  line-height: normal;
+  display: flex;
+}
+
+.android-large .text-wrapper-13 {
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: #262626;
+  font-size: 15.8px;
   letter-spacing: 0;
   line-height: normal;
   display: flex;
@@ -770,6 +758,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
 .android-large .overlap-group-5 {

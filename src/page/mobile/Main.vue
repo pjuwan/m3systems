@@ -18,6 +18,28 @@
               <div class="overlap-group-5"><img class="group-12" src="@/assets/img/group-268-4.png" /></div>
             </div>
           </div>
+          <div class="div-wrapper-2">
+            <div class="overlap-7">
+              <div class="group-13">
+                <div class="overlap-group-6">
+                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
+                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
+                </div>
+              </div>
+              <div class="rectangle-8"></div>
+            </div>
+          </div>
+          <div class="div-wrapper-2">
+            <div class="overlap-7">
+              <div class="group-13">
+                <div class="overlap-group-7">
+                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
+                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
+                </div>
+              </div>
+              <div class="rectangle-8"></div>
+            </div>
+          </div>
         </div>
         <div class="indicator-2">
           <div class="dot"></div>
@@ -167,18 +189,28 @@
         </div>
       </div>
       <div class="overlap-group-wrapper">
-        <div class="help">
-          <div class="overlap-6">
-            <img class="image" src="@/assets/img/image-6.png" />
-            <div class="rectangle-7"></div>
+        <div class="overlap-6">
+          <div class="image">
             <div class="group-8">
               <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
               <div class="text-wrapper-13">맞춤 주택 추천받기</div>
             </div>
             <div class="group-7">
               <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
-            </div>          
+            </div>              
           </div>
+        </div>
+      </div>
+      <div class="group-9">
+        <img class="element-11" src="@/assets/img/buy-our-houses-now-8.png" />
+        <div class="text-wrapper-15">PRO-01-XX-XX</div>
+        <div class="text-wrapper-16">Buy our houses now!!!</div>
+        <div class="group-10">
+          <div class="ellipse"></div>
+          <div class="ellipse-2"></div>
+          <div class="ellipse-3"></div>
+          <div class="ellipse-4"></div>
+          <div class="ellipse-5"></div>
         </div>
       </div>
       <div class="group-14">
