@@ -166,21 +166,21 @@
           <div class="text-wrapper-11">M House</div>
         </div>
       </div>
-      <a href="https://m3systems.co.kr/use-case/plan" target="_blank" rel="noopener noreferrer"
-        ><div class="overlap-group-wrapper">
+      <div class="overlap-group-wrapper">
+        <div class="help">
           <div class="overlap-6">
             <img class="image" src="@/assets/img/image-6.png" />
             <div class="rectangle-7"></div>
+            <div class="group-8">
+              <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
+              <div class="text-wrapper-13">맞춤 주택 추천받기</div>
+            </div>
             <div class="group-7">
               <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
-            </div>
-            <div class="group-8">
-              <div class="text-wrapper-13">맞춤 주택 추천받기</div>
-              <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-            </div>
+            </div>          
           </div>
-        </div></a
-      >
+        </div>
+      </div>
       <div class="group-14">
         <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />
       </div>
