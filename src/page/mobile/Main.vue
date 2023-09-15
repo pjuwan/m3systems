@@ -166,6 +166,19 @@
           </div>
         </div>
       </div>
+      <div class="overlap-group-wrapper">
+        <div class="overlap-6">
+          <div class="image">
+            <div class="group-8">
+              <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
+              <div class="text-wrapper-13">맞춤 주택 추천받기</div>
+            </div>
+            <div class="group-7">
+              <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
+            </div>              
+          </div>
+        </div>
+      </div>
       <div class="overlap-wrapper">
         <div class="overlap-5">
           <p class="text-wrapper-9">Copyright 2023 ooooo.All Rights Reserved.</p>
@@ -187,20 +200,7 @@
           ></a>
           <div class="text-wrapper-11">M House</div>
         </div>
-      </div>
-      <div class="overlap-group-wrapper">
-        <div class="overlap-6">
-          <div class="image">
-            <div class="group-8">
-              <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-              <div class="text-wrapper-13">맞춤 주택 추천받기</div>
-            </div>
-            <div class="group-7">
-              <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
-            </div>              
-          </div>
-        </div>
-      </div>
+      </div>      
       <div class="group-9">
         <img class="element-11" src="@/assets/img/buy-our-houses-now-8.png" />
         <div class="text-wrapper-15">PRO-01-XX-XX</div>
