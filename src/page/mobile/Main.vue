@@ -18,28 +18,6 @@
               <div class="overlap-group-5"><img class="group-12" src="@/assets/img/group-268-4.png" /></div>
             </div>
           </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-6">
-                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-7">
-                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
         </div>
         <div class="indicator-2">
           <div class="dot"></div>
@@ -203,18 +181,6 @@
           </div>
         </div></a
       >
-      <div class="group-9">
-        <img class="element-11" src="@/assets/img/buy-our-houses-now-8.png" />
-        <div class="text-wrapper-15">PRO-01-XX-XX</div>
-        <div class="text-wrapper-16">Buy our houses now!!!</div>
-        <div class="group-10">
-          <div class="ellipse"></div>
-          <div class="ellipse-2"></div>
-          <div class="ellipse-3"></div>
-          <div class="ellipse-4"></div>
-          <div class="ellipse-5"></div>
-        </div>
-      </div>
       <div class="group-14">
         <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />
       </div>
