@@ -200,18 +200,6 @@
           ></a>
           <div class="text-wrapper-11">M House</div>
         </div>
-      </div>      
-      <div class="group-9">
-        <img class="element-11" src="@/assets/img/buy-our-houses-now-8.png" />
-        <div class="text-wrapper-15">PRO-01-XX-XX</div>
-        <div class="text-wrapper-16">Buy our houses now!!!</div>
-        <div class="group-10">
-          <div class="ellipse"></div>
-          <div class="ellipse-2"></div>
-          <div class="ellipse-3"></div>
-          <div class="ellipse-4"></div>
-          <div class="ellipse-5"></div>
-        </div>
       </div>
       <div class="group-14">
         <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />

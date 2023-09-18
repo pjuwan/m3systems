@@ -1,38 +1,35 @@
 <template>
   <div id="app">
-    <Main/>
+    <MobileMain v-if="isMobile"/>
+    <PCMain v-else />
   </div>
 </template>
 
 <script>
-import Main from './page/mobile/Main.vue'
+import MobileMain from './page/mobile/MobileMain.vue'
+import PCMain from './page/pc/PCMain.vue'
 
 export default {
   name: 'App',
   components: {
-    Main
+    MobileMain,
+    PCMain
+  },
+  data() {
+    return {
+      isMobile: false,
+    };
   },
   mounted() {
-    this.init();
+    const userAgent = navigator.userAgent;
+    console.log(userAgent);
+
+    // 사용자 에이전트 문자열을 기반으로 PC 또는 모바일 판단
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+      this.isMobile = true;
+    }
   },
   methods: {
-    init() {
-      const isMobile = this.isMobile();
-      console.log(isMobile);
-    },
-    isMobile() {
-      const userAgent = navigator.userAgent;
-      let isCheck = false;
-
-      console.log(userAgent);
-
-      // 사용자 에이전트 문자열을 기반으로 PC 또는 모바일 판단
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
-        isCheck = true;
-      }
-
-      return isCheck;
-    }
   }
 }
 </script>
