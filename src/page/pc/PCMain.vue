@@ -136,7 +136,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'PCMain',
   props: {
     msg: String
   }

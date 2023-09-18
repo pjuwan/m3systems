@@ -1,9 +1,10 @@
 <template>
-  <div class="android-large">
+<div>
+  <div class="android-large" v-if="!showMenu">
     <div class="div">
       <div class="overlap-2">
         <div class="text-wrapper-3">M House</div>
-        <div class="group-wrapper">
+        <div class="group-wrapper" @click="showMenuList()">
           <div class="group-2"> 
             <div class="rectangle"></div>
             <div class="rectangle-2"></div>
@@ -204,15 +205,48 @@
       <div class="group-14">
         <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />
       </div>
+    </div> 
+  </div>
+  <div class="menu-kor" v-if="showMenu" @click="showMenuList()">
+    <div class="overlap-group-wrapper">
+      <div class="overlap-group">
+        <div class="group"><div class="text-wrapper">English</div></div>
+        <div class="div">
+          <div class="title">M House</div>
+          <div class="group-wrapper">
+            <div class="group-2">
+              <div class="rectangle"></div>
+              <div class="rectangle-2"></div>
+              <div class="rectangle-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="text-wrapper-2">브랜드스토리</div>
+        <div class="text-wrapper-3">전체모델</div>
+        <div class="div-wrapper"><div class="text-wrapper">문의하기</div></div>
+        <div class="text-wrapper-4">프리미엄모델</div>
+        <div class="text-wrapper-5">스탠다드모델</div>
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'MobileMain',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      showMenu: false
+    };
+  },
+  methods: {
+    showMenuList() {
+      this.showMenu = !this.showMenu;
+    }
   }
 }
 </script>
