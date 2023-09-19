@@ -28,8 +28,21 @@ export default {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
       this.isMobile = true;
     }
+
+    window.addEventListener('resize', this.handleWindowSize);
+    this.handleWindowSize(); // 초기 로드 시 크기 확인    
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleWindowSize);
   },
   methods: {
-  }
+    handleWindowSize() {
+      if (window.innerWidth <= 768) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    },
+  },  
 }
 </script>
