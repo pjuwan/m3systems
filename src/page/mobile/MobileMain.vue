@@ -54,90 +54,35 @@
       </div>      
       <div class="carousel">
         <div class="indicator">
-          <div class="div-2"><img class="element" src="@/assets/img/1-2-4.png" /></div>
-          <div class="div-2">
-            <div class="overlap-group"><div class="element-2"></div></div>
-          </div>
-          <div class="div-2">
-            <div class="overlap"><div class="element-2"></div></div>
-          </div>
-          <div class="div-2">
-            <div class="element-wrapper"><div class="element-2"></div></div>
-          </div>
-          <div class="div-2">
-            <div class="div-wrapper"><div class="element-2"></div></div>
+          <div v-for="(item, idx) in newModelList"
+            :key="idx"
+            class="div-2"
+            :class="{ 'active': item.isChecked }"
+            @click="onNewModel(idx)"
+          >
+            <img class="element" :src="item.imageSrc" />
           </div>
         </div>
         <div class="frame">
-          <div class="source">
-            <div class="group">
-              <div class="overlap-group-2">
-                <img class="img" src="@/assets/img/1-6-4.png" />
-                <div class="text-wrapper">CNK-01-XX-XX</div>
-                <p class="p">A building that can be used for any purpose</p>
-                <p class="element-m-floors">
-                  210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                  Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
-                </p>
-                <div class="text-wrapper-2">488,700,000won</div>
+          <div v-for="(item, idx) in newModelList"
+            :key="idx"
+            class="source"
+            :class="{ 'active': item.isChecked }"
+          >
+            <transition name="fade">
+              <div v-if="item.isChecked" class="group">
+                <div class="overlap-group-2">
+                  <img class="img" :src="item.descImageSrc" />
+                  <div class="text-wrapper">{{ item.title }}</div>
+                  <p class="p">A building that can be used for any purpose</p>
+                  <p class="element-m-floors">
+                    210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
+                    Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
+                  </p>
+                  <div class="text-wrapper-2">488,700,000won</div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="source">
-            <div class="group">
-              <div class="overlap-group-2">
-                <img class="element-3" src="@/assets/img/1-6-3.png" />
-                <div class="text-wrapper">CWK-01-XX-XX</div>
-                <p class="p">A building that can be used for any purpose</p>
-                <p class="element-m-floors">
-                  210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                  Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
-                </p>
-                <div class="text-wrapper-2">488,700,000won</div>
-              </div>
-            </div>
-          </div>
-          <div class="source">
-            <div class="group">
-              <div class="overlap-group-3">
-                <div class="text-wrapper">PRO-01-XX-XX</div>
-                <p class="p">A building that can be used for any purpose</p>
-                <p class="element-m-floors">
-                  210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                  Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
-                </p>
-                <div class="text-wrapper-2">488,700,000won</div>
-              </div>
-              <img class="element-4" src="@/assets/img/1-9.png" />
-            </div>
-          </div>
-          <div class="source">
-            <div class="group">
-              <div class="overlap-group-3">
-                <div class="text-wrapper">CNK-02-XX-XX</div>
-                <p class="p">A building that can be used for any purpose</p>
-                <p class="element-m-floors">
-                  210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                  Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
-                </p>
-                <div class="text-wrapper-2">488,700,000won</div>
-              </div>
-              <img class="element-5" src="@/assets/img/1-9.png" />
-            </div>
-          </div>
-          <div class="source">
-            <div class="group">
-              <div class="overlap-group-3">
-                <div class="text-wrapper">CWK-03-XX-XX</div>
-                <p class="p">A building that can be used for any purpose</p>
-                <p class="element-m-floors">
-                  210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                  Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
-                </p>
-                <div class="text-wrapper-2">488,700,000won</div>
-              </div>
-              <img class="element-6" src="@/assets/img/1-9.png" />
-            </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -240,12 +185,44 @@ export default {
   },
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      newModelList : [{
+        imageSrc: require("@/assets/img/1-2-4.png"),
+        title: 'CNK-01-XX-XX',
+        descImageSrc: require("@/assets/img/1-6-4.png"),
+        isChecked: true
+      },
+      {
+        imageSrc: require("@/assets/img/1-2-3.png"),
+        title: 'CKW-01-XX-XX',
+        descImageSrc: require("@/assets/img/1-6-3.png"),
+        isChecked: false
+      },
+      {
+        imageSrc: require("@/assets/img/1-2-2.png"),
+        title: 'CNK-03-XX-XX',
+        descImageSrc: require("@/assets/img/1-9.png"),
+        isChecked: false
+      },
+      {
+        imageSrc: require("@/assets/img/1-2-1.png"),
+        title: 'CNK-01-XX-XX',
+        descImageSrc: require("@/assets/img/1-6-4.png"),
+        isChecked: false
+      }]
     };
   },
   methods: {
     showMenuList() {
       this.showMenu = !this.showMenu;
+    },
+    onNewModel(index) {
+      this.newModelList.forEach((e, i) => {
+        e.isChecked = false;
+        if (index === i) {
+          e.isChecked = true;
+        }
+      })
     }
   }
 }
