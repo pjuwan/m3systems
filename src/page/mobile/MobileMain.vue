@@ -213,7 +213,7 @@ export default {
     };
   },
   methods: {
-    onShowMenu() {
+    showMenuList() {
       this.showMenu = !this.showMenu;
     },
     onNewModel(index) {

@@ -68,28 +68,30 @@
     </div>
     <div class="overlap-3">
       <div class="rectangle-2"></div>
+      <div class="text-wrapper-20">베스트 모델</div>
+      <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
       <div class="best-slider-PC">
-        <div class="overlap-4">
-          <img class="element-2" src="@/assets/img/1-9-1.png" /> <img class="element-3" src="@/assets/img/1-11-2.png" />
-        </div>
-        <div class="overlap-5">
-          <img class="element-4" src="@/assets/img/1-10-3.png" /> <img class="element-5" src="@/assets/img/1-11.png" />
-        </div>
         <div class="overlap-6">
           <div class="group-9">
             <div class="overlap-group-3">
-              <p class="text-wrapper-17">See our best models here.</p>
-              <div class="text-wrapper-18">CNK-01-XX-XX</div>
-              <img class="element-6" src="@/assets/img/1-7.png" />
+              <p class="text-wrapper-17">{{ bestModel.selected.title }}</p>
+              <div class="text-wrapper-18">{{ bestModel.selected.model }}</div>
+              <img class="element-6" :src="bestModel.selected.imageSrc" />
             </div>
-            <div class="text-wrapper-19">398,550,000 Won</div>
+            <div class="text-wrapper-19">{{ bestModel.selected.price }} Won</div>
           </div>
-          <div class="group-10"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
-          <div class="group-11"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
+          <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
+          <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
         </div>
+        <div v-if="bestModel.list?.length > 2" class="overlap-4">
+          <img class="element-3" :src="getCurrentImage(-1)" />
+          <img class="element-2" :src="getCurrentImage(-2)" />
+        </div>
+        <div v-if="bestModel.list?.length > 2" class="overlap-5">
+          <img class="element-4" :src="getCurrentImage(1)" />
+          <img class="element-5" :src="getCurrentImage(2)" />
+        </div>        
       </div>
-      <div class="text-wrapper-20">베스트 모델</div>
-      <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
     </div>
     <div class="overlap-wrapper">
       <div class="overlap-7">
@@ -139,6 +141,109 @@ export default {
   name: 'PCMain',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      bestModel: {
+        selected: {},
+        currentIndex: 0,
+        list: [{
+          imageSrc: require('@/assets/img/1-11-2.png'),
+          title: 'See our best models here.',
+          model: 'CNK-01-XX-XX',
+          price: '398,550,000'
+        },
+        {
+          imageSrc: require('@/assets/img/1-7.png'),
+          title: 'See our best models here.',
+          model: 'CNK-02-XX-XX',
+          price: '393,550,000'
+        },
+        {
+          imageSrc: require('@/assets/img/1-10-3.png'),
+          title: 'See our best models here.',
+          model: 'CNK-03-XX-XX',
+          price: '392,550,000'
+        },
+        {
+          imageSrc: require('@/assets/img/1-11-2.png'),
+          title: 'See our best models here.',
+          model: 'CNK-04-XX-XX',
+          price: '397,550,000'
+        },
+        {
+          imageSrc: require('@/assets/img/1-7.png'),
+          title: 'See our best models here.',
+          model: 'CNK-05-XX-XX',
+          price: '399,550,000'
+        },
+        {
+          imageSrc: require('@/assets/img/1-10-3.png'),
+          title: 'See our best models here.',
+          model: 'CNK-06-XX-XX',
+          price: '391,550,000'
+        }]
+      }
+    }
+  },
+  mounted() {
+    const { list } = this.bestModel;
+    if (list.length > 0) {
+      this.bestModel.selected = list[0];
+    }
+  },
+  methods: {
+    goPrev() {
+      const { selected, list } = this.bestModel;
+      const currentIndex = list.findIndex((obj) => {
+        return JSON.stringify(obj) === JSON.stringify(selected);
+      });
+
+      if (currentIndex > 0) {
+        const previousElement  = list[currentIndex - 1]; // 이전 요소 가져오기
+        this.bestModel.selected = previousElement;
+        this.bestModel.currentIndex = currentIndex - 1;
+      } else {
+        // 마지막 요소 가져오기
+        this.bestModel.selected = list[list.length - 1];
+        this.bestModel.currentIndex = list.length - 1;
+      }
+    },
+    goNext() {
+      const { selected, list } = this.bestModel;
+      const currentIndex = list.findIndex((obj) => {
+        return JSON.stringify(obj) === JSON.stringify(selected);
+      });
+
+      if (currentIndex < list.length - 1) {
+        const nextElement = list[currentIndex + 1]; // 다음 요소 가져오기
+        this.bestModel.selected = nextElement;
+        this.bestModel.currentIndex = currentIndex + 1;
+      } else {
+        // 첫번째 요소 가져오기
+        this.bestModel.selected = list[0];
+        this.bestModel.currentIndex = 0;
+      }
+    },
+    getCurrentImage(index) {
+      const { list } = this.bestModel;
+      let currentIndex = this.bestModel.currentIndex + index;
+      const length = list.length;
+      let imageSrc = list[currentIndex]?.imageSrc;
+
+      if (currentIndex >= list.length) {
+        if (list.length < currentIndex) {
+          currentIndex = currentIndex - list.length
+        } else {
+          currentIndex = list.length - currentIndex;
+        }
+        imageSrc = list[currentIndex]?.imageSrc
+      } else if (currentIndex < 0) {
+        imageSrc = list[length + currentIndex]?.imageSrc;
+      }
+      
+      return imageSrc;
+    }
   }
 }
 </script>
