@@ -195,25 +195,25 @@ export default {
       {
         imageSrc: require("@/assets/img/1-2-3.png"),
         title: 'CKW-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-6-3.png"),
+        descImageSrc: require("@/assets/img/1-12-5.png"),
         isChecked: false
       },
       {
         imageSrc: require("@/assets/img/1-2-2.png"),
         title: 'CNK-03-XX-XX',
-        descImageSrc: require("@/assets/img/1-9.png"),
+        descImageSrc: require("@/assets/img/1-7.png"),
         isChecked: false
       },
       {
         imageSrc: require("@/assets/img/1-2-1.png"),
         title: 'CNK-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-6-4.png"),
+        descImageSrc: require("@/assets/img/1-11-2.png"),
         isChecked: false
       }]
     };
   },
   methods: {
-    showMenuList() {
+    onShowMenu() {
       this.showMenu = !this.showMenu;
     },
     onNewModel(index) {
