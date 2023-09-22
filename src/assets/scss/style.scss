@@ -1377,7 +1377,7 @@
   transform: rotate(-180deg);
 }
 
-.property {
+.header {
   position: absolute;
   width: 100%;
   top: 0;
@@ -1385,7 +1385,7 @@
   z-index: 1;
 }
 
-.property .overlap-2 {
+.header .overlap-2 {
   height: 90px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
   display: flex;
@@ -1393,7 +1393,7 @@
   padding: 12px 0 0 37px;
 }
 
-.property .earth-globe {
+.header .earth-globe {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -1402,7 +1402,7 @@
   object-fit: cover;
 }
 
-.property .text-wrapper-11 {
+.header .text-wrapper-11 {
   font-family: "Inter", Helvetica;
   font-weight: 700;
   color: #ffffff;
@@ -1411,7 +1411,7 @@
   line-height: normal;
 }
 
-.property .text-wrapper-12 {
+.header .text-wrapper-12 {
   font-family: "Pretendard-SemiBold", Helvetica;
   font-weight: 600;
   color: #ffffff;
@@ -1423,7 +1423,7 @@
   padding: 15px 0;
 }
 
-.property .union {
+.header .union {
   position: absolute;
   width: 389px;
   height: 138px;
@@ -1658,17 +1658,32 @@
 .footer {
   width: 100%;
   height: 230px;
+}
+
+.footer .group {
+  width: 100%;
+  height: 230px;
+  background-color: #262626;
   display: flex;
 }
 
-.footer .overlap-7 {
-  position: relative;
-  width: 1920px;
+.footer .overlap {
+  width: 100%;
   height: 230px;
-  background-color: #262626;
+  display: inline-flex;
+  justify-content: center;
 }
 
-.footer .text-wrapper-22 {
+.footer .left {
+  width: 35%;
+  display: inline-flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 0;  
+}
+
+.footer .text-wrapper {
   font-family: "Pretendard-Medium", Helvetica;
   font-weight: 500;
   color: #ffffff;
@@ -1676,24 +1691,25 @@
   letter-spacing: -0.72px;
   line-height: normal;
   white-space: nowrap;
+  text-align: right;
 }
 
-.footer .text-wrapper-23 {
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
+.footer .div {
+  font-family: "Pretendard-SemiBold", Helvetica;
+  font-weight: 600;
   color: #ffffff;
   font-size: 19px;
   letter-spacing: 0;
   line-height: normal;
 }
 
-.footer .flexcontainer {
+.footer .navbar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  width: 321px;
-  height: 62px;
+  width: 419px;
+  height: 88px;
 }
 
 .footer .text {
@@ -1704,7 +1720,7 @@
   color: #ffffff;
   font-size: 12px;
   letter-spacing: -0.72px;
-  line-height: normal;
+  line-height: 12px;
 }
 
 .footer .span {
@@ -1715,26 +1731,100 @@
   letter-spacing: -0.72px;
 }
 
-.footer .group-12 {
+.footer .right {
+  width: 15%;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: right;
+}
+
+.footer .box {
+  display: inline-flex;
+  justify-content: end;
+  gap: 10px;
+  padding: 0 0 20px;    
+}
+
+.footer .text-wrapper-2 {
+  line-height: 18px;
+}
+
+.footer .p {
+  font-family: "Pretendard-Medium", Helvetica;
+  font-weight: 500;
+  color: transparent;
+  font-size: 12px;
+  text-align: right;
+  letter-spacing: -0.72px;
+  white-space: nowrap;
+  line-height: normal;
+}
+
+.footer .text-wrapper-3 {
+  color: #ffffff;
+}
+
+.footer .text-wrapper-4 {
+  color: #acacac;
+}
+
+.footer .vector-wrapper {
   width: 22px;
   height: 15px;
-  background-color: #d9d9d9;
+  background-color: #ffffff;
   border-radius: 4px;
 }
 
-.footer .vector-5 {
+.footer .vector {
   width: 5px;
   height: 7px;
+  position: relative;
+  right: 7px;
+  top: -2px;
 }
 
-.footer .text-wrapper-24 {
-  font-family: "Inter", Helvetica;
-  font-weight: 700;
-  color: #ffffff;
-  font-size: 35px;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
+.footer .rectangle {
+  width: 130px;
+  height: 34px;
+}
+
+.footer .overlap-group-wrapper {
+  width: 22px;
+  height: 22px;
+  border-radius: 5.32px;
+  border: 1.8px solid;
+  border-color: #ffffff;
+  display: inline-flex;
+}
+
+.footer .overlap-group {
+  position: relative;
+  width: 12px;
+  height: 13px;
+  top: 3px;
+  left: 4px;
+}
+
+.footer .ellipse {
+  width: 11px;
+  height: 11px;
+  border-radius: 5.72px;
+  border: 1.8px solid;
+  border-color: #ffffff;
+}
+
+.footer .ellipse-2 {
+  width: 2px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 1.15px;
+  margin: 0 0 0 9px;
+}
+
+.footer .img {
+  width: 21px;
+  height: 22px;
 }
 
 .mainpage .group-13 {

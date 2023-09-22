@@ -1,5 +1,5 @@
 <template>
-  <div class="property">
+  <div class="header">
     <div class="overlap-2">
       <!--<img class="earth-globe" src="@/assets/img/earth-globe-1-1.png" />-->
       <div class="text-wrapper-11">M House</div>
