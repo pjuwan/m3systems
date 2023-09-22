@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <MobileMain v-if="isMobile"/>
-    <PCMain v-else />
+    <template v-if="isMobile">
+      <MobileHeader />
+      <MobileMain />
+      <MobileFooter />
+    </template>
+    <template v-else>
+      <Header />
+      <Main />
+      <Footer />
+    </template>
   </div>
 </template>
 
 <script>
-import MobileMain from './page/mobile/MobileMain.vue'
-import PCMain from './page/pc/PCMain.vue'
+import MobileHeader from '@/components/MobileHeader.vue'
+import MobileMain from '@/views/MobileMain.vue'
+import MobileFooter from '@/components/MobileFooter.vue'
+import Header from '@/components/Header.vue'
+import Main from '@/views/Main.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
+    MobileHeader,
     MobileMain,
-    PCMain
+    MobileFooter,
+    Header,
+    Main,
+    Footer
   },
   data() {
     return {

@@ -1,17 +1,6 @@
 <template>
-<div>
-  <div class="android-large" v-if="!showMenu">
+  <div class="mobile">
     <div class="div">
-      <div class="overlap-2">
-        <div class="text-wrapper-3">M House</div>
-        <div class="group-wrapper" @click="showMenuList()">
-          <div class="group-2"> 
-            <div class="rectangle"></div>
-            <div class="rectangle-2"></div>
-            <div class="rectangle-3"></div>
-          </div>
-        </div>
-      </div>
       <div class="carousel-3">
         <div class="frame-3">
           <div class="div-wrapper-2">
@@ -125,58 +114,9 @@
           </div>
         </div>
       </div>
-      <div class="overlap-wrapper">
-        <div class="overlap-5">
-          <p class="text-wrapper-9">Copyright 2023 ooooo.All Rights Reserved.</p>
-          <div class="text-wrapper-10">주식회사 ㅇㅇㅇㅇ</div>
-          <div class="flexcontainer">
-            <p class="text">
-              <span class="span">사업자등록번호 : 000-00-0000 | 대표자: 김인한<br /></span>
-            </p>
-            <p class="text">
-              <span class="span">[서울사무소]서울시 서초구 서초중앙로 188 아크로비스타 사무동 L-422호<br /></span>
-            </p>
-            <p class="text">
-              <span class="span">[기술연구소] 서울시 서초구 서초중앙로 188 아크로비스타 사무동 L-410호<br /></span>
-            </p>
-            <p class="text"><span class="span">대표전화: +82-2-595-0203</span></p>
-          </div>
-          <a href="https://www.youtube.com/@m3systems537" target="_blank" rel="noopener noreferrer"
-            ><div class="vector-wrapper"><img class="vector" src="@/assets/img/vector-27.svg" /></div
-          ></a>
-          <div class="text-wrapper-11">M House</div>
-        </div>
-      </div>
-      <div class="group-14">
-        <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />
-      </div>
     </div> 
   </div>
-  <div class="menu-kor" v-if="showMenu" @click="showMenuList()">
-    <div class="overlap-group-wrapper">
-      <div class="overlap-group">
-        <div class="group"><div class="text-wrapper">English</div></div>
-        <div class="div">
-          <div class="title">M House</div>
-          <div class="group-wrapper">
-            <div class="group-2">
-              <div class="rectangle"></div>
-              <div class="rectangle-2"></div>
-              <div class="rectangle-3"></div>
-            </div>
-          </div>
-        </div>
-        <div class="text-wrapper-2">브랜드스토리</div>
-        <div class="text-wrapper-3">전체모델</div>
-        <div class="div-wrapper"><div class="text-wrapper">문의하기</div></div>
-        <div class="text-wrapper-4">프리미엄모델</div>
-        <div class="text-wrapper-5">스탠다드모델</div>
-      </div>
-    </div>
-  </div>
-</div>
 </template>
-
 <script>
 export default {
   name: 'MobileMain',
@@ -185,7 +125,6 @@ export default {
   },
   data() {
     return {
-      showMenu: false,
       newModelList : [{
         imageSrc: require("@/assets/img/1-2-4.png"),
         title: 'CNK-01-XX-XX',
@@ -213,9 +152,6 @@ export default {
     };
   },
   methods: {
-    showMenuList() {
-      this.showMenu = !this.showMenu;
-    },
     onNewModel(index) {
       this.newModelList.forEach((e, i) => {
         e.isChecked = false;
