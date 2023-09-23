@@ -2,12 +2,12 @@
   <div id="app">
     <template v-if="isMobile">
       <MobileHeader />
-      <MobileMain />
+      <router-view :isMobileDevice="isMobileDevice" />
       <MobileFooter />
     </template>
     <template v-else>
       <Header />
-      <Main />
+      <router-view />
       <Footer />
     </template>
   </div>
@@ -15,25 +15,22 @@
 
 <script>
 import MobileHeader from '@/components/MobileHeader.vue'
-import MobileMain from '@/views/MobileMain.vue'
 import MobileFooter from '@/components/MobileFooter.vue'
 import Header from '@/components/Header.vue'
-import Main from '@/views/Main.vue'
 import Footer from '@/components/Footer.vue'
+import store from '@/store'
 
 export default {
   name: 'App',
   components: {
     MobileHeader,
-    MobileMain,
     MobileFooter,
     Header,
-    Main,
     Footer
   },
   data() {
     return {
-      isMobile: false,
+      isMobileDevice: false
     };
   },
   mounted() {
@@ -42,22 +39,26 @@ export default {
 
     // 사용자 에이전트 문자열을 기반으로 PC 또는 모바일 판단
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
-      this.isMobile = true;
+      this.isMobileDevice = true;
     }
 
-    window.addEventListener('resize', this.handleWindowSize);
-    this.handleWindowSize(); // 초기 로드 시 크기 확인    
+    window.addEventListener('resize', this.setRouterConfig);
+    this.setRouterConfig();
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleWindowSize);
+    window.removeEventListener('resize', this.setRouterConfig);
+  },
+  computed: {
+    isMobile() {
+      return store.state.isMobile;
+    }
   },
   methods: {
-    handleWindowSize() {
-      if (window.innerWidth <= 768) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
+    setRouterConfig() {
+      store.commit('setMobileStatus');
+      const currentRouteName = this.$route.name;
+      let name = `${this.isMobile ? 'Mobile' : ''}${currentRouteName.replace('Mobile', '')}`;
+      this.$router.push({ name: name });
     },
   },  
 }

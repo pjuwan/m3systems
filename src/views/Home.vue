@@ -109,7 +109,7 @@
 
 <script>
 export default {
-  name: 'PCMain',
+  name: 'HomePage',
   props: {
     msg: String
   },

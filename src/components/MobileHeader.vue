@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-header" :class="{overlap: showMenu}">
     <div class="menu" v-if="!showMenu">
-      <div class="text-wrapper-3">M House</div>
+      <div class="text-wrapper-3" @click="goMenu('MobileHome')">M House</div>
         <div class="group-wrapper" @click="showMenuList()">
           <div class="group-2">
           <div class="rectangle"></div>
@@ -15,7 +15,7 @@
         <div class="overlap-group">
           <div class="group"><div class="text-wrapper">English</div></div>
           <div class="div">
-            <div class="title">M House</div>
+            <div class="title" @click="goMenu('MobileHome')">M House</div>
             <div class="group-wrapper" @click="showMenuList()">
               <div class="group-2">
                 <div class="rectangle"></div>
@@ -24,9 +24,9 @@
               </div>
             </div>
           </div>
-          <div class="text-wrapper-2" @click="goMenu()">브랜드스토리</div>
+          <div class="text-wrapper-2">브랜드스토리</div>
           <div class="text-wrapper-3">전체모델</div>
-          <div class="div-wrapper"><div class="text-wrapper">문의하기</div></div>
+          <div class="div-wrapper"><div class="text-wrapper" @click="goMenu('MobileQuestion')">문의하기</div></div>
           <div class="text-wrapper-4">프리미엄모델</div>
           <div class="text-wrapper-5">스탠다드모델</div>
         </div>
@@ -46,8 +46,9 @@ export default {
     showMenuList() {
       this.showMenu = !this.showMenu;
     },
-    goMenu() {
-      alert('menu');
+    goMenu(menuNm) {
+      this.showMenu = false;
+      this.$router.push({ name: menuNm });
     }
   }
 }

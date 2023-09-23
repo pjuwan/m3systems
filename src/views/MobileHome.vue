@@ -119,7 +119,7 @@
 </template>
 <script>
 export default {
-  name: 'MobileMain',
+  name: 'MobileHomePage',
   props: {
     msg: String
   },
