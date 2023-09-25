@@ -1,5 +1,30 @@
-// 모바일 문의하기
+/* Mobile Custom */
 .mobile {
+  // 기본 버튼 설정
+  .radio {
+    width: 20px;
+    height: 20px;
+    text-indent: 25px;
+  }
+  .radio::before {
+    width: 9px;
+    height: 9px;
+    top: 9px;
+    left: 9px;
+  }
+  .checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  input[type=checkbox]:checked + .checkbox::before{
+    content: url("../img/button/mobile/check.svg");
+    left: -26px;
+    top: 3px;
+  }
+  textarea {
+    height: 102px;
+  }
+  // 모바일 문의하기
   &.inquiry {
     background-color: #ffffff;
     display: inline-block;
@@ -47,6 +72,8 @@
       }          
     }
     .contents {
+      width: 100%;
+      display: inline-flex;
       justify-content: space-around;
       .register {
         width: 90%;
@@ -77,9 +104,27 @@
           display: inline-flex;
           width: 100%;
           padding: 15px 0 15px 0;
+          &.solid {
+            border-bottom: 0.5px solid #ACACAC;
+            height: 96px;
+          }
           .block {
             display: inline-block;
             width: 100%;
+            .box {
+              width: 50%;
+              display: inline-flex;
+              .icon {
+                height: 12px;
+                margin: 2px 0 3px 3px;
+              }
+            }
+            .box:not(:first-of-type) {
+              padding: 0 0 0 27px;
+              &.left {
+                padding: 0;
+              }
+            }
             textarea {
               margin: 15px 0;
               color: #999;
@@ -89,11 +134,6 @@
               font-weight: 300;
               line-height: normal;              
             }
-          }
-          .th {
-            padding: 0;
-            align-items: start;
-            display: flex;
           }
           .icon {
             width: 11px;
@@ -111,7 +151,9 @@
             border: 0px;
             border-bottom: 1px solid #c5c5c5;
             width: 100%;
-            padding: 0 0 7px 0;
+            padding: 3px 0px 7px 5px;
+            position: relative;
+            top: -3px;
           }
           select {
             width: 100%;
@@ -126,28 +168,40 @@
             position: relative;
             top: -5px;
           }
-          div {
-            width: 12%;
-          }
           label {
             padding: 6px 0 0 5px;
           }
           label:not(:first-of-type) {
             margin: 0 0 0 12%;
           }
-          .body {
+          .th {
+            width: 12%;
+            &.lg {
+              width: 20%;
+            }            
+            .name {
+              padding: 0;
+              align-items: start;
+              display: flex;
+            }
+          }          
+          .td {
             width: 70%;
           }          
           &.line {
             display: inline-flex;
-            .body {
+            .th {
+              width: 17%;              
+            }
+            .td {
               margin: 0;
+              padding: 0 5px;
               .radio {
                 margin: 0 0 5px 0;
               }
             }
             label {
-              margin: 10px 0 0 69px;
+              margin: 0 59px 0 0;
             }
           }
         }
@@ -157,19 +211,19 @@
           justify-content: center;
           padding: 105px 0 125px 0;          
           .submit {
-            width: 286px;
-            height: 81px;
-            background-color: #000000;
-            border-radius: 40.5px;
+            width: 165.951px;
+            height: 47px;
+            flex-shrink: 0;
+            border-radius: 23.5px;
+            background: #000;
             cursor: pointer;
             span {
-              font-family: "Pretendard-Light", Helvetica;
+              color: #FFF;
+              font-family: Pretendard;
+              font-size: 17.407px;
+              font-style: normal;
               font-weight: 300;
-              color: #ffffff;
-              font-size: 30px;
-              letter-spacing: 0;
-              line-height: normal;
-              white-space: nowrap;             
+              line-height: normal;         
             }
           }
         }       

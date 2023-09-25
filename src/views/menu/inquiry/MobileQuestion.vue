@@ -11,32 +11,44 @@
             <img class="img" src="@/assets/img/inquiry/line.svg" />
           </div>
           <div class="row">
-              <span class="th">이름</span>
-              <input type="text" placeholder="이름을 입력해주세요"/>
-          </div>
-          <div class="row">
-            <span class="th">연락처</span>
-            <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
-          </div>
-          <div class="row">
-            <span class="th">이메일</span>
-            <input type="text" placeholder="이메일을 입력해주세요"/>
-          </div>
-          <div class="row">
-            <div clas="head">
-              <span class="th">건축희망모델</span>
+            <div class="th">
+              <span class="name">이름</span>
             </div>
-            <div class="body">
+            <div class="td">
+              <input type="text" placeholder="이름을 입력해주세요"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="th">
+              <span class="name">연락처</span>
+            </div>
+            <div class="td">
+              <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="th">
+              <span class="name">이메일</span>
+            </div>
+            <div class="td">
+              <input type="text" placeholder="이메일을 입력해주세요"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="th lg">
+              <span class="name">건축희망모델</span>
+            </div>
+            <div class="td">
               <select>
                 <option value="">CNK-01-XX-XX</option>
               </select>
             </div>
           </div>
           <div class="row line">
-            <div class="head">
-              <span class="th">구조</span>
+            <div class="th">
+              <span class="name">구조</span>
             </div>
-            <div class="body">
+            <div class="td">
               <label>
                 <input type="radio"/>
                 <span class="radio">강구조</span>
@@ -46,12 +58,12 @@
                 <span class="radio">목구조</span>
               </label>
             </div>
-          </div>        
+          </div>
           <div class="row line">
-            <div clas="head">
-              <span class="th">건축예상평수</span>
+            <div class="th">
+              <span class="name">건축예상평수</span>
             </div>
-            <div class="body">
+            <div class="td">
               <label>
                 <input type="radio"/>
                 <span class="radio">20평이하</span>
@@ -79,10 +91,10 @@
             </div>
           </div>
           <div class="row line">
-            <div clas="head">
-              <span class="th">건축예정시기</span>
+            <div class="th">
+              <span class="name">건축예정시기</span>
             </div>
-            <div class="body">
+            <div class="td">
               <label>
                 <input type="radio"/>
                 <span class="radio">6개월이내</span>
@@ -98,10 +110,10 @@
             </div>
           </div>
           <div class="row line">
-            <div clas="head">
-              <span class="th">건축예상금액</span>
+            <div class="th">
+              <span class="name">건축예상금액</span>
             </div>
-            <div class="body">
+            <div class="td">
               <label>
                 <input v-model="radioValue" type="radio" value="1"/>
                 <span class="radio">1-2억</span>
@@ -122,25 +134,29 @@
           </div>
           <div class="row">
             <div class="block">
-              <span class="th">상담내용</span>
+              <span class="name">상담내용</span>
               <textarea placeholder="상담내용을 자세하게 작성해주세요." />
             </div>
           </div>
-          <div class="row">
-            <label>
-              <input type="checkbox"/>
-              <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
-            </label>
-            <div>
-              <span>개인정보활용 전문보기</span>
-              <img class="icon" src="@/assets/img/button/icon1.svg" />
+          <div class="row solid">
+            <div class="block">
+              <div class="box">
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
+                </label>
+              </div>
+              <div class="box">
+                <span>개인정보활용 전문보기</span>
+                <img class="icon" src="@/assets/img/button/icon1.svg" />
+              </div>
+              <div class="box left">
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">문자로 답변을 받겠습니다.</span>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <label>
-              <input type="checkbox"/>
-              <span class="checkbox">문자로 답변을 받겠습니다.</span>
-            </label>
           </div>
           <div class="btn-area">
             <button class="submit">

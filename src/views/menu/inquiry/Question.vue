@@ -17,32 +17,34 @@
           <img class="img" src="@/assets/img/inquiry/line.svg" />
         </div>
         <div class="row">
-          <div class="cell">
-            <span class="th">이름</span>
+          <div class="th">
+            <span class="name">이름</span>
             <input type="text" placeholder="이름을 입력해주세요"/>
           </div>
-          <div class="cell">
-            <span class="th">연락처</span>
+          <div class="th">
+            <span class="name">연락처</span>
             <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
           </div>
         </div>
         <div class="row">
-          <div class="cell">
-            <span class="th">이메일</span>
+          <div class="th">
+            <span class="name">이메일</span>
             <input type="text" placeholder="이메일을 입력해주세요"/>
           </div>
         </div>
         <div class="row">
-          <div class="cell full">
-            <span class="th">건축희망모델</span>
+          <div class="th full">
+            <span class="name">건축희망모델</span>
             <select>
               <option value="">CNK-01-XX-XX</option>
             </select>
           </div>
         </div>
-        <div class="row">
-          <div class="cell full">
-            <span class="th">구조</span>
+        <div class="row line">
+          <div class="th">
+            <span class="name">구조</span>
+          </div>
+          <div class="td">
             <label>
               <input type="radio"/>
               <span class="radio">강구조</span>
@@ -52,10 +54,12 @@
               <span class="radio">목구조</span>
             </label>            
           </div>
-        </div>        
-        <div class="row">
-          <div class="cell full">
-            <span class="th">건축예상평수</span>
+        </div>
+        <div class="row line">
+          <div class="th">
+            <span class="name">건축예상평수</span>
+          </div>
+          <div class="td">
             <label>
               <input type="radio"/>
               <span class="radio">20평이하</span>
@@ -80,12 +84,13 @@
               <input type="radio"/>
               <span class="radio">60평이상</span>
             </label>
-            </label>
           </div>
         </div>
-        <div class="row">
-          <div class="cell full">
-            <span class="th">건축예정시기</span>
+        <div class="row line">
+          <div class="th">
+            <span class="name">건축예정시기</span>
+          </div>
+          <div type="td">
             <label>
               <input type="radio"/>
               <span class="radio">6개월이내</span>
@@ -97,12 +102,14 @@
             <label>
               <input type="radio"/>
               <span class="radio">2년이상</span>
-            </label>                        
+            </label>
           </div>
         </div>
-        <div class="row">
-          <div class="cell full">
-            <span class="th">건축예상금액</span>
+        <div class="row line">
+          <div class="th">
+            <span class="name">건축예상금액</span>
+          </div>
+          <div class="td">
             <label>
               <input v-model="radioValue" type="radio" value="1"/>
               <span class="radio">1-2억</span>
@@ -122,19 +129,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="cell full block">
-            <span class="th">상담내용</span>
+          <div class="th full block">
+            <span class="name">상담내용</span>
             <textarea placeholder="상담내용을 자세하게 작성해주세요." />
           </div>
         </div>
         <div class="row">
-          <div class="cell">
+          <div class="th">
             <label>
               <input type="checkbox"/>
               <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
             </label>
           </div>
-          <div class="cell">
+          <div class="th">
             <span>개인정보활용 전문보기</span>
             <img class="icon" src="@/assets/img/button/icon1.svg" />
           </div>

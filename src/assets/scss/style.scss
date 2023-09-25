@@ -676,6 +676,7 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  
 }
 
 .menu-kor .overlap-group-wrapper {
@@ -1653,7 +1654,7 @@
         display: inline-flex;
         width: 100%;
         padding: 20px 0 20px 0;
-        .cell {
+        .th {
           width: 50%;
           display: inline-flex;
           &.full {
@@ -1665,7 +1666,7 @@
               }
             }
           }
-          .th {
+          .name {
             padding: 0 50px 0 0;
             width: 168px;
           }
@@ -1710,9 +1711,25 @@
             margin: 0 0 0 12%;
           }
         }
-        .cell:not(:first-of-type) {
+        .th:not(:first-of-type) {
           padding-left: 2%;
         }
+        &.line {
+          display: inline-flex;
+          .th {
+            width: 144px;
+            
+          }
+          .td {
+            margin: 0;
+            .radio {
+              margin: 0 0 5px 0;
+            }
+          }
+          label {
+            margin: 0 104px 0 0;
+          }
+        }          
       }
 
       .btn-area {
