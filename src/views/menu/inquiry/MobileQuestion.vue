@@ -1,159 +1,236 @@
 <template>
-    <div>
-        <div class="dh_p4a w-100">
-            <div class="x_div_center" style="height:100%; background-color:rgba(0, 0, 0, 0.3);">
-                <div class="rp_set px-3" style="padding:120px 0 0 0;" v-if="lang == 'ko'">
-                    <span class="dh_p1b">지금 바로 무료 상담 받아보세요.</span><br>
-                    <span class="dh_p1c">지금 바로 무료 상담 받아보세요. 상담 신청 시, 전문 컨설턴트가 맞춤 상담을 해드립니다.</span>
-                </div>
-                <div class="rp_set px-3" style="padding:120px 0 0 0;" v-else-if="lang == 'en'">
-                    <span class="dh_p1b">Get free consultation right now.</span><br>
-                    <span class="dh_p1c">When applying for counseling, a professional consultant will provide customized counseling.</span>
-                </div>
+    <div class="mobile inquiry">
+      <div class="group">
+        <div class="text-wrapper">문의하기</div>
+        <div class="text-wrapper-2">최선을 다해 도와드리겠습니다</div>
+      </div>
+      <div class="contents">
+        <div class="register">
+          <div class="subject">
+            <div class="title">견적문의</div>
+            <img class="img" src="@/assets/img/inquiry/line.svg" />
+          </div>
+          <div class="row">
+              <span class="th">이름</span>
+              <input type="text" placeholder="이름을 입력해주세요"/>
+          </div>
+          <div class="row">
+            <span class="th">연락처</span>
+            <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
+          </div>
+          <div class="row">
+            <span class="th">이메일</span>
+            <input type="text" placeholder="이메일을 입력해주세요"/>
+          </div>
+          <div class="row">
+            <div clas="head">
+              <span class="th">건축희망모델</span>
             </div>
-        </div>
-
-        <div class="x_div_center">
-            <div class="rp_set">
-
-                <!-- QA -->
-                <div class="w-100 py-3 pt-5">
-                    <div class="x_div_center pb-3"><span class="fkr-set2 fs-16 fc-w10"><strong>{{ lang == 'ko'? '문의하기' : 'Contact Us'}}</strong></span></div>
-
-                    <!-- QA -->
-                    <div class="">
-
-                        <div class="table-responsive" style="border:1px solid #c9c9c9; border-radius:8px">
-                            <table class="table-borderless w-100" style="table-layout:fixed">
-                            <tr class="ls_bg1" style="height:55px;">
-                                <td class="text-center br_0" width="110" style="background-color:#efefef"><span class="fkr-set1">{{ lang == 'ko'? '이메일' : 'E-mail'}}</span></td>
-                                <td class="text-center px-2"><input v-model="consult.email" type="text" class="form-control" style="width:230px"></td>
-                            </tr>
-                            <tr class="ls_bg1" style="height:55px;">
-                                <td class="text-center br_0" style="background-color:#efefef"><span class="fkr-set1">{{ lang == 'ko'? '이름' : 'Name'}}</span></td>
-                                <td class="text-center px-2"><input v-model="consult.customer_name" type="text" class="form-control" style="width:230px"></td>
-                            </tr>
-                            <tr class="ls_bg1">
-                                <td class="text-center br_0" style="background-color:#efefef"><span class="fkr-set1">{{ lang == 'ko'? '연락처' : 'H.P'}}</span></td>
-                                <td class="d-flex px-2 py-2">
-                                    <div class="x_div_center"><input v-model="phoneHead" type="text" class="form-control text-center" style="width:68px"></div>
-                                    <div class="x_div_center px-1">-</div>
-                                    <div class="x_div_center"><input v-model="phoneMid" type="text" class="form-control text-center" style="width:68px"></div>
-                                    <div class="x_div_center px-1">-</div>
-                                    <div class="x_div_center"><input v-model="phoneTail" type="text" class="form-control text-center" style="width:68px"></div>
-                                </td>
-                            </tr>
-                            <tr class="ls_bg1" style="height:55px;">
-                                <td class="text-center br_0" style="background-color:#efefef"><span class="fkr-set1">{{ lang == 'ko'? '분류' : 'Category'}}</span></td>
-                                <td class="px-2">
-                                    <select class="custom-select" v-model="consult.category" style="width:200px; height:37px;">
-                                        <option :value="lang == 'ko'? '설계' : 'Design'">{{lang == 'ko'? '설계' : 'Design'}}</option>
-                                        <option :value="lang == 'ko'? '시공' : 'Construction'">{{lang == 'ko'? '시공' : 'Construction'}}</option>
-                                        <option :value="lang == 'ko'? '기타' : 'Others'">{{lang == 'ko'? '기타' : 'Others'}}</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr class="py-2">
-                                <td class="text-center br_0" style="background-color:#efefef"><span class="fkr-set1">{{ lang == 'ko'? '문의내용' : 'Contents'}}</span></td>
-                                <td class="text-center p-2"><textarea v-model="consult.content" class="form-control" style="height:200px"></textarea></td>
-                            </tr>
-                            </table>
-
-                        </div>
-
-                        <li class="chk_box"><input type="checkbox" id="agree2" name="agree2" class="custom-control-input" v-model="checkPp" value="true" >
-                        <label class="custom-control-label" for="agree2"><span class="fkr-set2">개인정보처리방침에 동의합니다</span> &nbsp; <a class="fkr-set2 fc-w3" href="#privacyPolicy" data-toggle="modal" data-id="1'">상세보기</a></label></li>
-
-                        <div class="x_div_center py-2"><button @click="onSubmit()" class="fkr-set1 px-4 py-2 fc-w1" style="width:120px; background-color:#4e0000; border:1px solid #e9e9e9; border-radius:4px">{{ lang == 'ko'? '문의하기' : 'Submit'}}</button></div>
-
-                    </div>
-                </div>
-
-                <div style="height:80px"></div>
-
+            <div class="body">
+              <select>
+                <option value="">CNK-01-XX-XX</option>
+              </select>
             </div>
+          </div>
+          <div class="row line">
+            <div class="head">
+              <span class="th">구조</span>
+            </div>
+            <div class="body">
+              <label>
+                <input type="radio"/>
+                <span class="radio">강구조</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">목구조</span>
+              </label>
+            </div>
+          </div>        
+          <div class="row line">
+            <div clas="head">
+              <span class="th">건축예상평수</span>
+            </div>
+            <div class="body">
+              <label>
+                <input type="radio"/>
+                <span class="radio">20평이하</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">20평대</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">30평대</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">40평대</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">50평대</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">60평이상</span>
+              </label>
+            </div>
+          </div>
+          <div class="row line">
+            <div clas="head">
+              <span class="th">건축예정시기</span>
+            </div>
+            <div class="body">
+              <label>
+                <input type="radio"/>
+                <span class="radio">6개월이내</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">1년이내</span>
+              </label>
+              <label>
+                <input type="radio"/>
+                <span class="radio">2년이상</span>
+              </label>
+            </div>
+          </div>
+          <div class="row line">
+            <div clas="head">
+              <span class="th">건축예상금액</span>
+            </div>
+            <div class="body">
+              <label>
+                <input v-model="radioValue" type="radio" value="1"/>
+                <span class="radio">1-2억</span>
+              </label>
+              <label>
+                <input v-model="radioValue" type="radio" value="2"/>
+                <span class="radio">2-3억</span>
+              </label>
+              <label>
+                <input v-model="radioValue" type="radio" value="3"/>
+                <span class="radio">3-4억</span>
+              </label>
+              <label>
+                <input v-model="radioValue" type="radio" value="4"/>
+                <span class="radio">기타</span>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="block">
+              <span class="th">상담내용</span>
+              <textarea placeholder="상담내용을 자세하게 작성해주세요." />
+            </div>
+          </div>
+          <div class="row">
+            <label>
+              <input type="checkbox"/>
+              <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
+            </label>
+            <div>
+              <span>개인정보활용 전문보기</span>
+              <img class="icon" src="@/assets/img/button/icon1.svg" />
+            </div>
+          </div>
+          <div class="row">
+            <label>
+              <input type="checkbox"/>
+              <span class="checkbox">문자로 답변을 받겠습니다.</span>
+            </label>
+          </div>
+          <div class="btn-area">
+            <button class="submit">
+              <span>상담신청</span>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</template>
-
-<script>
-// import Api from '@/api'
-
-export default {
-    name: 'MenuQuestion',
-    props: {
+  </template>
+  
+  <script>
+  // import Api from '@/api'
+  
+  export default {
+      name: 'MobileQuestion',
+      props: {
         lang: {
-            type: String,
-            default: 'ko'
+          type: String,
+          default: 'ko'
         }
-    },
-    data() {
-        return {
-            phoneHead: '',
-            phoneMid: '',
-            phoneTail: '',
-            consult: {
-                'customer_name':'',
-                'email':'',
-                'phone':'',
-                'content':'',
-                'category': this.lang == 'ko'? '설계' : 'Design'
-            },
-            checkPp: false
-        }
-    },
-    watch: {
-        lang(val) {
-            if(val == 'ko') {
-                this.consult.category = '설계';
-            }
-            else {
-                this.consult.category = 'Design';
-            }
-        }
-    },
-    methods: {
-      async onSubmit() {
-        /*
-        if(this.validation()) {
-            if (!confirm(this.lang == 'ko' ? "제출하시겠습니까?" : "Are you sure for submission?")) {
-                // 취소(아니오) 버튼 클릭 시 이벤트
-            } else {
-                this.consult.phone = this.phoneHead + '-' + this.phoneMid + '-' + this.phoneTail;
-                var rtnval = await Api.post('/api/v1/admin/usr/mng/send/question', {
-                    email: this.consult.email,
-                    fullName: this.consult.customer_name,
-                    phone: this.consult.phone,
-                    desc: this.consult.content.replace(/\n/g, '<br/>'),
-                    ctgry: this.consult.category
-                });
-                if (rtnval.result) {
-                    alert(this.lang == 'ko' ? "제출되었습니다. 빠른 시일 내에 메일 혹은 전화로 답변 드리겠습니다." : "Your request has been accepted well. Thank you.")
-                    this.$router.push('/');
-                }
-            }
-        }
-        */
       },
-      validation() {
-          if (!this.consult.email && (!this.phoneHead || !this.phoneMid || !this.phoneTail)){
-              alert('이메일이나 연락처 중 하나 이상 입력하셔야 합니다.');
-              return false;
+      data() {
+        return {
+          radioValue: false,
+          phoneHead: '',
+          phoneMid: '',
+          phoneTail: '',
+          consult: {
+            'customer_name':'',
+            'email':'',
+            'phone':'',
+            'content':'',
+            'category': this.lang == 'ko'? '설계' : 'Design'
+          },
+          checkPp: false
+        }
+      },
+      watch: {
+        lang(val) {
+          if(val == 'ko') {
+              this.consult.category = '설계';
           }
-          if (!this.consult.customer_name) {
-              alert('이름은 필수 입력사항입니다.');
-              return false;
+          else {
+              this.consult.category = 'Design';
           }
-          if (this.consult.content == ''){
-              alert('문의 내용을 입력해주세요.');
-              return false;
+        }
+      },
+      methods: {
+        async onSubmit() {
+          /*
+          if(this.validation()) {
+              if (!confirm(this.lang == 'ko' ? "제출하시겠습니까?" : "Are you sure for submission?")) {
+                  // 취소(아니오) 버튼 클릭 시 이벤트
+              } else {
+                  this.consult.phone = this.phoneHead + '-' + this.phoneMid + '-' + this.phoneTail;
+                  var rtnval = await Api.post('/api/v1/admin/usr/mng/send/question', {
+                      email: this.consult.email,
+                      fullName: this.consult.customer_name,
+                      phone: this.consult.phone,
+                      desc: this.consult.content.replace(/\n/g, '<br/>'),
+                      ctgry: this.consult.category
+                  });
+                  if (rtnval.result) {
+                      alert(this.lang == 'ko' ? "제출되었습니다. 빠른 시일 내에 메일 혹은 전화로 답변 드리겠습니다." : "Your request has been accepted well. Thank you.")
+                      this.$router.push('/');
+                  }
+              }
           }
-          if(!this.checkPp) {
-              alert('이용약관 및 개인정보처리방침은 필수 동의사항입니다.');
-              return false;
-          }
-          return true;
+          */
+        },
+        validation() {
+            if (!this.consult.email && (!this.phoneHead || !this.phoneMid || !this.phoneTail)){
+                alert('이메일이나 연락처 중 하나 이상 입력하셔야 합니다.');
+                return false;
+            }
+            if (!this.consult.customer_name) {
+                alert('이름은 필수 입력사항입니다.');
+                return false;
+            }
+            if (this.consult.content == ''){
+                alert('문의 내용을 입력해주세요.');
+                return false;
+            }
+            if(!this.checkPp) {
+                alert('이용약관 및 개인정보처리방침은 필수 동의사항입니다.');
+                return false;
+            }
+            return true;
+        }
       }
-    }
-}
-</script>
+  }
+  </script>

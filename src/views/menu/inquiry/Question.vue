@@ -19,7 +19,7 @@
         <div class="row">
           <div class="cell">
             <span class="th">이름</span>
-            <input type="text" class="small" placeholder="이름을 입력해주세요"/>
+            <input type="text" placeholder="이름을 입력해주세요"/>
           </div>
           <div class="cell">
             <span class="th">연락처</span>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="cell">
+          <div class="cell full">
             <span class="th">건축희망모델</span>
             <select>
               <option value="">CNK-01-XX-XX</option>
@@ -41,97 +41,114 @@
           </div>
         </div>
         <div class="row">
-          <div class="cell">
+          <div class="cell full">
+            <span class="th">구조</span>
+            <label>
+              <input type="radio"/>
+              <span class="radio">강구조</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">목구조</span>
+            </label>            
+          </div>
+        </div>        
+        <div class="row">
+          <div class="cell full">
             <span class="th">건축예상평수</span>
             <label>
-              <input v-model="isChecked" type="radio" @click="onCheck()"/>
+              <input type="radio"/>
               <span class="radio">20평이하</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">20평대</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">30평대</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">40평대</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">50평대</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">60평이상</span>
+            </label>
             </label>
           </div>
         </div>
-        <div class="text-wrapper-9">건축희망모델</div>
-        <div class="text-wrapper-10">연락처</div>
-        <div class="text-wrapper-11">이메일</div>
-        <div class="text-wrapper-12">이름을 입력해주세요</div>
-        <div class="overlap-2">
-            <div class="text-wrapper-13">상담내용을 자세하게 작성해주세요.</div>
-            <div class="rectangle"></div>
+        <div class="row">
+          <div class="cell full">
+            <span class="th">건축예정시기</span>
+            <label>
+              <input type="radio"/>
+              <span class="radio">6개월이내</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">1년이내</span>
+            </label>
+            <label>
+              <input type="radio"/>
+              <span class="radio">2년이상</span>
+            </label>                        
+          </div>
         </div>
-        <p class="p">전화번호를 입력해주세요 (기호, 공백 제외)</p>
-        <div class="text-wrapper-14">이메일을 입력해주세요</div>
-        <div class="text-wrapper-15">건축예상평수</div>
-        <div class="text-wrapper-16">건축예정시기</div>
-        <div class="text-wrapper-17">건축예정금액</div>
-        <div class="text-wrapper-18">구조</div>
-        <div class="text-wrapper-19">상담내용</div>
-        <p class="text-wrapper-20">개인정보 수집 및 이용에 동의합니다.</p>
-        <div class="text-wrapper-21">개인정보활용 전문보기</div>
-        <div class="text-wrapper-22">문자로 답변을 받겠습니다.</div>
-        <div class="group-2">
-            <div class="text-wrapper-23">20평이하</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
+        <div class="row">
+          <div class="cell full">
+            <span class="th">건축예상금액</span>
+            <label>
+              <input v-model="radioValue" type="radio" value="1"/>
+              <span class="radio">1-2억</span>
+            </label>
+            <label>
+              <input v-model="radioValue" type="radio" value="2"/>
+              <span class="radio">2-3억</span>
+            </label>
+            <label>
+              <input v-model="radioValue" type="radio" value="3"/>
+              <span class="radio">3-4억</span>
+            </label>
+            <label>
+              <input v-model="radioValue" type="radio" value="4"/>
+              <span class="radio">기타</span>
+            </label>
+          </div>
         </div>
-        <div class="group-3">
-            <div class="text-wrapper-23">6개월이내</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
+        <div class="row">
+          <div class="cell full block">
+            <span class="th">상담내용</span>
+            <textarea placeholder="상담내용을 자세하게 작성해주세요." />
+          </div>
         </div>
-        <div class="group-4">
-            <div class="text-wrapper-23">1~2억</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
+        <div class="row">
+          <div class="cell">
+            <label>
+              <input type="checkbox"/>
+              <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
+            </label>
+          </div>
+          <div class="cell">
+            <span>개인정보활용 전문보기</span>
+            <img class="icon" src="@/assets/img/button/icon1.svg" />
+          </div>
         </div>
-        <div class="group-5">
-            <div class="text-wrapper-23">강구조</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
+        <div class="row">
+          <label>
+            <input type="checkbox"/>
+            <span class="checkbox">문자로 답변을 받겠습니다.</span>
+          </label>
         </div>
-        <div class="group-6">
-            <div class="text-wrapper-23">20평대</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-7">
-            <div class="text-wrapper-23">1년이내</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-8">
-            <div class="text-wrapper-23">2~3억</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-9">
-            <div class="text-wrapper-23">목구조</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-10">
-            <div class="text-wrapper-23">30평대</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-11">
-            <div class="text-wrapper-23">2년이상</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-12">
-            <div class="text-wrapper-23">3~4억</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-13">
-            <div class="text-wrapper-23">40평대</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-14">
-            <div class="text-wrapper-23">50평대</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-15">
-            <div class="text-wrapper-23">기타</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="group-16">
-            <div class="text-wrapper-23">60평이상</div>
-            <div class="ellipse-wrapper"><div class="ellipse"></div></div>
-        </div>
-        <div class="div-wrapper">
-          <div class="submit">상담신청</div>
-        </div>
-        <div class="overlap-wrapper">
-          <div class="overlap-5"><div class="text-wrapper-25">CNK-01-XX-XX</div></div>
+        <div class="btn-area">
+          <button class="submit">
+            <span>상담신청</span>
+          </button>
         </div>
       </div>
     </div>
@@ -142,43 +159,40 @@
 // import Api from '@/api'
 
 export default {
-    name: 'MenuQuestion',
+    name: 'Question',
     props: {
-        lang: {
-            type: String,
-            default: 'ko'
-        }
+      lang: {
+        type: String,
+        default: 'ko'
+      }
     },
     data() {
-        return {
-            isChecked: false,
-            phoneHead: '',
-            phoneMid: '',
-            phoneTail: '',
-            consult: {
-                'customer_name':'',
-                'email':'',
-                'phone':'',
-                'content':'',
-                'category': this.lang == 'ko'? '설계' : 'Design'
-            },
-            checkPp: false
-        }
+      return {
+        radioValue: false,
+        phoneHead: '',
+        phoneMid: '',
+        phoneTail: '',
+        consult: {
+          'customer_name':'',
+          'email':'',
+          'phone':'',
+          'content':'',
+          'category': this.lang == 'ko'? '설계' : 'Design'
+        },
+        checkPp: false
+      }
     },
     watch: {
-        lang(val) {
-            if(val == 'ko') {
-                this.consult.category = '설계';
-            }
-            else {
-                this.consult.category = 'Design';
-            }
+      lang(val) {
+        if(val == 'ko') {
+            this.consult.category = '설계';
         }
+        else {
+            this.consult.category = 'Design';
+        }
+      }
     },
     methods: {
-      onCheck() {
-        this.isChecked = !this.isChecked;
-      },
       async onSubmit() {
         /*
         if(this.validation()) {

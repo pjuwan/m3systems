@@ -5,11 +5,11 @@ input[type=radio] {
 
 // 라디오 버튼 스타일링
 .radio {
-  text-indent: 22px;
-  align-items: center;  
-  width: 20px;
-  height: 20px;
-  border: 2px solid #333;
+  text-indent: 29px;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #999;
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -22,7 +22,7 @@ input[type=radio] {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #333;
+  background-color: #999;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -33,6 +33,44 @@ input[type=radio] {
 // 체크된 상태에만 작은 원 표시
 input[type=radio]:checked + .radio::before {
   display: block;
+}
+
+input[type=checkbox]{
+  display: none;
+}
+.checkbox {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #cdcdcd;
+  text-indent: 28px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  align-items: center;
+}
+input[type=checkbox]:checked + .checkbox::before{
+  content: url("../img/button/check.svg");
+  position: absolute;
+  left: -24px;
+  top: -4px;
+}
+
+textarea {
+  width: 1153px;
+  height: 265px;
+  border-radius: 6px;
+  border-color: #999999;
+  font-family: "Pretendard-Light", Helvetica;
+  font-weight: 300;
+  color: #999999;
+  font-size: 19.5px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  width: 100%;
+  padding: 10px 0 0 10px;
 }
 
 /* Web Style */
