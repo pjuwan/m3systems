@@ -1,4 +1,41 @@
-/* Web SCSS */
+/* Default Style */
+input[type=radio] {
+  display: none;
+}
+
+// 라디오 버튼 스타일링
+.radio {
+  text-indent: 22px;
+  align-items: center;  
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+}
+
+// 체크된 상태에서 가운데 작은 원 추가
+.radio::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); // 가운데 정렬
+  display: none;
+}
+
+// 체크된 상태에만 작은 원 표시
+input[type=radio]:checked + .radio::before {
+  display: block;
+}
+
+/* Web Style */
 .header {
   position: absolute;
   width: 100%;
@@ -226,7 +263,7 @@
   height: 22px;
 }
 
-/* Mobile SCSS */
+/* Mobile Style */
 .mobile-header .menu {
   width: 100%;
   height: 48px;
@@ -246,7 +283,7 @@
 }
 
 .mobile-header .group-wrapper {
-  width: 25px;
+  width: 10%;
   height: 17px;
   display: inline-block;
 }
@@ -288,22 +325,23 @@
 
 .mobile-footer .overlap-wrapper {
   width: 100%;
-  height: 99px;
+  height: 153px;
 }
 
 .mobile-footer .overlap-5 {
   position: relative;
   width: 100%;
-  height: 153px;
+  height: 100%;
   background-color: #262626;
   display: flex;
+  justify-content: center;
 }
 
 .mobile-footer .left {
   display: inline-flex;
   flex-direction: column;
   text-align: left;
-  width: 68%;
+  width: 52%;
   margin: 17px 0 5px 15px;
 }
 
@@ -350,6 +388,7 @@
   flex-direction: column;
   text-align: right;
   padding: 26px 10px 0 0;
+  width: 48%;
 }
 
 .mobile-footer .box {
@@ -418,30 +457,10 @@
   margin: 0 0 5px 0;
 }
 
-.mobile-footer .p {
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 7.7px;
-  letter-spacing: -0.46px;
-  line-height: normal;
-  white-space: nowrap;
-}
-
 .mobile-footer .text-wrapper-3 {
   color: #ffffff;
 }
 
 .mobile-footer .text-wrapper-4 {
   color: #acacac;
-}
-
-.mobile-footer .text-wrapper-9 {
-  font-family: "Pretendard-Medium", Helvetica;
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 7.7px;
-  letter-spacing: -0.46px;
-  line-height: normal;
-  white-space: nowrap;
 }

@@ -33,17 +33,16 @@
             </a>
             <img class="img" src="@/assets/img/rectangle-131.png" />
           </div>
-          <p class="p">
-            <span class="text-wrapper-3">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-            <span class="text-wrapper-4">|</span>
-            <span class="text-wrapper-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보처리방침침 </span>
-          </p>
-          <p class="text-wrapper-9">Copyright 2023 m3systems.All Rights Reserved.</p>
+          <div class="flexcontainer">
+            <p class="text">
+              <span class="text-wrapper-3">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+              <span class="text-wrapper-4">|</span>
+              <span class="text-wrapper-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보처리방침침 </span>
+            </p>
+            <p class="text">Copyright 2023 m3systems.All Rights Reserved.</p>
+          </div>
         </div>        
       </div>
-    </div>
-    <div class="group-14">
-      <img class="vector-2" src="@/assets/img/vector-15.svg" /> <img class="vector-3" src="@/assets/img/vector-16.svg" />
     </div>
   </div>
 </template>
