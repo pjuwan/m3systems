@@ -12,8 +12,8 @@ input[type=radio] {
   border: 1px solid #999;
   border-radius: 50%;
   position: relative;
-  cursor: pointer;
   display: inline-flex;
+  cursor: pointer;
 }
 
 // 체크된 상태에서 가운데 작은 원 추가
@@ -45,10 +45,10 @@ input[type=checkbox]{
   border-radius: 50%;
   border: 1px solid #cdcdcd;
   text-indent: 28px;
-  cursor: pointer;
   text-align: center;
   position: relative;
   align-items: center;
+  cursor: pointer;
 }
 input[type=checkbox]:checked + .checkbox::before{
   content: url("../img/button/check.svg");
@@ -83,43 +83,51 @@ textarea {
 }
 
 .header {
-  background-color: transparent;
-  transition: background-color 0.3s ease; /* 배경색 전환 효과를 추가합니다. */
+  display: inline-flex;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 */
   &.hovered {
     height: 152px;
   }
   .menu {
     height: 90px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-    display: flex;
-    gap: 7%;
-    padding: 12px 0 0 1%;
-    .submenu:hover {
-      height: auto; /* 상위 메뉴 높이를 자동으로 늘립니다. */
-    }    
+    display: inline-flex;
+    width: 75%;
+    padding: 12px 0;
+    justify-content: center;
     .name {
-      font-family: "Pretendard-SemiBold", Helvetica;
-      font-weight: 600;
-      color: #fff;
-      font-size: 20px;
+      color: #FFF;
       text-align: center;
-      letter-spacing: 0;
+      font-family: Pretendard;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
       line-height: normal;
-      white-space: nowrap;
-      padding: 15px 0;
+      padding: 15px 5% 0 5%;
       cursor: pointer;
       &.submenu {
         padding: 13px 7% 0 7%;
       }
-    }  
+      span {
+        display: block;
+        width: 144px;
+        height: 62px;
+        &.selected {
+          border-bottom: 5px solid white;
+        }
+      }
+    }
     .dropdown {
       display: none;
       position: absolute;
-      top: 76px;
-      left: 38%;
+      top: 88px;
+      left: 40.5%;
       .name {
         font-size: 18px;
-        padding: 27px 34px 0 34px;
+        padding: 27px 36px 0 36px;
+        border-bottom: none;
+        width: auto;
+        height: auto; 
       }
       &.hovered {
         display: inline-flex;
@@ -153,8 +161,9 @@ textarea {
   letter-spacing: 0;
   line-height: normal;
   letter-spacing: -1px;
+  width: 218px;
+  padding: 12px 0 10px 10px;
   cursor: pointer;
-  padding: 0 9% 0 0;
 }
 
 .header .union {
