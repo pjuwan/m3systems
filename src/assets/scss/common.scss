@@ -82,12 +82,58 @@ textarea {
   z-index: 1;
 }
 
-.header .overlap-2 {
-  height: 90px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-  display: flex;
-  gap: 15%;
-  padding: 12px 0 0 1%;
+.header {
+  background-color: transparent;
+  transition: background-color 0.3s ease; /* 배경색 전환 효과를 추가합니다. */
+  &.hovered {
+    height: 152px;
+  }
+  .menu {
+    height: 90px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    gap: 7%;
+    padding: 12px 0 0 1%;
+    .submenu:hover {
+      height: auto; /* 상위 메뉴 높이를 자동으로 늘립니다. */
+    }    
+    .name {
+      font-family: "Pretendard-SemiBold", Helvetica;
+      font-weight: 600;
+      color: #fff;
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+      padding: 15px 0;
+      cursor: pointer;
+      &.submenu {
+        padding: 13px 7% 0 7%;
+      }
+    }  
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 76px;
+      left: 38%;
+      .name {
+        font-size: 18px;
+        padding: 27px 34px 0 34px;
+      }
+      &.hovered {
+        display: inline-flex;
+      }
+    }    
+  }
+}
+
+.header:hover {
+  background: black;
+}
+
+.header .name:hover {
+  height: 100px;
 }
 
 .header .earth-globe {
@@ -99,7 +145,7 @@ textarea {
   object-fit: cover;
 }
 
-.header .text-wrapper-11 {
+.header .logo {
   font-family: "Inter", Helvetica;
   font-weight: 700;
   color: #ffffff;
@@ -107,18 +153,8 @@ textarea {
   letter-spacing: 0;
   line-height: normal;
   letter-spacing: -1px;
-}
-
-.header .text-wrapper-12 {
-  font-family: "Pretendard-SemiBold", Helvetica;
-  font-weight: 600;
-  color: #ffffff;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-  padding: 15px 0;
+  cursor: pointer;
+  padding: 0 9% 0 0;
 }
 
 .header .union {
