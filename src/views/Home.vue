@@ -1,6 +1,31 @@
 <template>
 <div class="mainpage">
   <div class="div">
+    <!-- autoplay 설정가능 -->
+    <vueper-slides fade :touchable="false" fixed-height="915px">
+      <vueper-slide
+        v-for="(info, i) in topInfoList"
+        :key="i">
+        <template v-slot:content>
+          <div class="content">
+            <img :src="info.src" />
+            <div class="overlap-group-6">
+              <div class="group-5">
+                <div class="text-wrapper-8">{{ info.model }}</div>
+                <div class="text-wrapper-9">지금 바로 만나보세요</div>
+              </div>
+              <div class="group-6">
+                <div class="overlap-group-2">
+                  <div class="rectangle"></div>
+                  <div class="text-wrapper-10">보러가기</div>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </template>
+      </vueper-slide>
+    </vueper-slides>
+    <!--
     <div class="overlap">
       <div class="component">
         <div class="group-5">
@@ -23,7 +48,8 @@
         <div class="vector-wrapper"><img class="vector" src="@/assets/img/vector-37-3.svg" /></div>
         <div class="img-wrapper"><img class="vector-2" src="@/assets/img/vector-37-2.svg" /></div>
       </div>
-    </div>    
+    </div>
+    -->
     <div class="new-carousel-PC">
       <div class="group-8">
         <div class="text-wrapper-15">새로운 모델</div>
@@ -116,15 +142,41 @@
   </div>
 </div>
 </template>
-
 <script>
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
+
 export default {
   name: 'HomePage',
   props: {
     msg: String
   },
+  components: {
+    VueperSlides,
+    VueperSlide
+  },
   data() {
     return {
+      topInfoList: [{
+        src: require("@/assets/img/main1.png"),
+        model: 'CNK-01-XX-XX'
+      },
+      {
+        src: require("@/assets/img/main2.png"),
+        model: 'CNK-02-XX-XX'
+      },
+      {
+        src: require("@/assets/img/main3.png"),
+        model: 'CNK-03-XX-XX'
+      },
+      {
+        src: require("@/assets/img/main4.png"),
+        model: 'CNK-04-XX-XX'
+      },      
+      {
+        src: require("@/assets/img/main5.png"),
+        model: 'CNK-05-XX-XX'
+      }],      
       newModelList : [{
         imageSrc: require("@/assets/img/1-2-4.png"),
         title: 'CNK-01-XX-XX',
@@ -260,21 +312,14 @@ export default {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.content {
+  height: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.content img {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 </style>

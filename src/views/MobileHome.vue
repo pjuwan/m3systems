@@ -1,24 +1,22 @@
 <template>
   <div class="mobile">
     <div class="div">
-      <div class="image-album">
-        <div class="images">
-          <img
-            class="image"
-            v-for="(imageUrl, index) in imageUrls"
-            :key="index"
-            :src="imageUrl"
-          />
-        </div>
-        <div v-if="imageUrls.length > 1" class="image-circle-wrapper">
-          <div
-            class="image-circle"
-            v-for="(imageUrl, index) in imageUrls"
-            :key="index"
-            :class="{ activeImg: index === curPos }"
-          ></div>
-        </div>
-      </div>      
+      <!-- autoplay 설정가능 -->
+      <vueper-slides autoplay fixed-height="207.812px">
+        <vueper-slide
+          v-for="(slide, i) in imageUrls"
+          :key="i">
+          <template v-slot:content>
+            <div class="content">
+              <img :src="slide.src" />
+              <div class="overlap-group-6">
+                <img class="subject" src="@/assets/img/group-268-1.png" />
+              </div>
+            </div>
+          </template>
+        </vueper-slide>
+      </vueper-slides>
+      <!--
       <div class="carousel-3">
         <div class="frame-3">
           <div class="div-wrapper-2">
@@ -55,6 +53,7 @@
           <div class="dot-2"></div>
         </div>
       </div>
+      -->
       <div class="group-3">
         <div class="text-wrapper-4">새로운 모델</div>
         <div class="text-wrapper-5">새로운 모델을 만나보세요</div>
@@ -131,24 +130,32 @@
   </div>
 </template>
 <script>
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';
+
 export default {
   name: 'MobileHomePage',
   props: {
     msg: String
   },
+  components: {
+    VueperSlides,
+    VueperSlide
+  },
   data() {
     return {
-      curPos: 0,
-      postion: 0,
-      start_x: 0,
-      end_x: 0,
-      IMAGE_WIDTH: 0,
-      images: null,
-      imageUrls: [
-        "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/09/shutterstock_1151676383.jpg?w=2000",
-        "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/09/shutterstock_1151632343.jpg?w=2000",
-        "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2019/09/shutterstock_1429964489.jpg?w=2000",
-      ],
+      imageUrls: [{
+        src: require("@/assets/img/top1.png"),
+        text: '#1'
+      },
+      {
+        src: require("@/assets/img/top2.png"),
+        text: '#2'
+      },
+      {
+        src: require("@/assets/img/top3.png"),
+        text: '#2'
+      }],
       newModelList : [{
         imageSrc: require("@/assets/img/1-2-4.png"),
         title: 'CNK-01-XX-XX',
@@ -215,12 +222,6 @@ export default {
       }      
     };
   },
-  computed: {
-    getImageWidth: () => {
-      const imgWidth = document.querySelector(".images").offsetWidth;
-      return imgWidth;
-    },
-  },  
   mounted() {
     const { list } = this.bestModel;
     if (list.length > 0) {
@@ -228,28 +229,6 @@ export default {
     }
   },  
   methods: {
-    prev() {
-      if (this.curPos > 0) {
-        this.postion += this.IMAGE_WIDTH;
-        this.images.style.transform = `translateX(${this.postion}px)`;
-        this.curPos = this.curPos - 1;
-      }
-    },
-    next() {
-      if (this.curPos < this.imageUrls.length - 1) {
-        this.postion -= this.IMAGE_WIDTH;
-        this.images.style.transform = `translateX(${this.postion}px)`;
-        this.curPos = this.curPos + 1;
-      }
-    },
-    touch_start(event) {
-      this.start_x = event.touches[0].pageX;
-    },
-    touch_end(event) {
-      this.end_x = event.changedTouches[0].pageX;
-      if (this.start_x > this.end_x) this.next();
-      else this.prev();
-    },
     onNewModel(index) {
       this.newModelList.forEach((e, i) => {
         e.isChecked = false;
@@ -289,64 +268,22 @@ export default {
         this.bestModel.selected = list[0];
         this.bestModel.currentIndex = 0;
       }
-    },    
+    }
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.content {
+  height: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.content .subject {
+  width: 207px;
+  height: 51px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.image-album {
-  width: 100%;
-  height: auto;
-  max-width: 2000px;
-  max-height: 2000px;
-  overflow: hidden;
-}
-.images {
-  position: relative;
+.content img {
   display: flex;
-  height: auto;
-  transition: transform 0.5s;
-}
-.image {
   width: 100%;
-  height: auto;
-  max-width: 2000px;
-  max-height: 2000px;
-}
-.image-circle-wrapper {
-  display: flex;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -18px);
-}
-.image-circle {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid #d2d2d2;
-  margin-right: 12px;
-}
-.image-circle:last-child {
-  margin-right: 0;
-}
-.image-circle.activeImg {
-  background-color: #404040;
+  height: 100%;
 }
 </style>

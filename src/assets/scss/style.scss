@@ -213,8 +213,9 @@
 
 .mobile .prev {
   display: inline-flex;
-  width: 59px;
-  height: 59px;
+  min-width: 47px;
+  width: 47px;
+  height: 47px;
   background-color: #ffffffb0;
   border-radius: 29.5px;
   border: 1px solid;
@@ -225,8 +226,9 @@
 
 .mobile .next {
   display: inline-flex;  
-  width: 59px;
-  height: 59px;
+  min-width: 47px;
+  width: 47px;
+  height: 47px;
   background-color: #ffffffb0;
   border-radius: 29.5px;
   border: 1px solid;
@@ -239,16 +241,16 @@
   position: absolute;
   width: 13px;
   height: 24px;
-  top: 17px;
-  left: 24px;
+  top: 12px;
+  left: 21px;
   transform: rotate(-180deg);
 }
 
 .mobile .vector-3 {
   position: absolute;
-  width: 12px;
+  width: 13px;
   height: 24px;
-  top: 20px;
+  top: 12px;
   left: 18px;
 }
 
@@ -274,13 +276,15 @@
 }
 
 .mobile .carousel-2 {
-  display: inline-block;
+  display: block;
   position: relative;
 }
 
 .mobile .layer {
-  position: relative;
+  width: 257px;
   height: 210px;
+  display: flex;
+  justify-content: center;
 }
 
 .mobile .frame-2 {
@@ -569,20 +573,16 @@
 }
 
 .mobile .overlap-group-6 {
-  position: relative;
-  height: 208px;
-  top: 1683px;
-  left: 8509px;
-  background-image: url(../img/buy-our-houses-now-8.png);
-  background-size: 100% 100%;
+  position: absolute;
+  top: 83px;
+  left: 26%;
 }
 
 .mobile .CWK-XX-XX {
   position: absolute;
-  width: 198px;
-  height: 20px;
-  top: 74px;
-  left: 96px;
+  width: 166;
+  top: 0;
+  left: 69px;
 }
 
 .mobile .buy-our-houses-now {
@@ -896,7 +896,8 @@
   &.best {
     display: flex;
     opacity: 1;
-    width: 323px;
+    width: 100%;
+    height: 227px;
   }
   &.active {
     display: flex;
