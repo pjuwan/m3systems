@@ -110,12 +110,20 @@ textarea {
       }
       span {
         display: block;
-        width: 144px;
         height: 62px;
-        &.selected {
-          border-bottom: 5px solid white;
-        }
       }
+      .selected::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 85px;
+        width: 144px;
+        margin: 0 -30px;
+        border-bottom: 5px solid white;
+      }
+    }
+    .name:first-child .selected::after {
+      margin: 0 -12px;
     }
     .dropdown {
       display: none;
