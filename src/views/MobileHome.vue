@@ -9,54 +9,16 @@
           <template v-slot:content>
             <div class="content">
               <img :src="slide.src" />
-              <div class="overlap-group-6">
+              <div class="area">
                 <img class="subject" src="@/assets/img/group-268-1.png" />
               </div>
             </div>
           </template>
         </vueper-slide>
       </vueper-slides>
-      <!--
-      <div class="carousel-3">
-        <div class="frame-3">
-          <div class="div-wrapper-2">
-            <div class="group-11">
-              <div class="overlap-group-5"><img class="group-12" src="@/assets/img/group-268-4.png" /></div>
-            </div>
-          </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-6">
-                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
-          <div class="div-wrapper-2">
-            <div class="overlap-7">
-              <div class="group-13">
-                <div class="overlap-group-7">
-                  <img class="CWK-XX-XX" src="@/assets/img/buy-our-houses-now-8.png" />
-                  <img class="buy-our-houses-now" src="@/assets/img/buy-our-houses-now-8.png" />
-                </div>
-              </div>
-              <div class="rectangle-8"></div>
-            </div>
-          </div>
-        </div>
-        <div class="indicator-2">
-          <div class="dot"></div>
-          <div class="dot-2"></div>
-          <div class="dot-2"></div>
-        </div>
-      </div>
-      -->
-      <div class="group-3">
-        <div class="text-wrapper-4">새로운 모델</div>
-        <div class="text-wrapper-5">새로운 모델을 만나보세요</div>
+      <div class="new-model">
+        <div class="text-wrapper1">새로운 모델</div>
+        <div class="text-wrapper2">새로운 모델을 만나보세요</div>
       </div>      
       <div class="carousel">
         <div class="indicator">

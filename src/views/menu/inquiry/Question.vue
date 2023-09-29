@@ -1,5 +1,5 @@
 <template>
-  <div class="inquiry">
+  <div class="inquiry-page">
     <div class="bg">
       <div class="overlap">
         <img class="purchase" src="@/assets/img/inquiry/purchase-3347053-1.png" />

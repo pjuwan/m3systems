@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="text-wrapper-2">브랜드스토리</div>
-          <div class="menu-wrapper">전체모델</div>
+          <div class="menu-wrapper" @click="goMenu('MobileHouseModelList')">전체모델</div>
           <div class="div-wrapper"><div class="text-wrapper" @click="goMenu('MobileQuestion')">문의하기</div></div>
           <div class="text-wrapper-4">프리미엄모델</div>
           <div class="text-wrapper-5">스탠다드모델</div>

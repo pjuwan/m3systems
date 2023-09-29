@@ -1,6 +1,6 @@
 <template>
 <div class="mainpage">
-  <div class="div">
+  <div class="container">
     <!-- autoplay 설정가능 -->
     <vueper-slides fade :touchable="false" fixed-height="915px">
       <vueper-slide
@@ -9,51 +9,24 @@
         <template v-slot:content>
           <div class="content">
             <img :src="info.src" />
-            <div class="overlap-group-6">
-              <div class="group-5">
-                <div class="text-wrapper-8">{{ info.model }}</div>
-                <div class="text-wrapper-9">지금 바로 만나보세요</div>
+            <div class="subject">
+              <div class="model">{{ info.model }}</div>
+              <div class="now">지금 바로 만나보세요</div>
+            </div>
+            <div class="view">
+              <div class="group">
+                <div class="rectangle"></div>
+                <div class="text">보러가기</div>
               </div>
-              <div class="group-6">
-                <div class="overlap-group-2">
-                  <div class="rectangle"></div>
-                  <div class="text-wrapper-10">보러가기</div>
-                </div>
-              </div>              
             </div>
           </div>
         </template>
       </vueper-slide>
     </vueper-slides>
-    <!--
-    <div class="overlap">
-      <div class="component">
-        <div class="group-5">
-          <div class="text-wrapper-8">CNK-01-XX-XX</div>
-          <div class="text-wrapper-9">지금 바로 만나보세요</div>
-        </div>
-        <div class="group-6">
-          <div class="overlap-group-2">
-            <div class="rectangle"></div>
-            <div class="text-wrapper-10">보러가기</div>
-          </div>
-        </div>
-        <div class="group-7">
-          <div class="ellipse-2"></div>
-          <div class="ellipse-3"></div>
-          <div class="ellipse-4"></div>
-          <div class="ellipse-5"></div>
-          <div class="ellipse-6"></div>
-        </div>
-        <div class="vector-wrapper"><img class="vector" src="@/assets/img/vector-37-3.svg" /></div>
-        <div class="img-wrapper"><img class="vector-2" src="@/assets/img/vector-37-2.svg" /></div>
-      </div>
-    </div>
-    -->
-    <div class="new-carousel-PC">
-      <div class="group-8">
-        <div class="text-wrapper-15">새로운 모델</div>
-        <div class="text-wrapper-16">새로운 모델을 만나보세요</div>
+    <div class="new-carousel">
+      <div class="header-area">
+        <div class="text-wrapper1">새로운 모델</div>
+        <div class="text-wrapper2">새로운 모델을 만나보세요</div>
       </div>
       <div class="carousel">
         <div class="indicator">
@@ -95,11 +68,10 @@
         </div>
       </div>
     </div>
-    <div class="overlap-3">
-      <div class="rectangle-2"></div>
+    <div class="best-model">
       <div class="text-wrapper-20">베스트 모델</div>
       <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
-      <div class="best-slider-PC">
+      <div class="best-slider">
         <div v-if="bestModel.list?.length > 2" class="overlap-4">
           <img class="element-3" :src="getCurrentImage(-1)" />
           <img class="element-2" :src="getCurrentImage(-2)" />
@@ -122,22 +94,20 @@
         </div>
       </div>
     </div>
-    <a href="https://m3systems.co.kr/use-case/plan" target="_blank" rel="noopener noreferrer"
-      ><div class="group-13">
-        <div class="overlap-8">
-          <img class="image" src="@/assets/img/image-6.png" />
-          <div class="rectangle-3"></div>
-          <div class="group-14"></div>
-          <div class="text-wrapper-25">더 알아보기</div>
-          <div class="group-15">
-            <p class="text-wrapper-27">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-            <div class="text-wrapper-26">맞춤 주택 추천받기</div>
+    <div class="custom-home-recommendation">
+      <a href="https://m3systems.co.kr/use-case/plan" target="_blank" rel="noopener noreferrer">
+        <div class="more-area">
+          <div class="rectangle"></div>
+          <img src="@/assets/img/image-6.png" />
+          <div class="text-how-area">
+            <p class="text">나에게 딱 맞는 집은 어떤 집일까 ?</p>
+            <span class="text">맞춤 주택 추천받기</span>
+          </div>
+          <div class="text-more-area">
+            <div class="text">더 알아보기</div>
           </div>
         </div>
-      </div></a
-    >
-    <div class="group-16">
-      <img class="vector-6" src="@/assets/img/vector-15.svg" /> <img class="vector-7" src="@/assets/img/vector-16.svg" />
+      </a>
     </div>
   </div>
 </div>
@@ -322,4 +292,73 @@ export default {
   width: 100%;
   height: 100%;
 }
+.content .subject {
+  position: absolute;
+  width: 523px;
+  height: 128px;
+  top: 358px;
+  left: 35%;  
+}
+.content .subject .model{
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+    color: #ffffff;
+    font-size: 75px;
+    font-family: "Pretendard-SemiBold", Helvetica;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+.content .subject .now{
+  position: absolute;
+    top: 90px;
+    left: 127px;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+    font-family: "Pretendard-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+.content .view {
+  position: absolute;
+  width: 339px;
+  height: 73px;
+  top: 509px;
+  left: 39%;
+}
+.content .view .group {
+  position: relative;
+  width: 337px;
+  height: 73px;
+  border-radius: 11px;
+}
+.content .view .rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 337px;
+  height: 73px;
+  background-color: #ffffff;
+  border-radius: 11px;
+  box-shadow: inset 0px 0px 15px 3px rgba(0, 0, 0, 0.5019607843);
+}
+.content .view .text {
+  position: absolute;
+  top: 17px;
+  left: 113px;
+  font-family: "Pretendard-ExtraLight", Helvetica;
+  font-weight: 200;
+  color: #686868;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
 </style>

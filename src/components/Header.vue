@@ -13,7 +13,7 @@
         class="name submenu"
         @mouseover="isHovered = true"
         @mouseleave="isHovered = false"
-        @click="goMenu('', '002')"
+        @click="goMenu('HouseModelList', '002')"
       >
         <span :class="{selected: menuId === '002'}">전체모델</span>
         <div class="dropdown" :class="{ 'hovered': isHovered }" @mouseover="isHovered = true" @mouseleave="isHovered = false">

@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store';
 import "@/assets/scss/globals.scss"
-import "@/assets/scss/style.scss"
 import "@/assets/scss/common.scss"
+import "@/assets/scss/style.scss"
 import "@/assets/scss/mobile.scss"
 
 Vue.config.productionTip = false;
