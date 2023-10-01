@@ -37,7 +37,7 @@
             </div>
             <div class="row last">
               <span class="title">면적 | Area</span>
-              <div class="item-area area">
+              <div class="item-area extent">
                 <label>
                   <input type="checkbox"/>
                   <span class="checkbox">33㎡(10PY) 이하</span>

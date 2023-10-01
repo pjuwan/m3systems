@@ -10,58 +10,18 @@
               <img src="@/assets/img/model/find.svg" />
             </div>
           </div>
-          <div class="table">
-            <div class="row">
-              <span class="title">소재 | Material</span>
-              <div class="item-area">
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">강구조</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">목구조</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">철근콘크리트</span>
-                </label>
-              </div>            
-            </div>
-            <div class="row">
-              <span class="title">가격 | Price</span>
-              <div class="item-area price">
-                <input type="text"/><span class="txt">부터~</span><input type="text"/>
-                <button>적용</button>
-              </div>
-            </div>
-            <div class="row last">
-              <span class="title">면적 | Area</span>
-              <div class="item-area area">
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">33㎡(10PY) 이하</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">33㎡~66㎡(10~20PY)</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">66㎡~99㎡(20~30PY)</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">99㎡~132㎡(30~40PY)</span>
-                </label>
-                <label>
-                  <input type="checkbox"/>
-                  <span class="checkbox">132㎡(40PY)이상</span>
-                </label>
-              </div>
-            </div>                    
-          </div>
-        </div>      
+        </div>
+      </div>
+      <div class="select-area">
+        <div class="selectbox" @click="showModal()">
+          <span>소재</span>
+        </div>
+        <div class="selectbox" @click="showModal()">
+          <span>가격</span>
+        </div>
+        <div class="selectbox" @click="showModal()">
+          <span>면적</span>
+        </div>                        
       </div>
       <div class="model-list">
         <!-- 컨텐츠 표시 -->
@@ -75,7 +35,9 @@
             </div>
             <div class="model">
               <div v-for="item in displayedItems" :key="item.id" class="model-item">
-                <div class="img"></div>
+                <div class="img">
+                  <img src="@/assets/img/jeju.png">
+                </div>
                 <div class="description">
                   <span class="name">CNK-01-XX-XX</span>
                   <span class="text">A building that can be used for any purpose {{ item.content }}</span>
@@ -87,9 +49,6 @@
                   </div>
                   <div class="more-area">
                     <span class="price">488,700,000 원</span>
-                    <div class="btn-area">
-                      <span class="view">+ View more</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -130,6 +89,72 @@
         </div>
       </a>
     </div>
+    <div class="modal" :class="{active: isModal}">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="@/assets/img/common/close.svg" @click="hiddenModal()"/>
+          <span class="title">필터</span>
+        </div>
+        <div class="modal-body">
+          <div class="table">
+            <div class="row">
+              <span class="title">소재 | Material</span>
+              <div class="item-area">
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">강구조</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">목구조</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">철근콘크리트</span>
+                </label>
+              </div>            
+            </div>
+            <div class="row">
+              <span class="title">가격 | Price</span>
+              <div class="item-area price">
+                <div><input type="text" placeholder="최저금액"/></div>
+                <span class="txt">~</span>
+                <div><input type="text" placeholder="최대금액"/></div>
+              </div>
+            </div>
+            <div class="row last">
+              <span class="title">면적 | Area</span>
+              <div class="item-area extent">
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">33㎡(10PY) 이하</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">33㎡~66㎡(10~20PY)</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">66㎡~99㎡(20~30PY)</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">99㎡~132㎡(30~40PY)</span>
+                </label>
+                <label>
+                  <input type="checkbox"/>
+                  <span class="checkbox">132㎡(40PY)이상</span>
+                </label>
+              </div>
+            </div>                    
+          </div>          
+        </div>
+        <div class="modal-footer">
+          <button class="btn cancel">초기화</button>
+          <button class="btn submit">적용하기</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script> 
@@ -144,7 +169,8 @@ export default {
       currentPage: 1, // 현재 페이지
       search: {
         latestSort: '01'
-      }
+      },
+      isModal: false
     }
   },
   computed: {
@@ -159,15 +185,14 @@ export default {
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
     pagingRange() {
-      const pageGroup = Math.ceil(this.currentPage / 10);
-      const startPage = ((pageGroup - 1) * 10) + 1;
-      let endPage = pageGroup * 10;
+      const perPageNum = 5; // 페이지당 표시되는 항목 수
+      const pageGroup = Math.ceil(this.currentPage / perPageNum);
+      const startPage = ((pageGroup - 1) * perPageNum) + 1;
+      let endPage = pageGroup * perPageNum;
 
       const totalPages = Math.floor((this.items.length - 1) / this.itemsPerPage) + 1;
-      // console.log((this.items.length - 1) / this.itemsPerPage + 1);
-      // console.log(`count: ${this.items.length }, totalPages : ${totalPages}, startPage: ${startPage},  endPage: ${endPage}`);
 
-      // 마지막페이지가 전체페이지보다 클경우 계산
+      // 마지막페이지가 전체페이지보다 클 경우 계산
       if (endPage > totalPages) {
         endPage = totalPages;
       }
@@ -176,11 +201,11 @@ export default {
     },
   },
   created() {
-    // 1부터 100까지의 아이템을 배열에 추가하는 예제
-    for (let i = 1; i <= 170; i++) {
+    // 아이템을 배열에 추가하는 샘플
+    for (let i = 1; i <= 9; i++) {
       this.items.push({ id: i, content: `아이템 ${i}` });
     }
-  },  
+  },
   methods: {
     // 다음 페이지로 이동
     nextPage() {
@@ -199,6 +224,14 @@ export default {
       if (pageNumber >= 1 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+    showModal() {
+      this.isModal = true;
+      document.body.classList.add('modal-open');
+    },
+    hiddenModal() {
+      this.isModal = false;
+      document.body.classList.remove('modal-open');
     }
   }
 }

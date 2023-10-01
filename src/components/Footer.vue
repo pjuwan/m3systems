@@ -28,18 +28,22 @@
         </div>
         <div class="right">
           <div class="box">
-            <div class="overlap-group-wrapper">
-              <div class="overlap-group">
-                <div class="ellipse-2"></div>
-                <div class="ellipse"></div>
+            <a href="https://www.instagram.com/m3s.korea" target="_blank">
+              <div class="overlap-group-wrapper">
+                <div class="overlap-group">
+                  <div class="ellipse-2"></div>
+                  <div class="ellipse"></div>
+                </div>
               </div>
-            </div>          
+            </a>
             <a href="https://www.youtube.com/@m3systems537" target="_blank" rel="noopener noreferrer">
-              <div class="vector-wrapper">
+            <div class="vector-wrapper">
                 <img class="vector" src="@/assets/img/vector-27.svg" />
               </div>
             </a>
-            <img class="img" src="@/assets/img/rectangle-131.png" />
+            <a href="https://blog.naver.com/m3systems" target="_blank">
+              <img class="img" src="@/assets/img/rectangle-131.png" />
+            </a>
           </div>
           <p class="p">
             <span class="text-wrapper-3">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>

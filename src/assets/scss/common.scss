@@ -8,6 +8,11 @@ input[type=radio] {
   display: none;
 }
 
+/* 모달이 열렸을 때 스크롤 고정 스타일 */
+body.modal-open {
+  overflow: hidden;
+}
+
 // 라디오 버튼 스타일링
 .radio {
   text-indent: 29px;
@@ -91,11 +96,11 @@ textarea {
   display: inline-flex;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
   transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+  height: 90px;
   &.hovered {
     height: 152px;
   }
   .menu {
-    height: 90px;
     display: inline-flex;
     width: 75%;
     padding: 12px 0;
@@ -135,6 +140,7 @@ textarea {
       position: absolute;
       top: 88px;
       left: 40.5%;
+      transition: background-color 0.3s ease; /* 배경색 전환 효과 */
       .name {
         font-size: 18px;
         padding: 27px 36px 0 36px;
@@ -150,7 +156,7 @@ textarea {
 }
 
 .header:hover {
-  background: black;
+  background-color: #000;
 }
 
 .header .name:hover {
@@ -275,7 +281,10 @@ textarea {
   display: inline-flex;
   justify-content: end;
   gap: 10px;
-  padding: 0 0 20px;    
+  padding: 0 0 20px;
+  a {
+    align-items: center;
+  }
 }
 
 .footer .text-wrapper-2 {
