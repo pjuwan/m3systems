@@ -38,7 +38,7 @@
             :class="{ 'active': item.isChecked }"
           >
             <transition name="fade">
-              <div v-if="item.isChecked" class="group">
+              <div class="group">
                 <div class="overlap-group-2">
                   <img class="img" :src="item.descImageSrc" />
                   <div class="text-wrapper">{{ item.title }}</div>

@@ -159,7 +159,7 @@
 </template>
 <script> 
 export default {
-  name: 'MobileHouseModelList',
+  name: 'MobileHouseModelDetail',
   props: {
   },
   data() {

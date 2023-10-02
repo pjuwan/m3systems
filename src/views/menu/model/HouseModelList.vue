@@ -74,7 +74,7 @@
               <span class="low-price" :class="{on: search.latestSort === '03'}" @click="search.latestSort = '03'">낮은가격순</span>
             </div>
             <div class="model">
-              <div v-for="item in displayedItems" :key="item.id" class="model-item">
+              <div v-for="item in displayedItems" :key="item.id" class="model-item" @click="goDetail()">
                 <div class="img"></div>
                 <div class="description">
                   <span class="name">CNK-01-XX-XX</span>
@@ -199,6 +199,9 @@ export default {
       if (pageNumber >= 1 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
+    },
+    goDetail() {
+      this.$router.push({ name: 'HouseModelDetail' });
     }
   }
 }

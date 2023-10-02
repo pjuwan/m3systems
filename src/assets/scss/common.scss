@@ -331,8 +331,8 @@ textarea {
 }
 
 .footer .overlap-group-wrapper {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 5.32px;
   border: 1.8px solid;
   border-color: #ffffff;
@@ -343,24 +343,29 @@ textarea {
   position: relative;
   width: 12px;
   height: 13px;
-  top: 3px;
-  left: 4px;
+  top: 2px;
+  left: 3px;
 }
 
 .footer .ellipse {
-  width: 11px;
-  height: 11px;
+  width: 11.43px;
+  height: 11.43px;
   border-radius: 5.72px;
   border: 1.8px solid;
-  border-color: #ffffff;
+  border-color: #fff;
+  position: absolute;
+  top: 0.5px;
+  left: -0.5px;
 }
 
 .footer .ellipse-2 {
-  width: 2px;
-  height: 2px;
+  width: 2.29px;
+  height: 2.29px;
   background-color: #ffffff;
   border-radius: 1.15px;
-  margin: 0 0 0 9px;
+  position: absolute;
+  left: 9.5px;
+  top: -0.5px;
 }
 
 .footer .img {
