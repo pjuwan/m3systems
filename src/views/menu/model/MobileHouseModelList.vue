@@ -34,7 +34,7 @@
               <span class="low-price" :class="{on: search.latestSort === '03'}" @click="search.latestSort = '03'">낮은가격순</span>
             </div>
             <div class="model">
-              <div v-for="item in displayedItems" :key="item.id" class="model-item">
+              <div v-for="item in displayedItems" :key="item.id" class="model-item" @click="goDetail()">
                 <div class="img">
                   <img src="@/assets/img/jeju.png">
                 </div>
@@ -159,7 +159,7 @@
 </template>
 <script> 
 export default {
-  name: 'MobileHouseModelDetail',
+  name: 'MobileHouseModelList',
   props: {
   },
   data() {
@@ -232,7 +232,10 @@ export default {
     hiddenModal() {
       this.isModal = false;
       document.body.classList.remove('modal-open');
-    }
+    },
+    goDetail() {
+      this.$router.push({ name: 'MobileHouseModelDetail' });
+    }    
   }
 }
 </script>

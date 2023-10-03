@@ -1,7 +1,7 @@
 <template>
   <div class="model-detail-page">
-    <div class="rectangle-41">
-      <div class="top-area">
+    <div class="top-area">
+      <div class="top">
         <div class="item">
           <img src="@/assets/img/model/detail/ellipse-12.png" />
           <span class="how">모듈러주택이 궁금하시다면</span>
@@ -52,9 +52,9 @@
             </div>
             <div class="group-165">
             </div>
-          </div>            
+          </div>
           <div class="btn-area">
-            <button>문의하기</button>
+            <button @click="goMenu('Question')">문의하기</button>
           </div>
         </div>
       </div>
@@ -151,12 +151,16 @@
             </div>
             <div class="right">
               <div class="item-box">
-                <div v-if="selectedFloor === '01'" class="fade-imagebox" :class="{active: selectedFloor === '01'}">
-                  <img src="@/assets/img/model/detail/_1-jm-230421-ver-05-1.png" />
-                </div>
-                <div v-if="selectedFloor === '02'" class="fade-imagebox" :class="{active: selectedFloor === '02'}">
-                  <img src="@/assets/img/model/detail/jm-230421-ver-051.png" />
-                </div>
+                <transition name="fade">
+                  <div v-show="selectedFloor === '01'" class="fade-imagebox" :class="{active: selectedFloor === '01'}">
+                    <img src="@/assets/img/model/detail/_1-jm-230421-ver-05-1.png" />
+                  </div>
+                </transition>
+                <transition name="fade">
+                  <div v-show="selectedFloor === '02'" class="fade-imagebox" :class="{active: selectedFloor === '02'}">
+                    <img src="@/assets/img/model/detail/jm-230421-ver-051.png" />
+                  </div>
+                </transition>
               </div>
             </div>
           </div>
@@ -164,6 +168,10 @@
       </div>
       <div class="carousel-area">
         <span class="title">OPTIONS</span>
+        <div class="btn-box">
+          <img class="img-prev" src="@/assets/img/common/img_prev.svg" @click="$refs.vueperslides1.previous()"/>
+          <img class="img-next" src="@/assets/img/common/img_next.svg" @click="$refs.vueperslides1.next()"/>
+        </div>
         <vueper-slides 
           class="no-shadow thumbnails small"
           ref="vueperslides1"
@@ -174,7 +182,6 @@
           fixed-height="201.9px"
           :gap="2.5"
           :arrowsOutside="true"
-          :arrows="true"
           :touchable="false"
           :bullets="false">
           <vueper-slide
@@ -185,13 +192,14 @@
           </vueper-slide>
         </vueper-slides>        
         <vueper-slides
-          class="no-shadow thumbnails"
+          class="no-shadow thumbnails big"
           ref="vueperslides2"
           @slide="$refs.vueperslides1 && $refs.vueperslides1.goToSlide($event.currentSlide.index, { emit: false })"
           :slide-ratio="1 / 4"
           fixed-height="626px"
           :touchable="false"
-          :bullets="false">
+          :bullets="false"
+          :arrows="false">
           <vueper-slide
             v-for="(slide, i) in modelList"
             :key="i">
@@ -200,9 +208,17 @@
                 <img :src="slide.src">
               </div>
             </template>
+            <template #arrow-left>
+              <i class="icon icon-arrow-left" />
+            </template>
+            <template #arrow-right>
+              <i class="icon icon-arrow-right" />
+            </template>            
           </vueper-slide>
         </vueper-slides>
-        <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
+        <div class="text-item">
+          <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
+      </div>
       </div>
       <div class="more-views-area">
         <span class="title">MORE VIEWS</span>
@@ -236,7 +252,7 @@
         </div>
       </div>
       <div class="btn-area">
-        <button class="btn list">목록보기</button>
+        <button class="btn list" @click="goMenu('HouseModelList')">목록보기</button>
       </div>
     </div>
   </div>
@@ -377,13 +393,6 @@ export default {
   position: absolute;
   left: calc(50% - 960px);
   top: 1491px;
-}
-.rectangle-41 {
-  background: #000000;
-  width: 100%;
-  height: 443px;
-  left: 0px;
-  top: 0px;
 }
 .nav {
   display: inline-flex;
@@ -759,13 +768,12 @@ export default {
           .item-box {
             display: flex;
             width: 100%;
+            position: relative;
           }
           .fade-imagebox {
-            display: flex;
-            flex: 0 0 auto;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
+            display: inline-flex;
+            position: absolute;
+            left: 20%;
             &.active {
               display: flex;
             }
@@ -790,6 +798,36 @@ export default {
       font-weight: 600;
       line-height: 25px;
       margin: 0 0 50px 0;
+    }
+    .btn-box {
+      position: absolute;
+      left: 50%;
+      .img-prev {
+        position: absolute;
+        right: 532px;
+        top: 20px;
+        cursor: pointer;
+      }
+      .img-next {
+        position: absolute;
+        left: 534px;
+        top: 20px;
+        cursor: pointer;
+      }      
+    }
+    .text-item {
+      display: flex;
+      justify-content: center;
+      margin: 17px 0 0 0;
+      padding: 12px;
+      span {
+        color: #161616;
+        text-align: justify;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 25px;
+        width: 61%;
+      }
     }
   }
   .more-views-area {
@@ -961,13 +999,19 @@ span {
 .name {
   font-weight: 300;  
 }
-
 .top-area {
-  display: flex;
-  padding: 9.5% 0 0 0;
+  background: #000000;
   width: 100%;
-  justify-content: center;
-  gap: 4%;
+  height: 443px;
+  left: 0px;
+  top: 0px;
+  .top {
+    display: flex;
+    padding: 9.5% 0 0 0;
+    width: 100%;
+    justify-content: center;
+    gap: 4%;
+  }  
 }
 
 .item {
@@ -1704,6 +1748,10 @@ span {
   &.small {
     max-width: 50%;
   }
+  &.big {
+    position: relative;
+    top: 10px;
+  }
 }
 .thumbnails .vueperslide {
   box-sizing: border-box;
@@ -1718,20 +1766,6 @@ span {
   border-color: #000;
   border: 0;
 }
-.vueperslides__arrow {
-  color: #000;
-  position: relative;
-  top: -715px;
-  svg {
-    vertical-align: middle;
-    stroke: currentColor;
-    fill: none;
-    width: 3.5em;
-    padding: 0.1em;
-    stroke-width: 0.2;
-    box-sizing: border-box;    
-  }
-}  
 .vueperslides__track-inner {
   height: 97%;
 }

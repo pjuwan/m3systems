@@ -3,6 +3,7 @@
     <template v-if="isMobile">
       <MobileHeader />
       <router-view :isMobileDevice="isMobileDevice" />
+      <ScrollToTopButton />
       <MobileFooter />
     </template>
     <template v-else>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import ScrollToTopButton from './components/ScrollToTopButton.vue'
 import MobileHeader from '@/components/MobileHeader.vue'
 import MobileFooter from '@/components/MobileFooter.vue'
 import Header from '@/components/Header.vue'
@@ -25,6 +27,7 @@ export default {
   components: {
     MobileHeader,
     MobileFooter,
+    ScrollToTopButton,
     Header,
     Footer
   },

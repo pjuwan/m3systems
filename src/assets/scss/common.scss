@@ -92,6 +92,14 @@ textarea {
   z-index: 2;
 }
 
+// 모바일 맨위로이동 버튼
+.scroll-to-top {
+  position: fixed;
+  top: 62%;
+  right: 6%;
+  z-index: 1;
+}
+
 .header {
   display: inline-flex;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
@@ -374,7 +382,7 @@ textarea {
 }
 
 /* Mobile Style */
-.mobile-header {
+.mobile-header {  
   .menu {
     width: 100%;
     height: 48px;
@@ -382,11 +390,13 @@ textarea {
   }
 
   .menu-kor {
+    position: fixed;
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    z-index: 3;
     
   }
 

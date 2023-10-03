@@ -31,7 +31,7 @@
           <div class="text-wrapper-5">스탠다드모델</div>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
 </template>
 <script>

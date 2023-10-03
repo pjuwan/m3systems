@@ -8,7 +8,7 @@
           :key="i">
           <template v-slot:content>
             <div class="content">
-              <img :src="slide.src" />
+              <img :src="slide.src" width="100%" height="100%">
               <div class="area">
                 <img class="subject" src="@/assets/img/group-268-1.png" />
               </div>
@@ -237,7 +237,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .content {
+  width: 100%;
   height: 100%;
+  display: inline-block;
 }
 .content .subject {
   width: 207px;
