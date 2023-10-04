@@ -2,7 +2,7 @@
   <div class="mobile">
     <div class="div">
       <!-- autoplay 설정가능 -->
-      <vueper-slides autoplay fixed-height="207.812px">
+      <vueper-slides autoplay fixed-height="207.812px" :bullets-outside="true" :arrows="false">
         <vueper-slide
           v-for="(slide, i) in imageUrls"
           :key="i">
