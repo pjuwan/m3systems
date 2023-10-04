@@ -742,6 +742,7 @@
   width: 100%;
   height: 497px;
   display: flex;
+  margin: 20px 0 0 0;
 }
 
 .mainpage .overlap-4 {
@@ -749,26 +750,23 @@
   width: 30%;
   height: 307px;
   top: 81px;
-  right: 8px;
+  right: 397px;
   display: inline-flex;
+  gap: 3%;
 }
 
 .mainpage .element-2 {
   width: 464px;
   height: 304px;
-  top: 3px;
-  right: 460px;
-  position: absolute;
   object-fit: cover;
+  border-radius: 30px;
 }
 
 .mainpage .element-3 {
   width: 464px;
   height: 304px;
-  top: 3px;
-  left: 130px;
-  position: absolute;
   object-fit: cover;
+  border-radius: 30px;
 }
 
 .mainpage .overlap-5 {
@@ -776,20 +774,23 @@
   width: 30%;
   height: 306px;
   top: 81px;
-  left: 63px;
+  left: 88px;
   display: inline-flex;
+  gap: 3%;
 }
 
 .mainpage .element-4 {
   width: 464px;
   height: 304px;
   object-fit: cover;
+  border-radius: 30px;
 }
 
 .mainpage .element-5 {
   width: 464px;
   height: 304px;
   object-fit: cover;
+  border-radius: 30px;
 }
 
 .mainpage .overlap-6 {
@@ -837,6 +838,7 @@
   width: 669px;
   height: 432px;
   object-fit: cover;
+  border-radius: 30px;
 }
 
 .mainpage .text-wrapper-19 {
@@ -855,11 +857,11 @@
   width: 59px;
   height: 59px;
   top: 196px;
-  right: -4px;
-  background-color: #ffffffb0;
+  right: -35px;
+  background-color: rgba(255, 255, 255, 0.6901960784);
   border-radius: 29.5px;
   border: 1px solid;
-  border-color: #959595b0;
+  border-color: rgba(149, 149, 149, 0.6901960784);
   cursor: pointer;
 }
 
@@ -876,11 +878,11 @@
   width: 59px;
   height: 59px;
   top: 196px;
-  right: 610px;
-  background-color: #ffffffb0;
+  right: 640px;
+  background-color: rgba(255, 255, 255, 0.6901960784);
   border-radius: 29.5px;
   border: 1px solid;
-  border-color: #959595b0;
+  border-color: rgba(149, 149, 149, 0.6901960784);
   transform: rotate(180deg);
   cursor: pointer;
 }

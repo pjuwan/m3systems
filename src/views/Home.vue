@@ -78,12 +78,14 @@
         </div>        
         <div class="overlap-6">
           <div class="group-9">
-            <div class="overlap-group-3">
-              <img class="element-6" :src="bestModel.selected.imageSrc" />
-              <div class="text-wrapper-18">{{ bestModel.selected.model }}</div>
-              <p class="text-wrapper-17">{{ bestModel.selected.title }}</p>
-              <div class="text-wrapper-19">{{ bestModel.selected.price }} Won</div>
-            </div>
+            <transition name="fade">
+              <div v-if="bestModel.isModelShow" class="overlap-group-3">
+                <img class="element-6" :src="bestModel.selected?.imageSrc" />
+                <div class="text-wrapper-18">{{ bestModel.selected.model }}</div>
+                <p class="text-wrapper-17">{{ bestModel.selected.title }}</p>
+                <div class="text-wrapper-19">{{ bestModel.selected.price }} Won</div>
+              </div>
+            </transition>
           </div>
           <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
           <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
@@ -174,41 +176,36 @@ export default {
       bestModel: {
         selected: {},
         currentIndex: 0,
+        isModelShow: true,
         list: [{
-          imageSrc: require('@/assets/img/1-11-2.png'),
+          imageSrc: require('@/assets/img/main1.png'),
           title: 'See our best models here.',
           model: 'CNK-01-XX-XX',
           price: '398,550,000'
         },
         {
-          imageSrc: require('@/assets/img/1-7.png'),
+          imageSrc: require('@/assets/img/main2.png'),
           title: 'See our best models here.',
           model: 'CNK-02-XX-XX',
           price: '393,550,000'
         },
         {
-          imageSrc: require('@/assets/img/1-10-3.png'),
+          imageSrc: require('@/assets/img/main3.png'),
           title: 'See our best models here.',
           model: 'CNK-03-XX-XX',
           price: '392,550,000'
         },
         {
-          imageSrc: require('@/assets/img/1-11-2.png'),
+          imageSrc: require('@/assets/img/main4.png'),
           title: 'See our best models here.',
           model: 'CNK-04-XX-XX',
           price: '397,550,000'
         },
         {
-          imageSrc: require('@/assets/img/1-7.png'),
+          imageSrc: require('@/assets/img/main5.png'),
           title: 'See our best models here.',
           model: 'CNK-05-XX-XX',
           price: '399,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-10-3.png'),
-          title: 'See our best models here.',
-          model: 'CNK-06-XX-XX',
-          price: '391,550,000'
         }]
       }
     }
@@ -245,6 +242,7 @@ export default {
       }
     },
     goNext() {
+      this.bestModel.isModelShow = false;
       const { selected, list } = this.bestModel;
       const currentIndex = list.findIndex((obj) => {
         return JSON.stringify(obj) === JSON.stringify(selected);
@@ -259,6 +257,7 @@ export default {
         this.bestModel.selected = list[0];
         this.bestModel.currentIndex = 0;
       }
+      this.bestModel.isModelShow = true;
     },
     getCurrentImage(index) {
       const { list } = this.bestModel;
