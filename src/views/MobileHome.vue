@@ -6,7 +6,8 @@
         fixed-height="207.812px"
         :bullets-outside="true"
         :arrows="false"
-        :dragging-distance="50"
+        :dragging-distance="10"
+        transition-speed="250"
       >
         <vueper-slide
           v-for="(slide, i) in imageUrls"

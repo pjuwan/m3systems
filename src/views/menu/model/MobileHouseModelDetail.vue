@@ -167,9 +167,12 @@
         <vueper-slides
           class="no-shadow thumbnails"
           :slide-ratio="1 / 4"
-          fixed-height="320px"
+          fixed-height="172px"
           :arrows="false"
-          :bullets="false">
+          :bullets="false"
+          :dragging-distance="50"
+          transition-speed="250"          
+        >
           <vueper-slide
             v-for="(slide, i) in modelList"
             :key="i">
@@ -177,12 +180,12 @@
               <div class="item">
                 <img :src="slide.src" width="100%" height="100%">
               </div>
-              <div class="text-item">
-                <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
-              </div>
             </template>
           </vueper-slide>
         </vueper-slides>
+        <div class="text-item">
+          <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
+        </div>
       </div>
       <div class="more-views-area">
         <span class="title">MORE VIEWS</span>
@@ -679,11 +682,13 @@ export default {
     }
     .item {
       width: 90%;
+      height: 172px;
       display: inline-block;      
     }
     .text-item {
       text-align: justify;
       width: 90%;
+      margin-top: 10px;
       display: inline-block;      
     }    
   }
