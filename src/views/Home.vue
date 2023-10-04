@@ -73,26 +73,34 @@
       <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
       <div class="best-slider">
         <div v-if="bestModel.list?.length > 2" class="overlap-4">
-          <img class="element-3" :src="getCurrentImage(-1)" />
-          <img class="element-2" :src="getCurrentImage(-2)" />
+          <transition name="fade">
+            <img class="element-3" :src="getCurrentImage(-1)" />
+          </transition>
+          <transition name="fade">
+            <img class="element-2" :src="getCurrentImage(-2)" />
+          </transition>
         </div>        
         <div class="overlap-6">
-          <div class="group-9">
+          <div v-for="(item, idx) in bestModel.list" :key="idx" class="group-9" :class="{action: item.isChecked}">
             <transition name="fade">
-              <div v-if="bestModel.isModelShow" class="overlap-group-3">
-                <img class="element-6" :src="bestModel.selected?.imageSrc" />
-                <div class="text-wrapper-18">{{ bestModel.selected.model }}</div>
-                <p class="text-wrapper-17">{{ bestModel.selected.title }}</p>
-                <div class="text-wrapper-19">{{ bestModel.selected.price }} Won</div>
-              </div>
+            <div v-if="item.isChecked" class="overlap-group-3">
+              <img class="element-6" :src="item.imageSrc" />
+              <div class="text-wrapper-18">{{ item.model }}</div>
+              <p class="text-wrapper-17">{{ item.title }}</p>
+              <div class="text-wrapper-19">{{ item.price }} Won</div>
+            </div>
             </transition>
           </div>
           <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
           <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
         </div>
         <div v-if="bestModel.list?.length > 2" class="overlap-5">
-          <img class="element-4" :src="getCurrentImage(1)" />
-          <img class="element-5" :src="getCurrentImage(2)" />
+          <transition name="fade">
+            <img class="element-4" :src="getCurrentImage(1)" />
+          </transition>
+          <transition name="fade">
+            <img class="element-5" :src="getCurrentImage(2)" />
+          </transition>
         </div>
       </div>
     </div>
@@ -176,36 +184,40 @@ export default {
       bestModel: {
         selected: {},
         currentIndex: 0,
-        isModelShow: true,
         list: [{
           imageSrc: require('@/assets/img/main1.png'),
           title: 'See our best models here.',
           model: 'CNK-01-XX-XX',
-          price: '398,550,000'
+          price: '398,550,000',
+          isChecked: false
         },
         {
           imageSrc: require('@/assets/img/main2.png'),
           title: 'See our best models here.',
           model: 'CNK-02-XX-XX',
-          price: '393,550,000'
+          price: '393,550,000',
+          isChecked: false
         },
         {
           imageSrc: require('@/assets/img/main3.png'),
           title: 'See our best models here.',
           model: 'CNK-03-XX-XX',
-          price: '392,550,000'
+          price: '392,550,000',
+          isChecked: false
         },
         {
           imageSrc: require('@/assets/img/main4.png'),
           title: 'See our best models here.',
           model: 'CNK-04-XX-XX',
-          price: '397,550,000'
+          price: '397,550,000',
+          isChecked: false
         },
         {
           imageSrc: require('@/assets/img/main5.png'),
           title: 'See our best models here.',
           model: 'CNK-05-XX-XX',
-          price: '399,550,000'
+          price: '399,550,000',
+          isChecked: false
         }]
       }
     }
@@ -213,6 +225,7 @@ export default {
   mounted() {
     const { list } = this.bestModel;
     if (list.length > 0) {
+      list[0].isChecked = true;
       this.bestModel.selected = list[0];
     }
   },
@@ -231,33 +244,41 @@ export default {
         return JSON.stringify(obj) === JSON.stringify(selected);
       });
 
+      // 체크상태 초기화
+      list.forEach(item => item.isChecked = false)
+      
       if (currentIndex > 0) {
         const previousElement  = list[currentIndex - 1]; // 이전 요소 가져오기
+        previousElement.isChecked = true;
         this.bestModel.selected = previousElement;
         this.bestModel.currentIndex = currentIndex - 1;
       } else {
         // 마지막 요소 가져오기
         this.bestModel.selected = list[list.length - 1];
         this.bestModel.currentIndex = list.length - 1;
+        this.bestModel.list[list.length - 1].isChecked = true;
       }
     },
     goNext() {
-      this.bestModel.isModelShow = false;
       const { selected, list } = this.bestModel;
       const currentIndex = list.findIndex((obj) => {
         return JSON.stringify(obj) === JSON.stringify(selected);
       });
 
+      // 체크상태 초기화
+      list.forEach(item => item.isChecked = false)
+
       if (currentIndex < list.length - 1) {
         const nextElement = list[currentIndex + 1]; // 다음 요소 가져오기
+        nextElement.isChecked = true;
         this.bestModel.selected = nextElement;
         this.bestModel.currentIndex = currentIndex + 1;
       } else {
         // 첫번째 요소 가져오기
         this.bestModel.selected = list[0];
         this.bestModel.currentIndex = 0;
+        this.bestModel.list[0].isChecked = true;
       }
-      this.bestModel.isModelShow = true;
     },
     getCurrentImage(index) {
       const { list } = this.bestModel;
