@@ -27,7 +27,7 @@
                   <span class="checkbox">목구조</span>
                 </label>
                 <label>
-                  <input type="checkbox"/>
+                  <input type="checkbox" disabled />
                   <span class="checkbox">철근콘크리트</span>
                 </label>
               </div>            

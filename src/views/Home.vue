@@ -73,34 +73,26 @@
       <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
       <div class="best-slider">
         <div v-if="bestModel.list?.length > 2" class="overlap-4">
-          <transition name="fade">
-            <img class="element-3" :src="getCurrentImage(-1)" />
-          </transition>
-          <transition name="fade">
-            <img class="element-2" :src="getCurrentImage(-2)" />
-          </transition>
+          <img class="element-3" :src="getCurrentImage(-1)" />
+          <img class="element-2" :src="getCurrentImage(-2)" />
         </div>        
         <div class="overlap-6">
           <div v-for="(item, idx) in bestModel.list" :key="idx" class="group-9" :class="{action: item.isChecked}">
             <transition name="fade">
-            <div v-if="item.isChecked" class="overlap-group-3">
-              <img class="element-6" :src="item.imageSrc" />
-              <div class="text-wrapper-18">{{ item.model }}</div>
-              <p class="text-wrapper-17">{{ item.title }}</p>
-              <div class="text-wrapper-19">{{ item.price }} Won</div>
-            </div>
+              <div v-if="item.isChecked" class="overlap-group-3">
+                <img class="element-6" :src="item.imageSrc" />
+                <div class="text-wrapper-18">{{ item.model }}</div>
+                <p class="text-wrapper-17">{{ item.title }}</p>
+                <div class="text-wrapper-19">{{ item.price }} Won</div>
+              </div>
             </transition>
           </div>
           <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
           <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
         </div>
         <div v-if="bestModel.list?.length > 2" class="overlap-5">
-          <transition name="fade">
-            <img class="element-4" :src="getCurrentImage(1)" />
-          </transition>
-          <transition name="fade">
-            <img class="element-5" :src="getCurrentImage(2)" />
-          </transition>
+          <img class="element-4" :src="getCurrentImage(1)" />
+          <img class="element-5" :src="getCurrentImage(2)" />
         </div>
       </div>
     </div>

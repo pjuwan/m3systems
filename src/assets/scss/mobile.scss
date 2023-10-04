@@ -286,6 +286,14 @@
       left: -26px;
       top: 1px;
     }
+    input[type=checkbox]:disabled + .checkbox::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #BFBFBF;
+      background: #BFBFBF;
+    }    
     .btn {
       width: 101px;
       height: 48px;
@@ -603,10 +611,10 @@
                 }
                 &.extent {
                   label:first-child {
-                    margin: 2px 141px 2px 0;
+                    margin: 2px 149px 2px 0;
                   }
                   label {
-                    margin: 2px 141px 2px 0;
+                    margin: 2px 149px 2px 0;
                   }
                 }
                 input[type=text] {

@@ -5,7 +5,7 @@
       <!--<img class="earth-globe" src="@/assets/img/earth-globe-1-1.png" />-->
       <div
         class="name"
-        @click="goMenu('', '001')"
+        @click="goMenu('BrandStory', '001')"
       >
         <span :class="{selected: menuId === '001'}">브랜드스토리</span>
       </div>
