@@ -202,7 +202,7 @@ export default {
   },
   created() {
     // 아이템을 배열에 추가하는 샘플
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= 120; i++) {
       this.items.push({ id: i, content: `아이템 ${i}` });
     }
   },
