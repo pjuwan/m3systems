@@ -1,162 +1,25 @@
 <template>
-  <div class="inquiry-page">
-    <div class="bg">
-      <div class="overlap">
-        <img class="purchase" src="@/assets/img/inquiry/purchase-3347053-1.png" />
-        <div class="purchase-2"></div>
-        <div class="group">
-          <div class="text-wrapper">문의하기</div>
-          <div class="text-wrapper-2">최선을 다해 도와드리겠습니다</div>
-        </div>
+  <div class="brand-story-page">
+    <div class="top-area"> 
+      <img src="@/assets/img/story/main.png" />
+      <div class="title-item">
+        <span class="name">BRAND STORY</span>
+        <span class="desc">M House는 주거에 프리미엄을 더합니다</span>
       </div>
     </div>
     <div class="contents">
-      <div class="register">
-        <div class="subject">
-          <div class="title">견적문의</div>
-          <img class="img" src="@/assets/img/inquiry/line.svg" />
+      <div class="story-wrapper">
+        <span>시간은 흘러가지만,</span>
+        <span>행복은 여기에 머무릅니다.</span>
+      </div>
+      <div class="circle-wrapper">
+        <div class="circle">
         </div>
-        <div class="row">
-          <div class="th">
-            <span class="name">이름</span>
-            <input type="text" placeholder="이름을 입력해주세요"/>
-          </div>
-          <div class="th">
-            <span class="name">연락처</span>
-            <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="th">
-            <span class="name">이메일</span>
-            <input type="text" placeholder="이메일을 입력해주세요"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="th full">
-            <span class="name">건축희망모델</span>
-            <select>
-              <option value="">CNK-01-XX-XX</option>
-            </select>
-          </div>
-        </div>
-        <div class="row line">
-          <div class="th">
-            <span class="name">구조</span>
-          </div>
-          <div class="td">
-            <label>
-              <input type="radio"/>
-              <span class="radio">강구조</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">목구조</span>
-            </label>            
-          </div>
-        </div>
-        <div class="row line">
-          <div class="th">
-            <span class="name">건축예상평수</span>
-          </div>
-          <div class="td">
-            <label>
-              <input type="radio"/>
-              <span class="radio">20평이하</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">20평대</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">30평대</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">40평대</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">50평대</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">60평이상</span>
-            </label>
-          </div>
-        </div>
-        <div class="row line">
-          <div class="th">
-            <span class="name">건축예정시기</span>
-          </div>
-          <div type="td">
-            <label>
-              <input type="radio"/>
-              <span class="radio">6개월이내</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">1년이내</span>
-            </label>
-            <label>
-              <input type="radio"/>
-              <span class="radio">2년이상</span>
-            </label>
-          </div>
-        </div>
-        <div class="row line">
-          <div class="th">
-            <span class="name">건축예상금액</span>
-          </div>
-          <div class="td">
-            <label>
-              <input v-model="radioValue" type="radio" value="1"/>
-              <span class="radio">1-2억</span>
-            </label>
-            <label>
-              <input v-model="radioValue" type="radio" value="2"/>
-              <span class="radio">2-3억</span>
-            </label>
-            <label>
-              <input v-model="radioValue" type="radio" value="3"/>
-              <span class="radio">3-4억</span>
-            </label>
-            <label>
-              <input v-model="radioValue" type="radio" value="4"/>
-              <span class="radio">기타</span>
-            </label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="th full block">
-            <span class="name">상담내용</span>
-            <textarea placeholder="상담내용을 자세하게 작성해주세요." />
-          </div>
-        </div>
-        <div class="row">
-          <div class="th">
-            <label>
-              <input type="checkbox"/>
-              <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
-            </label>
-          </div>
-          <div class="th">
-            <span>개인정보활용 전문보기</span>
-            <img class="icon" src="@/assets/img/button/icon1.svg" />
-          </div>
-        </div>
-        <div class="row">
-          <label>
-            <input type="checkbox"/>
-            <span class="checkbox">문자로 답변을 받겠습니다.</span>
-          </label>
-        </div>
-        <div class="btn-area">
-          <button class="submit">
-            <span>상담신청</span>
-          </button>
-        </div>
+        <div class="text">
+          <span><strong>끊임없는 연구개발</strong>로 발전시켜온 모듈러 주택</span>
+          <span>플랫폼을 통한 <strong>혁신적인 공정 관리</strong></span>
+          <span>라이프스타일에 맞춘 <strong>내 삶과 함께하는 공간</strong></span>
+        </div>        
       </div>
     </div>
   </div>

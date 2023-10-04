@@ -13,6 +13,7 @@
     "sass-loader": "^10.4.1",
     "vue": "^2.6.14",
     "vue-router": "^2.8.1",
+    "vue-scroll-snap": "^0.1.11",
     "vueperslides": "^2.16.0",
     "vuex": "^3.6.2"
   },
