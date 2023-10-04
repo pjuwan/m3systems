@@ -805,6 +805,11 @@
 .mainpage .group-9 {
   width: 100%;
   height: 497px;
+  position: absolute;
+  display: none;
+  &.action {
+    display: inline-flex;
+  }
 }
 
 .mainpage .overlap-group-3 {
@@ -1015,6 +1020,28 @@
       font-style: normal;
       font-weight: 300;
       line-height: normal;
+    }
+    .content-title {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      position: absolute;
+      top: 45%;
+      left: 38%;
+      label {
+        color: #FFF;
+        text-align: center;
+        text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.60);
+        font-family: Pretendard;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+      .name {
+        font-size: 60px;
+        font-weight: 600;
+      }
     }
     .content {
       //width: 1152px;

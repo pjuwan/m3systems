@@ -2,6 +2,10 @@
   <div id="model_page">
     <div class="container">
       <img src="@/assets/img/all-model.jpg" />
+      <div class="content-title">
+        <label class="name">전체 모델</label>
+        <label>모든 모델을 한번에 만나보세요</label>
+      </div>
       <div class="content">
         <div class="content-item">
           <div class="search">
