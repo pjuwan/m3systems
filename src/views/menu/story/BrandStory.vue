@@ -20,9 +20,49 @@
             <span>플랫폼을 통한 <strong>혁신적인 공정 관리</strong></span>
             <span>라이프스타일에 맞춘 <strong>내 삶과 함께하는 공간</strong></span>
           </div>
-        </div>      
+        </div>
       </div>
-      <div class="item esg-wrapper">
+      <div class="item life-wrapper">
+        <div class="left">
+          <div class="text-area">
+            <span class="title">UNIVERSALMODULE</span>
+            <span class="life">홀로라이프를 즐기는</span>
+            <span class="household">1인 가구</span>
+            <img src="@/assets/img/story/line.svg" />
+            <span class="text">내면의 성장과 함께하는 일상의 아름다움,</span>
+            <span class="text">당신만의 힐링 스페이스가 여기에 있습니다.</span>
+          </div>
+        </div>
+        <div class="right">
+          <div class="desc">
+            <span>라이프스타일에<strong>딱맞는공간</strong></span>
+          </div>
+          <div class="image-area">
+            <img src="@/assets/img/story/style.png" />
+          </div>
+        </div>
+      </div>
+      <div class="item life-wrapper">
+        <div class="left">
+          <div class="text-area">
+            <span class="title">UNIVERSALMODULE</span>
+            <span class="life">넓은 공간을 지향하는</span>
+            <span class="household">다인 가구</span>
+            <img src="@/assets/img/story/line.svg" />
+            <span class="text">나만의 시간과 가족과의 특별한 시간이 공존하는 이곳,</span>
+            <span class="text">편안함과 행복이 여기에 있습니다.</span>
+          </div>
+        </div>
+        <div class="right">
+          <div class="desc">
+            <span>라이프스타일에<strong>딱맞는공간</strong></span>
+          </div>
+          <div class="image-area">
+            <img src="@/assets/img/story/style2.png" />
+          </div>
+        </div>
+      </div>      
+      <div class="item architecture-wrapper">
         <div class="bg"></div>
         <img src="@/assets/img/story/esg.png" />
         <div class="title">
@@ -150,7 +190,103 @@ export default {
       }
     }
   }
-  &.esg-wrapper {
+  &.life-wrapper {
+    background-color: #000;
+    display: flex;
+    span {
+      color: #FFF;
+      text-align: center;
+      font-family: Pretendard;
+      font-size: 19px;
+      font-style: normal;
+      font-weight: 300;
+    }
+    .left {
+      display: inline-flex;
+      width: 39%;
+      background: #000;
+      justify-content: center;
+      position: relative;
+      .text-area {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 30%;        
+        img {
+          width: 3px;
+          height: 75.598px;
+          flex-shrink: 0;
+          text-align: center;
+          position: relative;
+          left: 51%;
+          margin: 25px 0;        
+        }
+        .title {
+          font-family: Morena;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 155.836%;
+          letter-spacing: 11.85px;
+        }
+        .life {
+          font-size: 43.165px;
+          font-weight: 100;
+          line-height: 99.336%;
+          margin: 10px 0;
+        }
+        .household {
+          font-size: 108.813px;
+          font-weight: 900;
+          line-height: 90.3%;        
+        }
+        .text {
+          line-height: 155.836%;
+          letter-spacing: -0.19px;        
+        }
+      }
+    }
+    .right {
+      display: inline-flex;
+      width: 60.5%;
+      position: relative;
+      .desc {
+        width: 100%;
+        transform: rotate(-90deg);
+        position: absolute;
+        right: 38%;
+        top: 43%;
+        display: inline-flex;
+        justify-content: center;
+        span {
+          color: #FFF;
+          text-align: center;
+          font-family: Pretendard;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 300;
+          line-height: 121.336%;
+          letter-spacing: 22px;
+        }
+        strong {
+          font-weight: 600;
+        }
+      }
+      .image-area {
+        display: inline-flex;
+        justify-content: end;
+        position: absolute;
+        left: 7%;
+        top: 16%;
+        width: 100%;
+        height: 100%;        
+        img {
+          width: 90%;
+          height: 59%;
+        }
+      }
+    }
+  }
+  &.architecture-wrapper {
     position: relative;
     span {
       color: #FFF;
