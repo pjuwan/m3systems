@@ -36,45 +36,82 @@
         </div>
       </div>
       <div class="item life-wrapper">
-        <div class="left">
-          <div class="text-area">
-            <span class="title">UNIVERSALMODULE</span>
-            <span class="life">홀로라이프를 즐기는</span>
-            <span class="household">1인 가구</span>
-            <img src="@/assets/img/story/line.svg" />
-            <span class="text">내면의 성장과 함께하는 일상의 아름다움,</span>
-            <span class="text">당신만의 힐링 스페이스가 여기에 있습니다.</span>
-          </div>
+        <div class="title-area">
+          <span>라이프스타일에</span>
+          <span><strong>딱맞는공간</strong></span>
         </div>
-        <div class="right">
-          <div class="desc">
-            <span>라이프스타일에<strong>딱맞는공간</strong></span>
-          </div>
-          <div class="image-area">
-            <img src="@/assets/img/story/style.png" />
-          </div>
-        </div>
+        <vueper-slides
+          class="no-shadow thumbnails"
+          ref="vueperslides1"
+          @slide="$refs.vueperslides2 && $refs.vueperslides2.goToSlide($event.currentSlide.index, { emit: false })"
+          :slide-ratio="1 / 2"
+          :arrows="false"
+          :bullets="true"
+          :dragging-distance="50"
+          bullets-outside
+          fixed-height="277px"
+          transition-speed="250"
+        >
+          <vueper-slide>
+            <template v-slot:content>
+              <div class="content">
+                <div class="image-area">
+                  <img src="@/assets/img/story/style.png" />
+                </div>
+              </div>
+            </template>
+          </vueper-slide>
+          <vueper-slide>
+            <template v-slot:content>
+              <div class="content">
+                <div class="image-area">
+                  <img src="@/assets/img/story/style2.png" />
+                </div>
+              </div>
+            </template>
+          </vueper-slide>          
+        </vueper-slides>
+        <vueper-slides
+          fade
+          class="no-shadow thumbnails"
+          ref="vueperslides2"
+          @slide="$refs.vueperslides1 && $refs.vueperslides1.goToSlide($event.currentSlide.index, { emit: false })"
+          :arrows="false"
+          :bullets="false"
+          :dragging-distance="50"
+          fixed-height="345px"
+          transition-speed="250"          
+        >
+          <vueper-slide>
+            <template v-slot:content>
+              <div class="content">
+                <div class="text-area">
+                  <span class="title">UNIVERSALMODULE</span>
+                  <span class="life">홀로라이프를 즐기는</span>
+                  <span class="household">1인 가구</span>
+                  <img src="@/assets/img/story/line.svg" />
+                  <span class="text">내면의 성장과 함께하는 일상의 아름다움,</span>
+                  <span class="text">당신만의 힐링 스페이스가 여기에 있습니다.</span>
+                </div>
+              </div>
+            </template>
+          </vueper-slide>
+          <vueper-slide>
+            <template v-slot:content>
+              <div class="content">
+                <div class="text-area">
+                  <span class="title">UNIVERSALMODULE</span>
+                  <span class="life">넓은 공간을 지향하는</span>
+                  <span class="household">다인 가구</span>
+                  <img src="@/assets/img/story/line.svg" />
+                  <span class="text">나만의 시간과 가족과의 특별한 시간이 공존하는 이곳,</span>
+                  <span class="text">편안함과 행복이 여기에 있습니다.</span>
+                </div>
+              </div>
+            </template>
+          </vueper-slide>          
+        </vueper-slides>        
       </div>
-      <div class="item life-wrapper">
-        <div class="left">
-          <div class="text-area">
-            <span class="title">UNIVERSALMODULE</span>
-            <span class="life">넓은 공간을 지향하는</span>
-            <span class="household">다인 가구</span>
-            <img src="@/assets/img/story/line.svg" />
-            <span class="text">나만의 시간과 가족과의 특별한 시간이 공존하는 이곳,</span>
-            <span class="text">편안함과 행복이 여기에 있습니다.</span>
-          </div>
-        </div>
-        <div class="right">
-          <div class="desc">
-            <span>라이프스타일에<strong>딱맞는공간</strong></span>
-          </div>
-          <div class="image-area">
-            <img src="@/assets/img/story/style2.png" />
-          </div>
-        </div>
-      </div>      
       <div class="item architecture-wrapper">
         <div class="bg"></div>
         <img src="@/assets/img/story/esg_m.png" />
@@ -104,12 +141,18 @@
 </template>
 <script>
 import VueScrollSnap from "vue-scroll-snap";
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';
   
 export default {
   name: 'MobileBrandStroy',
   props: {
   },
-  components: {VueScrollSnap},  
+  components: {
+    VueScrollSnap,
+    VueperSlides,
+    VueperSlide
+  },
   data() {
     return {
     }
@@ -262,96 +305,68 @@ export default {
   &.life-wrapper {
     background-color: #000;
     display: flex;
+    flex-direction: column;
     span {
       color: #FFF;
       text-align: center;
       font-family: Pretendard;
-      font-size: 19px;
+      font-size: 30px;
       font-style: normal;
       font-weight: 300;
+      line-height: 121.336%; /* 36.401px */
     }
-    .left {
+    strong {
+      font-weight: 600;
+    }    
+    .title-area {
       display: inline-flex;
-      width: 39%;
-      background: #000;
-      justify-content: center;
-      position: relative;
-      .text-area {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 30%;        
-        img {
-          width: 3px;
-          height: 75.598px;
-          flex-shrink: 0;
-          text-align: center;
-          position: relative;
-          left: 51%;
-          margin: 25px 0;        
-        }
-        .title {
-          font-family: Morena;
-          font-size: 15px;
-          font-weight: 400;
-          line-height: 155.836%;
-          letter-spacing: 11.85px;
-        }
-        .life {
-          font-size: 43.165px;
-          font-weight: 100;
-          line-height: 99.336%;
-          margin: 10px 0;
-        }
-        .household {
-          font-size: 108.813px;
-          font-weight: 900;
-          line-height: 90.3%;        
-        }
-        .text {
-          line-height: 155.836%;
-          letter-spacing: -0.19px;        
-        }
+      flex-direction: column;
+      margin: 20px 0;
+    }
+    .image-area {
+      text-align: center;
+      width: 100%;     
+      img {
+        width: 335.773px;
+        height: 262.1px;
+        border-radius: 10px;
       }
     }
-    .right {
-      display: inline-flex;
-      width: 60.5%;
-      position: relative;
-      .desc {
-        width: 100%;
-        transform: rotate(-90deg);
-        position: absolute;
-        right: 38%;
-        top: 43%;
-        display: inline-flex;
-        justify-content: center;
-        span {
-          color: #FFF;
-          text-align: center;
-          font-family: Pretendard;
-          font-size: 32px;
-          font-style: normal;
-          font-weight: 300;
-          line-height: 121.336%;
-          letter-spacing: 22px;
-        }
-        strong {
-          font-weight: 600;
-        }
+    .text-area {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0 0 0;
+      img {
+        width: 3px;
+        height: 14.516px;
+        flex-shrink: 0;
+        text-align: center;
+        position: relative;
+        left: 51%;
+        margin: 25px 0;        
       }
-      .image-area {
-        display: inline-flex;
-        justify-content: end;
-        position: absolute;
-        left: 7%;
-        top: 16%;
-        width: 100%;
-        height: 100%;        
-        img {
-          width: 90%;
-          height: 59%;
-        }
+      .title {
+        font-family: Morena;
+        font-size: 11.628px;
+        font-weight: 400;
+        line-height: 155.836%; /* 18.12px */
+      }
+      .life {
+        font-size: 15.988px;
+        font-weight: 100;
+        line-height: 99.336%; /* 15.882px */
+        margin: 5px 0;
+      }
+      .household {
+        font-size: 39.244px;
+        font-weight: 900;
+        line-height: 100%;
+      }
+      .text {
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 155.836%; /* 20.259px */
+        letter-spacing: -0.13px;      
       }
     }
   }
