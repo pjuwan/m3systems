@@ -124,8 +124,12 @@ export default {
     animatedBox.addEventListener('animationend', () => {
       circleArea.classList.add('on');
       timeArea.classList.add('on');
-      circleAreaText.classList.add('on');
       // animatedBox.style.display = 'none';
+
+      // 1초 후에 텍스트 문구가 보여지도록 설정
+      setTimeout(function() {
+        circleAreaText.classList.add('on');
+      }, 1000);
       console.log('end');
     });
   },
