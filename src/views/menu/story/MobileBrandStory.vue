@@ -6,7 +6,7 @@
           <span class="name">BRAND STORY</span>
           <span class="desc">M House는 주거에 프리미엄을 더합니다</span>
         </div>
-        <div class="time-area">
+        <div id="timeArea" class="time-area">
           <span>시간은 흘러가지만,</span>
           <span>행복은 여기에 머무릅니다.</span>
         </div>
@@ -117,10 +117,12 @@ export default {
     document.body.classList.add('modal-open');
     const animatedBox = document.getElementById('animatedBox');
     const circleArea = document.getElementById('circleArea');
+    const timeArea = document.getElementById('timeArea');
  
     // box 애니메이션 종료 후 설정
     animatedBox.addEventListener('animationend', () => {
       circleArea.classList.add('on');
+      timeArea.classList.add('on');
       // animatedBox.style.display = 'none';
       console.log('end');
     });
@@ -172,6 +174,14 @@ export default {
       flex-direction: column;
       margin: 206px 0 0 0;
       width: 100%;
+      opacity: 0;
+      transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */      
+      visibility: hidden;
+      &.on {
+        opacity: 1; /* 보이는 상태에서 투명도를 1로 설정 */
+        visibility: visible; /* 요소를 보이게 설정 */        
+        transition: cubic-bezier(0.86, 0, 0.07, 1);
+      }
       span {
         display: inline-flex;
         justify-content: center;        
