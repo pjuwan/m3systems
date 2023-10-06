@@ -44,7 +44,6 @@
           class="no-shadow thumbnails"
           ref="vueperslides1"
           @slide="$refs.vueperslides2 && $refs.vueperslides2.goToSlide($event.currentSlide.index, { emit: false })"
-          :slide-ratio="1 / 2"
           :arrows="false"
           :bullets="true"
           :dragging-distance="50"
@@ -142,7 +141,8 @@
 <script>
 import VueScrollSnap from "vue-scroll-snap";
 import { VueperSlides, VueperSlide } from 'vueperslides';
-import 'vueperslides/dist/vueperslides.css';
+import store from '@/store'
+// import 'vueperslides/dist/vueperslides.css';
   
 export default {
   name: 'MobileBrandStroy',
@@ -157,413 +157,421 @@ export default {
     return {
     }
   },
+  created() {
+    store.commit('setScrolltoTop', false);
+  },
   mounted() {
     document.body.classList.add('modal-open');
     const animatedBox = document.getElementById('animatedBox');
-    const circleArea = document.getElementById('circleArea');
-    const circleAreaText = document.getElementById('circleAreaText');
-
-    // box 애니메이션 종료 후 설정
+       
+    // Box 애니메이션 종료 직후 설정
     animatedBox.addEventListener('animationend', () => {
+      const circleArea = document.getElementById('circleArea');
+      const circleAreaText = document.getElementById('circleAreaText');
+      // 원형 먼저 나타나도록 설정
       circleArea.classList.add('on');
 
       // 1초 후에 텍스트 문구가 보여지도록 설정
       setTimeout(function() {
         circleAreaText.classList.add('on');
       }, 1000);
-
-      console.log('end');
     })
   },
   beforeDestroy() {
     document.body.classList.remove('modal-open');
+    store.commit('setScrolltoTop', true);
   },
   methods: {
   }
 }
 </script>
-<style lang="scss" scoped>
-.item {
-  /* Set the minimum height of the items to be the same as the height of the scroll-snap-container.*/
-  min-height: 813.925px;
-  &.story-wrapper {
-    // background-image: url('@/assets/img/story/main.png');
-    // background-repeat: no-repeat;
-    // background-position: top;
-    position: relative;
-    // transition: background-size 3s; /* background-size 속성에 대한 2초 동안의 트랜지션 설정 */
-    img {
-      width: 100%;
-      height: 20%;
-      position: absolute;
-      left: 0%;
-      top: -1%;
-      transform: scale(10);
-      animation: image-scale 1s linear forwards; /* 이미지 스케일 애니메이션 */
-      animation-delay: 1s;
-    }
-    span {
-      color: #FFF;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 25px;
-      font-style: normal;
-      // font-weight: 600;
-      line-height: normal;          
-    }
-    .title-area {
-      width: 100%;
-      position: absolute;
-      top: 8%;
-      .name {
-        text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.50);
-        font-weight: 600;
-        display: block;
-      }
-      .desc {
-        text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
-        font-size: 13px;
-        font-weight: 300;
-        display: block;
-      }
-    }
-    .time-area {
-      display: inline-flex;
-      flex-direction: column;
-      margin: 206px 0 0 0;
-      width: 100%;
-      opacity: 0;
-      transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */
-      visibility: hidden;
-      animation: text-ani 1s linear forwards; /* 이미지 스케일 애니메이션, 2초 동안 실행 */
-      animation-delay: 2s;
-      &.on {
-        opacity: 1; /* 보이는 상태에서 투명도를 1로 설정 */
-        visibility: visible; /* 요소를 보이게 설정 */
-      }
-      span {
-        display: inline-flex;
-        justify-content: center;        
-      }
-      span:first-child {
-        color: #000;
-        font-size: 25px;
-        font-weight: 300;
-        line-height: 121.336%;
-      }
-      span:last-child {
-        color: #000;
-        font-size: 25px;
-        font-weight: 600;
-        line-height: 121.336%;  
-      }
-    }
-    .circle-area {
-      display: inline-grid;
-      justify-content: center;
-      margin: 53px 0 0 0;
-      text-align: center;
-      width: 100%;
-      opacity: 0;
-      transition: opacity 1s; /* opacity 속성에 대한 트랜지션 설정 */      
-      &.on {
-        opacity: 1;
-      }
-      .circle {
-        width: 366px;
-        height: 366px;
-        border-radius: 310px;
-        opacity: 0.15;
-        background: #C8C8C8;
-      }
-      .text {
-        position: absolute;
-        top: 55%;
+<style lang="scss">
+.brand-story-page {
+  .item {
+    /* Set the minimum height of the items to be the same as the height of the scroll-snap-container.*/
+    min-height: 813.925px;
+    &.story-wrapper {
+      position: relative;
+      img {
         width: 100%;
-        display: grid;
-        text-align: center;
-        z-index: 5;
-        color: #111;
-        opacity: 0;
-        transition: opacity 3s; /* opacity 속성에 대한 트랜지션 설정 */
-        &.on {
-          opacity: 1;
-        }
-        span {
-          color: #000;
-          font-size: 14px;
-          font-weight: 300;
-          line-height: 188.336%;
-          letter-spacing: -0.14px;
-          strong {
-            font-weight: 600;            
-          }
-        }        
+        height: 20%;
+        position: absolute;
+        left: 0%;
+        top: -1%;
+        transform: scale(10);
+        animation: image-scale 1s linear forwards; /* 이미지 스케일 애니메이션 */
+        animation-delay: 1s;
       }
-    }
-  }
-  &.life-wrapper {
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    span {
-      color: #FFF;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 121.336%; /* 36.401px */
-    }
-    strong {
-      font-weight: 600;
-    }    
-    .title-area {
-      display: inline-flex;
-      flex-direction: column;
-      margin: 20px 0;
-    }
-    .image-area {
-      text-align: center;
-      width: 100%;     
-      img {
-        width: 335.773px;
-        height: 262.1px;
-        border-radius: 10px;
-      }
-    }
-    .text-area {
-      display: flex;
-      flex-direction: column;
-      margin: 10px 0 0 0;
-      img {
-        width: 3px;
-        height: 14.516px;
-        flex-shrink: 0;
-        text-align: center;
-        position: relative;
-        left: 51%;
-        margin: 25px 0;        
-      }
-      .title {
-        font-family: Morena;
-        font-size: 11.628px;
-        font-weight: 400;
-        line-height: 155.836%; /* 18.12px */
-      }
-      .life {
-        font-size: 15.988px;
-        font-weight: 100;
-        line-height: 99.336%; /* 15.882px */
-        margin: 5px 0;
-      }
-      .household {
-        font-size: 39.244px;
-        font-weight: 900;
-        line-height: 100%;
-      }
-      .text {
-        font-size: 13px;
-        font-weight: 300;
-        line-height: 155.836%; /* 20.259px */
-        letter-spacing: -0.13px;      
-      }
-    }
-  }
-  &.architecture-wrapper {
-    position: relative;
-    span {
-      color: #FFF;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 155.836%; /* 20.259px */
-      letter-spacing: -0.13px;
-    }
-    .bg {
-      height: 100%;
-      background: rgba(0, 0, 0, 0.40);
-      position: absolute;
-      width: 100%;  
-    }
-    img {
-      width: 100%;
-    }
-    .title {
-      position: absolute;
-      top: 16%;
-      left: 5%;
-      display: flex;
-      flex-direction: column;      
       span {
         color: #FFF;
         text-align: center;
         font-family: Pretendard;
-        font-size: 15.988px;
+        font-size: 25px;
         font-style: normal;
-        font-weight: 100;
-        line-height: 99.336%;
+        // font-weight: 600;
+        line-height: normal;          
       }
-      .name {
-        margin-top: 9px;
-        font-size: 39.244px;
-        font-weight: 900;
-        line-height: 100%;    
+      .title-area {
+        width: 100%;
+        position: absolute;
+        top: 8%;
+        .name {
+          text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.50);
+          font-weight: 600;
+          display: block;
+        }
+        .desc {
+          text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+          font-size: 13px;
+          font-weight: 300;
+          display: block;
+        }
+      }
+      .time-area {
+        display: inline-flex;
+        flex-direction: column;
+        margin: 206px 0 0 0;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */
+        visibility: hidden;
+        animation: text-ani 1s linear forwards; /* 이미지 스케일 애니메이션, 2초 동안 실행 */
+        animation-delay: 2s;
+        &.on {
+          opacity: 1; /* 보이는 상태에서 투명도를 1로 설정 */
+          visibility: visible; /* 요소를 보이게 설정 */
+        }
+        span {
+          display: inline-flex;
+          justify-content: center;        
+        }
+        span:first-child {
+          color: #000;
+          font-size: 25px;
+          font-weight: 300;
+          line-height: 121.336%;
+        }
+        span:last-child {
+          color: #000;
+          font-size: 25px;
+          font-weight: 600;
+          line-height: 121.336%;  
+        }
+      }
+      .circle-area {
+        display: inline-grid;
+        justify-content: center;
+        margin: 53px 0 0 0;
+        text-align: center;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 1s; /* opacity 속성에 대한 트랜지션 설정 */      
+        &.on {
+          opacity: 1;
+        }
+        .circle {
+          width: 366px;
+          height: 366px;
+          border-radius: 310px;
+          opacity: 0.15;
+          background: #C8C8C8;
+        }
+        .text {
+          position: absolute;
+          top: 55%;
+          width: 100%;
+          display: grid;
+          text-align: center;
+          z-index: 5;
+          color: #111;
+          opacity: 0;
+          transition: opacity 3s; /* opacity 속성에 대한 트랜지션 설정 */
+          &.on {
+            opacity: 1;
+          }
+          span {
+            color: #000;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 188.336%;
+            letter-spacing: -0.14px;
+            strong {
+              font-weight: 600;            
+            }
+          }        
+        }
       }
     }
-    .txt {
+    &.life-wrapper {
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
       span {
-        letter-spacing: -0.19px;
+        color: #FFF;
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 121.336%; /* 36.401px */
+      }
+      strong {
+        font-weight: 600;
+      }    
+      .title-area {
+        display: inline-flex;
+        flex-direction: column;
+        margin: 20px 0;
+      }
+      .image-area {
+        text-align: center;
+        width: 100%;     
+        img {
+          width: 335.773px;
+          height: 262.1px;
+          border-radius: 10px;
+        }
+      }
+      .text-area {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0 0 0;
+        img {
+          width: 3px;
+          height: 14.516px;
+          flex-shrink: 0;
+          text-align: center;
+          position: relative;
+          left: 51%;
+          margin: 25px 0;        
+        }
+        .title {
+          font-family: Morena;
+          font-size: 11.628px;
+          font-weight: 400;
+          line-height: 155.836%; /* 18.12px */
+        }
+        .life {
+          font-size: 15.988px;
+          font-weight: 100;
+          line-height: 99.336%; /* 15.882px */
+          margin: 5px 0;
+        }
+        .household {
+          font-size: 39.244px;
+          font-weight: 900;
+          line-height: 100%;
+        }
+        .text {
+          font-size: 13px;
+          font-weight: 300;
+          line-height: 155.836%; /* 20.259px */
+          letter-spacing: -0.13px;      
+        }
+      }
+    }
+    &.architecture-wrapper {
+      position: relative;
+      span {
+        color: #FFF;
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 155.836%; /* 20.259px */
+        letter-spacing: -0.13px;
+      }
+      .bg {
+        height: 100%;
+        background: rgba(0, 0, 0, 0.40);
+        position: absolute;
+        width: 100%;  
+      }
+      img {
+        width: 100%;
+      }
+      .title {
+        position: absolute;
+        top: 16%;
+        left: 5%;
+        display: flex;
+        flex-direction: column;      
+        span {
+          color: #FFF;
+          text-align: center;
+          font-family: Pretendard;
+          font-size: 15.988px;
+          font-style: normal;
+          font-weight: 100;
+          line-height: 99.336%;
+        }
+        .name {
+          margin-top: 9px;
+          font-size: 39.244px;
+          font-weight: 900;
+          line-height: 100%;    
+        }
+      }
+      .txt {
+        span {
+          letter-spacing: -0.19px;
+        }
+        &.one {
+          position: absolute;
+          top: 31%;
+          left: 6%;
+          text-align: center;
+          width: 56%;
+          display: grid;       
+        }
+        &.two {
+          width: 52%;
+          position: absolute;
+          top: 51%;
+          left: 29%;
+          display: grid;       
+        }
+        &.three {
+          width: 54%;
+          position: absolute;
+          top: 65%;
+          left: 6%;
+          display: grid;      
+        }
+      }     
+    }
+  }
+  .scroll-snap-container {
+    height: 813.925px;
+    width: 100%;
+  }
+
+  /* 브랜드 스토리 애니메이션 */
+  @keyframes image-scale {
+    0% {
+      transform: scale(10);
+      // background-size: 100% 191px;
+    }
+    100% {
+      transform: scale(1);
+      // background-size: 100% 191px;
+    }
+  }
+
+  @keyframes text-ani {
+    to {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  @keyframes box-down {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      visibility: visible;
+      transform: translate(0, 200px);
+    }  
+  }
+
+  @keyframes box-ani-left {
+    to {
+      transform: translate(100px, 200px);
+      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+    }
+  }
+
+  @keyframes box-ani-center {
+    to {
+      transform: translate(0, 200px); /* 위에서 아래로 이동 */
+      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+    }
+  }
+
+  @keyframes box-ani-right {
+    to {
+      transform: translate(-100px, 200px); /* 오른쪽에서 왼쪽으로 이동 */
+      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+    }
+  }
+
+  #animatedBox {
+    display: block;
+    margin: 15px 0;
+    .box {
+      flex-direction: column;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100.259px;
+      height: 100.259px;
+      position: absolute;
+      visibility: hidden;
+      span {
+        color: #000;
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 19.363px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        letter-spacing: -0.194px;
+      }
+      .round {
+        width: 100%;
+        height: 100%;
+        background-color: #C8C8C8;
+        position: absolute;
+        border-radius: 459px;
+        opacity: 0.15;      
       }
       &.one {
-        position: absolute;
-        top: 31%;
-        left: 6%;
-        text-align: center;
-        width: 56%;
-        display: grid;       
+        left: 7%;
+        animation: box-down 2s linear forwards, box-ani-left 0.5s linear forwards;
+        animation-delay: 2s, 3s;
       }
       &.two {
-        width: 52%;
-        position: absolute;
-        top: 51%;
-        left: 29%;
-        display: grid;       
+        left: 39%;
+        animation: box-down 2s linear forwards, box-ani-center 0.5s linear forwards;
+        animation-delay: 2s, 3s;
       }
       &.three {
-        width: 54%;
-        position: absolute;
-        top: 65%;
-        left: 6%;
-        display: grid;      
+        left: 70%; 
+        animation: box-down 2s linear forwards, box-ani-right 0.5s linear forwards;
+        animation-delay: 2s, 3s;
       }
-    }     
+    }
   }
-}
-.scroll-snap-container {
-  height: 813.925px;
-  width: 100%;
-}
 
-/* 브랜드 스토리 애니메이션 */
-@keyframes image-scale {
-  0% {
-    transform: scale(10);
-    // background-size: 100% 191px;
-  }
-  100% {
-    transform: scale(1);
-    // background-size: 100% 191px;
-  }
-}
-
-@keyframes text-ani {
-  to {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@keyframes box-down {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    visibility: visible;
-    transform: translate(0, 200px);
-  }  
-}
-
-@keyframes box-ani-left {
-  to {
-    transform: translate(100px, 200px);
-    opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
-  }
-}
-
-@keyframes box-ani-center {
-  to {
-    transform: translate(0, 200px); /* 위에서 아래로 이동 */
-    opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
-  }
-}
-
-@keyframes box-ani-right {
-  to {
-    transform: translate(-100px, 200px); /* 오른쪽에서 왼쪽으로 이동 */
-    opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
-  }
-}
-
-#animatedBox {
-  display: block;
-  margin: 15px 0;
   .box {
-    flex-direction: column;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100.259px;
-    height: 100.259px;
-    position: absolute;
-    visibility: hidden;
-    span {
-      color: #000;
-      text-align: center;
-      font-family: Pretendard;
-      font-size: 19.363px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: normal;
-      letter-spacing: -0.194px;
+    &.one.animated {
+      animation: none; /* box-ani 애니메이션 제거 */
     }
-    .round {
-      width: 100%;
-      height: 100%;
-      background-color: #C8C8C8;
-      position: absolute;
-      border-radius: 459px;
-      opacity: 0.15;      
+    &.two.animated {
+      animation: none; /* box-ani 애니메이션 제거 */
     }
-    &.one {
-      left: 7%;
-      animation: box-down 2s linear forwards, box-ani-left 0.5s linear forwards;
-      animation-delay: 2s, 3s;
-    }
-    &.two {
-      left: 39%;
-      animation: box-down 2s linear forwards, box-ani-center 0.5s linear forwards;
-      animation-delay: 2s, 3s;
-    }
-    &.three {
-      left: 70%; 
-      animation: box-down 2s linear forwards, box-ani-right 0.5s linear forwards;
-      animation-delay: 2s, 3s;
-    }
+    &.three.animated {
+      animation: none; /* box-ani 애니메이션 제거 */
+    }    
   }
-}
 
-.box {
-  &.one.animated {
+  .story-wrapper img.animated {
     animation: none; /* box-ani 애니메이션 제거 */
   }
-  &.two.animated {
-    animation: none; /* box-ani 애니메이션 제거 */
+
+  /* 애니메이션이 완료된 후 .round 요소를 보이게 합니다. */
+  .box.animated + .item.story-wrapper .circle-area {
+    display: none;
+    opacity: 0;
   }
-  &.three.animated {
-    animation: none; /* box-ani 애니메이션 제거 */
-  }    
-}
 
-.story-wrapper img.animated {
-  animation: none; /* box-ani 애니메이션 제거 */
-}
-
-/* 애니메이션이 완료된 후 .round 요소를 보이게 합니다. */
-.box.animated + .item.story-wrapper .circle-area {
-  display: none;
-  opacity: 0;
+  /* 이미지 슬라이딩 */
+  .vueperslides__bullets {
+    button {
+      color: #CECECE;
+    }
+  }
 }
 </style>
