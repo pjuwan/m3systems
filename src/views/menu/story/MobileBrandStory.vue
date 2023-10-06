@@ -1,7 +1,7 @@
 <template>
   <div class="brand-story-page">
     <vue-scroll-snap>
-      <div class="item story-wrapper"> 
+      <div id="storyWrapper" class="item story-wrapper"> 
         <div class="title-area">
           <span class="name">BRAND STORY</span>
           <span class="desc">M House는 주거에 프리미엄을 더합니다</span>
@@ -119,19 +119,25 @@ export default {
     const circleArea = document.getElementById('circleArea');
     const circleAreaText = document.getElementById('circleAreaText');
     const timeArea = document.getElementById('timeArea');
- 
-    // box 애니메이션 종료 후 설정
-    animatedBox.addEventListener('animationend', () => {
-      circleArea.classList.add('on');
-      timeArea.classList.add('on');
-      // animatedBox.style.display = 'none';
+    const storyWrapper = document.getElementById('storyWrapper');
 
-      // 1초 후에 텍스트 문구가 보여지도록 설정
-      setTimeout(function() {
-        circleAreaText.classList.add('on');
-      }, 1000);
-      console.log('end');
-    });
+    storyWrapper.classList.add('expanded');
+    
+    setTimeout(function() {  
+      // box 애니메이션 종료 후 설정
+      animatedBox.addEventListener('animationend', () => {
+        circleArea.classList.add('on');
+        timeArea.classList.add('on');
+        // animatedBox.style.display = 'none';
+
+        // 1초 후에 텍스트 문구가 보여지도록 설정
+        setTimeout(function() {
+          circleAreaText.classList.add('on');
+        }, 1000);
+
+        console.log('end');
+      });      
+    }, 1000);
   },
   beforeDestroy() {
     document.body.classList.remove('modal-open');
@@ -146,10 +152,14 @@ export default {
   min-height: 813.925px;
   &.story-wrapper {
     background-image: url('@/assets/img/story/main.png');
-    background-size: 100% 191px;
     background-repeat: no-repeat;
     background-position: top;
     position: relative;
+    background-size: cover;
+    transition: background-size 3s; /* background-size 속성에 대한 2초 동안의 트랜지션 설정 */
+    &.expanded {
+      background-size: 100% 191px;
+    }
     span {
       color: #FFF;
       text-align: center;
@@ -460,7 +470,6 @@ export default {
     opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
   }
 }
-
 
 #animatedBox {
   display: block;
