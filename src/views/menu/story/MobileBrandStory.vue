@@ -2,6 +2,7 @@
   <div class="brand-story-page">
     <vue-scroll-snap>
       <div id="storyWrapper" class="item story-wrapper"> 
+        <img src="@/assets/img/story/main.png" />
         <div class="title-area">
           <span class="name">BRAND STORY</span>
           <span class="desc">M House는 주거에 프리미엄을 더합니다</span>
@@ -121,8 +122,7 @@ export default {
     const timeArea = document.getElementById('timeArea');
     const storyWrapper = document.getElementById('storyWrapper');
 
-    storyWrapper.classList.add('expanded');
-    
+    // storyWrapper.classList.add('expanded');
     setTimeout(function() {  
       // box 애니메이션 종료 후 설정
       animatedBox.addEventListener('animationend', () => {
@@ -151,12 +151,20 @@ export default {
   /* Set the minimum height of the items to be the same as the height of the scroll-snap-container.*/
   min-height: 813.925px;
   &.story-wrapper {
-    background-image: url('@/assets/img/story/main.png');
-    background-repeat: no-repeat;
-    background-position: top;
+    // background-image: url('@/assets/img/story/main.png');
+    // background-repeat: no-repeat;
+    // background-position: top;
     position: relative;
-    background-size: cover;
-    transition: background-size 3s; /* background-size 속성에 대한 2초 동안의 트랜지션 설정 */
+    // transition: background-size 3s; /* background-size 속성에 대한 2초 동안의 트랜지션 설정 */
+    img {
+      width: 100%;
+      height: 20%;
+      animation: image-scale 1s linear forwards; /* 이미지 스케일 애니메이션, 2초 동안 실행 */
+      animation-delay: 0s; /* 이미지 애니메이션은 즉시 시작 */
+      position: absolute;
+      left: 0%;
+      top: -1%;
+    }
     &.expanded {
       background-size: 100% 191px;
     }
@@ -432,6 +440,17 @@ export default {
 }
 
 /* 브랜드 스토리 애니메이션 */
+@keyframes image-scale {
+  0% {
+    transform: scale(10);
+    // background-size: 100% 191px;
+  }
+  100% {
+    transform: scale(1);
+    // background-size: 100% 191px;
+  }
+}
+
 @keyframes box-ani {
   from {
     transform: translate(0, 0);
@@ -505,14 +524,17 @@ export default {
     &.one {
       left: 7%;
       animation: box-ani 2s linear forwards, box-ani-left 0.5s linear forwards 1.0s;
+      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
     }
     &.two {
       left: 39%;
       animation: box-ani 2s linear forwards, box-ani-center 0.5s linear forwards 1.0s;
+      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
     }
     &.three {
       left: 70%; 
       animation: box-ani 2s linear forwards, box-ani-right 0.5s linear forwards 1.0s;
+      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
     }    
   }
 }
