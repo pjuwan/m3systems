@@ -1,13 +1,13 @@
 <template>
   <div class="brand-story-page">
     <vue-scroll-snap>
-      <div id="storyWrapper" class="item story-wrapper"> 
+      <div class="item story-wrapper"> 
         <img src="@/assets/img/story/main.png" />
         <div class="title-area">
           <span class="name">BRAND STORY</span>
           <span class="desc">M House는 주거에 프리미엄을 더합니다</span>
         </div>
-        <div id="timeArea" class="time-area">
+        <div class="time-area">
           <span>시간은 흘러가지만,</span>
           <span>행복은 여기에 머무릅니다.</span>
         </div>
@@ -119,25 +119,18 @@ export default {
     const animatedBox = document.getElementById('animatedBox');
     const circleArea = document.getElementById('circleArea');
     const circleAreaText = document.getElementById('circleAreaText');
-    const timeArea = document.getElementById('timeArea');
-    const storyWrapper = document.getElementById('storyWrapper');
 
-    // storyWrapper.classList.add('expanded');
-    setTimeout(function() {  
-      // box 애니메이션 종료 후 설정
-      animatedBox.addEventListener('animationend', () => {
-        circleArea.classList.add('on');
-        timeArea.classList.add('on');
-        // animatedBox.style.display = 'none';
+    // box 애니메이션 종료 후 설정
+    animatedBox.addEventListener('animationend', () => {
+      circleArea.classList.add('on');
 
-        // 1초 후에 텍스트 문구가 보여지도록 설정
-        setTimeout(function() {
-          circleAreaText.classList.add('on');
-        }, 1000);
+      // 1초 후에 텍스트 문구가 보여지도록 설정
+      setTimeout(function() {
+        circleAreaText.classList.add('on');
+      }, 1000);
 
-        console.log('end');
-      });      
-    }, 1000);
+      console.log('end');
+    })
   },
   beforeDestroy() {
     document.body.classList.remove('modal-open');
@@ -159,14 +152,12 @@ export default {
     img {
       width: 100%;
       height: 20%;
-      animation: image-scale 1s linear forwards; /* 이미지 스케일 애니메이션, 2초 동안 실행 */
-      animation-delay: 0s; /* 이미지 애니메이션은 즉시 시작 */
       position: absolute;
       left: 0%;
       top: -1%;
-    }
-    &.expanded {
-      background-size: 100% 191px;
+      transform: scale(10);
+      animation: image-scale 1s linear forwards; /* 이미지 스케일 애니메이션 */
+      animation-delay: 1s;
     }
     span {
       color: #FFF;
@@ -201,6 +192,8 @@ export default {
       opacity: 0;
       transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */
       visibility: hidden;
+      animation: text-ani 1s linear forwards; /* 이미지 스케일 애니메이션, 2초 동안 실행 */
+      animation-delay: 2s;
       &.on {
         opacity: 1; /* 보이는 상태에서 투명도를 1로 설정 */
         visibility: visible; /* 요소를 보이게 설정 */
@@ -229,7 +222,7 @@ export default {
       text-align: center;
       width: 100%;
       opacity: 0;
-      transition: opacity 3s; /* opacity 속성에 대한 트랜지션 설정 */      
+      transition: opacity 1s; /* opacity 속성에 대한 트랜지션 설정 */      
       &.on {
         opacity: 1;
       }
@@ -249,7 +242,7 @@ export default {
         z-index: 5;
         color: #111;
         opacity: 0;
-        transition: opacity 5s; /* opacity 속성에 대한 트랜지션 설정 */
+        transition: opacity 3s; /* opacity 속성에 대한 트랜지션 설정 */
         &.on {
           opacity: 1;
         }
@@ -451,41 +444,40 @@ export default {
   }
 }
 
-@keyframes box-ani {
+@keyframes text-ani {
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes box-down {
   from {
     transform: translate(0, 0);
   }
   to {
-    transform: translate(0, 100px);
+    visibility: visible;
+    transform: translate(0, 200px);
   }  
 }
 
 @keyframes box-ani-left {
-  from {
-    // transform: translate(0, 100x);
-  }
   to {
-    transform: translate(100px, 100px);
+    transform: translate(100px, 200px);
     opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
   }
 }
 
 @keyframes box-ani-center {
-  from {
-    // transform: translate(0, 0);
-  }
   to {
-    transform: translate(0, 100px); /* 위에서 아래로 이동 */
+    transform: translate(0, 200px); /* 위에서 아래로 이동 */
     opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
   }
 }
 
 @keyframes box-ani-right {
-  from {
-    // transform: translate(100px, 0);
-  }
   to {
-    transform: translate(-100px, 100px); /* 오른쪽에서 왼쪽으로 이동 */
+    transform: translate(-100px, 200px); /* 오른쪽에서 왼쪽으로 이동 */
     opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
   }
 }
@@ -501,8 +493,7 @@ export default {
     width: 100.259px;
     height: 100.259px;
     position: absolute;
-    // animation: box-ani 1s linear forwards;
-    // animation: rotate 1s linear forwards 1s, scale 1s linear forwards 2s, colorChange 1s linear forwards 3s, box-ani 1s linear forwards;
+    visibility: hidden;
     span {
       color: #000;
       text-align: center;
@@ -523,23 +514,35 @@ export default {
     }
     &.one {
       left: 7%;
-      animation: box-ani 2s linear forwards, box-ani-left 0.5s linear forwards 1.0s;
-      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
+      animation: box-down 2s linear forwards, box-ani-left 0.5s linear forwards;
+      animation-delay: 2s, 3s;
     }
     &.two {
       left: 39%;
-      animation: box-ani 2s linear forwards, box-ani-center 0.5s linear forwards 1.0s;
-      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
+      animation: box-down 2s linear forwards, box-ani-center 0.5s linear forwards;
+      animation-delay: 2s, 3s;
     }
     &.three {
       left: 70%; 
-      animation: box-ani 2s linear forwards, box-ani-right 0.5s linear forwards 1.0s;
-      animation-delay: 1s; /* 원형 애니메이션은 2초후 시작 */
-    }    
+      animation: box-down 2s linear forwards, box-ani-right 0.5s linear forwards;
+      animation-delay: 2s, 3s;
+    }
   }
 }
 
-.box.animated {
+.box {
+  &.one.animated {
+    animation: none; /* box-ani 애니메이션 제거 */
+  }
+  &.two.animated {
+    animation: none; /* box-ani 애니메이션 제거 */
+  }
+  &.three.animated {
+    animation: none; /* box-ani 애니메이션 제거 */
+  }    
+}
+
+.story-wrapper img.animated {
   animation: none; /* box-ani 애니메이션 제거 */
 }
 
