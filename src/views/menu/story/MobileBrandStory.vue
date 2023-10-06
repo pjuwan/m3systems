@@ -27,7 +27,7 @@
         <div id="circleArea" class="circle-area">
           <div class="circle">
           </div>
-          <div class="text">
+          <div id="circleAreaText" class="text">
             <span><strong>끊임없는 연구개발</strong>로 발전시켜온 모듈러 주택</span>
             <span>플랫폼을 통한 <strong>혁신적인 공정 관리</strong></span>
             <span>라이프스타일에 맞춘 <strong>내 삶과 함께하는 공간</strong></span>
@@ -117,12 +117,14 @@ export default {
     document.body.classList.add('modal-open');
     const animatedBox = document.getElementById('animatedBox');
     const circleArea = document.getElementById('circleArea');
+    const circleAreaText = document.getElementById('circleAreaText');
     const timeArea = document.getElementById('timeArea');
  
     // box 애니메이션 종료 후 설정
     animatedBox.addEventListener('animationend', () => {
       circleArea.classList.add('on');
       timeArea.classList.add('on');
+      circleAreaText.classList.add('on');
       // animatedBox.style.display = 'none';
       console.log('end');
     });
@@ -175,12 +177,11 @@ export default {
       margin: 206px 0 0 0;
       width: 100%;
       opacity: 0;
-      transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */      
+      transition: opacity 2s; /* opacity 속성에 대한 트랜지션 설정 */
       visibility: hidden;
       &.on {
         opacity: 1; /* 보이는 상태에서 투명도를 1로 설정 */
-        visibility: visible; /* 요소를 보이게 설정 */        
-        transition: cubic-bezier(0.86, 0, 0.07, 1);
+        visibility: visible; /* 요소를 보이게 설정 */
       }
       span {
         display: inline-flex;
@@ -200,13 +201,15 @@ export default {
       }
     }
     .circle-area {
-      display: none;
+      display: inline-grid;
       justify-content: center;
       margin: 53px 0 0 0;
       text-align: center;
       width: 100%;
+      opacity: 0;
+      transition: opacity 3s; /* opacity 속성에 대한 트랜지션 설정 */      
       &.on {
-        display: inline-grid;
+        opacity: 1;
       }
       .circle {
         width: 366px;
@@ -223,6 +226,11 @@ export default {
         text-align: center;
         z-index: 5;
         color: #111;
+        opacity: 0;
+        transition: opacity 5s; /* opacity 속성에 대한 트랜지션 설정 */
+        &.on {
+          opacity: 1;
+        }
         span {
           color: #000;
           font-size: 14px;
