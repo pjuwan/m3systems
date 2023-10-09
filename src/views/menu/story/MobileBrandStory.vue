@@ -324,8 +324,9 @@ export default {
         margin: 20px 0;
       }
       .image-area {
-        text-align: center;
-        width: 100%;     
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
         img {
           width: 335.773px;
           height: 262.1px;
