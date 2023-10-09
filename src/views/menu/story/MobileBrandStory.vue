@@ -1,5 +1,5 @@
 <template>
-  <div class="brand-story-page">
+  <div id="mobileBrandStroy" class="brand-story-page">
     <vue-scroll-snap>
       <div class="item story-wrapper"> 
         <img src="@/assets/img/story/main.png" />
@@ -161,9 +161,9 @@ export default {
     store.commit('setScrolltoTop', false);
   },
   mounted() {
-    document.body.classList.add('modal-open');
+    document.body.classList.add('hidden');
     const animatedBox = document.getElementById('animatedBox');
-       
+    
     // Box 애니메이션 종료 직후 설정
     animatedBox.addEventListener('animationend', () => {
       const circleArea = document.getElementById('circleArea');
@@ -178,7 +178,7 @@ export default {
     })
   },
   beforeDestroy() {
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove('hidden');
     store.commit('setScrolltoTop', true);
   },
   methods: {
@@ -186,7 +186,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.brand-story-page {
+#mobileBrandStroy {
   .item {
     /* Set the minimum height of the items to be the same as the height of the scroll-snap-container.*/
     min-height: 813.925px;
@@ -393,8 +393,8 @@ export default {
       }
       .title {
         position: absolute;
-        top: 16%;
-        left: 5%;
+        top: 14%;
+        left: 19%;
         display: flex;
         flex-direction: column;      
         span {
@@ -442,23 +442,18 @@ export default {
       }     
     }
   }
-  .scroll-snap-container {
-    height: 813.925px;
-    width: 100%;
-  }
 
   /* 브랜드 스토리 애니메이션 */
   @keyframes image-scale {
     0% {
-      transform: scale(10);
-      // background-size: 100% 191px;
+      transform: scale(10); // 이미지 10배로 확대
     }
     100% {
-      transform: scale(1);
-      // background-size: 100% 191px;
+      transform: scale(1); // 이미지 원래대로 설정
     }
   }
 
+  // 텍스트박스 보이도록 설정
   @keyframes text-ani {
     to {
       visibility: visible;
@@ -466,6 +461,7 @@ export default {
     }
   }
 
+  // 위에서 아래로 이동 (모든 원형 동시 적용)
   @keyframes box-down {
     from {
       transform: translate(0, 0);
@@ -476,24 +472,27 @@ export default {
     }  
   }
 
+  // 왼쪽에서 오른쪽 아래로 이동
   @keyframes box-ani-left {
     to {
       transform: translate(100px, 200px);
-      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+      opacity: 0;
     }
   }
 
+  // 위에서 아래로 이동
   @keyframes box-ani-center {
     to {
-      transform: translate(0, 200px); /* 위에서 아래로 이동 */
-      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+      transform: translate(0, 200px);
+      opacity: 0;
     }
   }
 
+  // 오른쪽에서 왼쪽 아래로 이동
   @keyframes box-ani-right {
     to {
-      transform: translate(-100px, 200px); /* 오른쪽에서 왼쪽으로 이동 */
-      opacity: 0; /* 애니메이션 종료 시 요소를 투명하게 만듭니다. */
+      transform: translate(-100px, 200px);
+      opacity: 0;
     }
   }
 
@@ -545,33 +544,17 @@ export default {
     }
   }
 
-  .box {
-    &.one.animated {
-      animation: none; /* box-ani 애니메이션 제거 */
-    }
-    &.two.animated {
-      animation: none; /* box-ani 애니메이션 제거 */
-    }
-    &.three.animated {
-      animation: none; /* box-ani 애니메이션 제거 */
-    }    
-  }
-
-  .story-wrapper img.animated {
-    animation: none; /* box-ani 애니메이션 제거 */
-  }
-
-  /* 애니메이션이 완료된 후 .round 요소를 보이게 합니다. */
-  .box.animated + .item.story-wrapper .circle-area {
-    display: none;
-    opacity: 0;
-  }
-
-  /* 이미지 슬라이딩 */
+   // 이미지 슬라이딩
   .vueperslides__bullets {
     button {
       color: #CECECE;
     }
   }
+
+  // 스크롤 스냅 스타일
+  .scroll-snap-container {
+    height: 813.925px;
+    width: 100%;
+  }  
 }
 </style>

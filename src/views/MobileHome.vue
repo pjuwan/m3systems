@@ -10,13 +10,16 @@
         transition-speed="250"
       >
         <vueper-slide
-          v-for="(slide, i) in imageUrls"
+          v-for="(top, i) in topInfoList"
           :key="i">
           <template v-slot:content>
             <div class="content">
-              <img :src="slide.src" width="100%" height="100%">
-              <div class="area">
-                <img class="subject" src="@/assets/img/group-268-1.png" />
+              <img :src="top?.imageList?.[0]">
+              <div class="subject">
+                <div class="text-area">
+                  <span>{{ top?.id }}</span>
+                  <span>Buy our houses now!!!</span>
+                </div>
               </div>
             </div>
           </template>
@@ -34,7 +37,7 @@
             :class="{ 'active': item.isChecked }"
             @click="onNewModel(idx)"
           >
-            <img class="element" :src="item.imageSrc" />
+            <img class="element" :src="item.imageList[0]" />
           </div>
         </div>
         <div class="frame">
@@ -44,9 +47,9 @@
             :class="{ 'active': item.isChecked }"
           >
             <transition name="fade">
-              <div class="group">
+              <div v-if="item.isChecked" class="group">
                 <div class="overlap-group-2">
-                  <img class="img" :src="item.descImageSrc" />
+                  <img class="img" :src="item.imageList[0]" />
                   <div class="text-wrapper">{{ item.title }}</div>
                   <p class="p">A building that can be used for any purpose</p>
                   <p class="element-m-floors">
@@ -70,13 +73,13 @@
             <div class="frame-2">
               <div class="prev" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg"/></div>
               <div class="layer">
-                <img class="source best" :src="bestModel.selected.imageSrc"/>
+                <img class="source best" :src="bestModel.selected?.imageList[0]"/>
               </div>
               <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg"/></div>
             </div>
             <div class="group-6">
-              <div class="text-wrapper-8">{{ bestModel.selected.model }}</div>
-              <div class="text-wrapper-7">{{ bestModel.selected.price }}</div>
+              <div class="text-wrapper-8">{{ bestModel.selected?.id }}</div>
+              <div class="text-wrapper-7">{{ `${ bestModel.selected?.cost.toLocaleString() } Won` }}</div>
             </div>
           </div>
         </div>
@@ -100,160 +103,130 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
+import { dataMixin } from '@/mixins/dataMixin';
 
 export default {
   name: 'MobileHomePage',
-  props: {
-    msg: String
-  },
+  mixins: [dataMixin],
   components: {
     VueperSlides,
     VueperSlide
   },
   data() {
     return {
-      imageUrls: [{
-        src: require("@/assets/img/top1.png"),
-        text: '#1'
-      },
-      {
-        src: require("@/assets/img/top2.png"),
-        text: '#2'
-      },
-      {
-        src: require("@/assets/img/top3.png"),
-        text: '#2'
-      }],
-      newModelList : [{
-        imageSrc: require("@/assets/img/1-2-4.png"),
-        title: 'CNK-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-6-4.png"),
-        isChecked: true
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-3.png"),
-        title: 'CKW-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-12-5.png"),
-        isChecked: false
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-2.png"),
-        title: 'CNK-03-XX-XX',
-        descImageSrc: require("@/assets/img/1-7.png"),
-        isChecked: false
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-1.png"),
-        title: 'CNK-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-11-2.png"),
-        isChecked: false
-      }],
+      topInfoList: [],
+      newModelList : [],      
       bestModel: {
-        selected: {},
+        selected: null,
         currentIndex: 0,
-        list: [{
-          imageSrc: require('@/assets/img/1-11-2.png'),
-          title: 'See our best models here.',
-          model: 'CNK-01-XX-XX',
-          price: '398,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-7.png'),
-          title: 'See our best models here.',
-          model: 'CNK-02-XX-XX',
-          price: '393,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-10-3.png'),
-          title: 'See our best models here.',
-          model: 'CNK-03-XX-XX',
-          price: '392,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-11-2.png'),
-          title: 'See our best models here.',
-          model: 'CNK-04-XX-XX',
-          price: '397,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-7.png'),
-          title: 'See our best models here.',
-          model: 'CNK-05-XX-XX',
-          price: '399,550,000'
-        },
-        {
-          imageSrc: require('@/assets/img/1-10-3.png'),
-          title: 'See our best models here.',
-          model: 'CNK-06-XX-XX',
-          price: '391,550,000'
-        }]
-      }      
+        list: []
+      }
     };
   },
-  mounted() {
-    const { list } = this.bestModel;
-    if (list.length > 0) {
-      this.bestModel.selected = list[0];
+  created() {
+    const homeData = this.getHomeData();
+    const { topInfoList, newModelList, bestModelList } = homeData;
+
+    // Top 정보
+    this.topInfoList = topInfoList;
+
+    // 새로운 모델
+    this.newModelList = newModelList.map((item, idx) => {
+      return {
+        ...item,
+        isChecked: idx === 0 ? true : false
+      }
+    });
+
+    // 베스트 모델
+    if (bestModelList.length > 0) {
+      this.bestModel.list = bestModelList.map((item, idx) => ({
+        ...item,
+        isChecked: idx === 0 ? true : false
+      }));
+      this.bestModel.selected = this.bestModel.list[0];
     }
-  },  
+  },
   methods: {
     onNewModel(index) {
-      this.newModelList.forEach((e, i) => {
-        e.isChecked = false;
-        if (index === i) {
-          e.isChecked = true;
-        }
-      })
-    },
+      this.newModelList.forEach((item, idx) => {
+        item.isChecked = index === idx;
+      });      
+    },    
     goPrev() {
       const { selected, list } = this.bestModel;
-      const currentIndex = list.findIndex((obj) => {
-        return JSON.stringify(obj) === JSON.stringify(selected);
-      });
+      const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
 
-      if (currentIndex > 0) {
-        const previousElement  = list[currentIndex - 1]; // 이전 요소 가져오기
-        this.bestModel.selected = previousElement;
-        this.bestModel.currentIndex = currentIndex - 1;
-      } else {
-        // 마지막 요소 가져오기
-        this.bestModel.selected = list[list.length - 1];
-        this.bestModel.currentIndex = list.length - 1;
-      }
+      // 체크상태 초기화
+      list.forEach(item => item.isChecked = false);
+
+      const prevIndex = (currentIndex - 1 + list.length) % list.length; // 이전 인덱스 계산
+
+      // 이전 요소 가져오기
+      const prevElement = list[prevIndex];
+      prevElement.isChecked = true;
+
+      // 선택된 요소 및 현재 인덱스 업데이트
+      this.bestModel.selected = prevElement;
+      this.bestModel.currentIndex = prevIndex;
     },
     goNext() {
       const { selected, list } = this.bestModel;
-      const currentIndex = list.findIndex((obj) => {
-        return JSON.stringify(obj) === JSON.stringify(selected);
-      });
+      const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
 
-      if (currentIndex < list.length - 1) {
-        const nextElement = list[currentIndex + 1]; // 다음 요소 가져오기
-        this.bestModel.selected = nextElement;
-        this.bestModel.currentIndex = currentIndex + 1;
-      } else {
-        // 첫번째 요소 가져오기
-        this.bestModel.selected = list[0];
-        this.bestModel.currentIndex = 0;
-      }
+      // 체크상태 초기화
+      list.forEach(item => item.isChecked = false);
+
+      const nextIndex = (currentIndex + 1) % list.length; // 다음 인덱스 계산
+
+      // 다음 요소 가져오기
+      const nextElement = list[nextIndex];
+      nextElement.isChecked = true;
+
+      // 선택된 요소 및 현재 인덱스 업데이트
+      this.bestModel.selected = nextElement;
+      this.bestModel.currentIndex = nextIndex;
     }
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 .content {
   width: 100%;
   height: 100%;
   display: inline-block;
-}
-.content .subject {
-  width: 207px;
-  height: 51px;
-}
-.content img {
-  display: flex;
-  width: 100%;
-  height: 100%;
+  .subject {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .text-area {
+      display: flex;
+      flex-direction: column;    
+    }
+    span {
+      text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+      font-family: "Pretendard-Light", Helvetica;
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 38px;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;    
+    }
+    span:last-child {
+      font-size: 23px;
+    }
+  }
+  img {
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }  
 }
 </style>

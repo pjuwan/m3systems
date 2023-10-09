@@ -136,11 +136,11 @@
             <div class="item-box desc">
               <div class="info-area" :class="{on: selectedFloor === '01'}">
                 <div class="floor">
-                  <div class="circle" :class="{on: selectedFloor === '01'}" @click="selectedFloor = '01'">
+                  <div class="circle" @click="selectedFloor = '01'">
                     <span>1F</span>
                   </div>
                 </div>
-                <div v-show="selectedFloor === '01'" class="text">
+                <div class="text">
                   <span class="area">1층 면적</span>
                   <span>145.81m²</span>
                   <span class="type">[35PY]</span>
@@ -148,11 +148,11 @@
               </div>
               <div class="info-area" :class="{on: selectedFloor === '02'}">
                 <div class="floor">
-                  <div class="circle" :class="{on: selectedFloor === '02'}" @click="selectedFloor = '02'">
+                  <div class="circle" @click="selectedFloor = '02'">
                     <span>2F</span>
                   </div>
                 </div>
-                <div v-show="selectedFloor === '02'" class="text">
+                <div class="text">
                   <span class="area">2층 면적</span>
                   <span>96.25m²</span>
                   <span class="type">[20PY]</span>
@@ -174,11 +174,11 @@
           transition-speed="250"          
         >
           <vueper-slide
-            v-for="(slide, i) in modelList"
+            v-for="(src, i) in modelList[0]?.imageList"
             :key="i">
             <template v-slot:content>
               <div class="item">
-                <img :src="slide.src" width="100%" height="100%">
+                <img :src="src" width="100%" height="100%">
               </div>
             </template>
           </vueper-slide>
@@ -206,7 +206,7 @@
               <img class="img" src="@/assets/img/model/detail/_1-31.png" />
             </div>
           </div>
-          <div class="video-area">
+          <div class="video-area" style="display: none">
             <div class="video">
               <img src="@/assets/img/model/detail/_250723-6-1.png" />
               <img class="play" src="@/assets/img/common/play.svg" />
@@ -224,26 +224,23 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
+import { dataMixin } from '@/mixins/dataMixin';
 
 export default {
   name: "MobileHouseModelDetail",
   components: {
     VueperSlides,
-    VueperSlide
+    VueperSlide,
   },
+  mixins: [dataMixin],
   data() {
     return {
       selectedFloor: '01',
-      modelList: [{
-        src: require("@/assets/img/model/detail/_1-35.png"),
-      },
-      {
-        src: require("@/assets/img/model/detail/_1-36.png"),
-      },
-      {
-        src: require("@/assets/img/model/detail/_1-37.png"),
-      }]
+      modelList: this.getModelList()
     };
+  },
+  mounted() {
+    console.log(this.modelList)
   },
   methods: {
     goMenu(menuNm) {
@@ -604,11 +601,13 @@ export default {
         .info-area {
           border-radius: 36.982px;
           background: #FFF;
-          width: 269.966px;
+          // width: 269.966px;
+          width: 0;
           height: 56.212px;
           display: inline-flex;
           align-items: center;
           margin: 10px 0;
+          transition: 0.3s ease-in;
           span {
             color: #242424;
             font-size: 13.313px;
@@ -616,6 +615,13 @@ export default {
           }
           &.on {
             box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.5);
+            width: 269.966px;
+            .text {
+              opacity: 1;
+            }
+            .floor .circle {
+              background: #2E2E2E;
+            }
           }
           .floor {
             width: 57.691px;
@@ -636,14 +642,13 @@ export default {
                 color: #FFF;
                 font-size: 25.148px;
               }
-              &.on {
-                background: #2E2E2E;
-              }
             }              
           }
           .text {
-            width: 100%;
             display: inline-flex;
+            white-space: nowrap;
+            opacity: 0; /* 초기에 투명하게 설정 */
+            transition: opacity 0.2s ease-out;
           }
           .area {
             text-indent: 0;
@@ -695,6 +700,7 @@ export default {
   .more-views-area {
     display: block;
     width: 100%;
+    margin-bottom: 70px;
     .title {
       color: #000;
       font-family: Pretendard;

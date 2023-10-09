@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isMobile: false,
-    isScrolltoTop: true
+    isScrolltoTop: true,
+    menuId: ''
   },
   mutations: {
     setMobileStatus(state) {
@@ -14,6 +15,10 @@ export default new Vuex.Store({
     },
     setScrolltoTop(state, value) {
       state.isScrolltoTop = value;
+    },
+    setMenuId(state, value) {
+      state.menuId = value;
+      localStorage.setItem('menuId', value);
     }
   },
 });

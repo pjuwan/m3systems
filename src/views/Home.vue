@@ -4,19 +4,19 @@
     <!-- autoplay 설정가능 -->
     <vueper-slides fade :touchable="false" fixed-height="915px">
       <vueper-slide
-        v-for="(info, i) in topInfoList"
+        v-for="(top, i) in topInfoList"
         :key="i">
         <template v-slot:content>
           <div class="content">
-            <img :src="info.src" />
+            <img :src="top.imageList[0]" />
             <div class="subject">
-              <div class="model">{{ info.model }}</div>
+              <div class="model">{{ top.id }}</div>
               <div class="now">지금 바로 만나보세요</div>
-            </div>
-            <div class="view">
-              <div class="group">
-                <div class="rectangle"></div>
-                <div class="text">보러가기</div>
+              <div class="view">
+                <div class="group">
+                  <div class="rectangle"></div>
+                  <div class="text">보러가기</div>
+                </div>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             :class="{ 'active': item.isChecked }"
             @click="onNewModel(idx)"
           >
-            <img class="element" :src="item.imageSrc" />
+            <img class="element" :src="item.imageList[0]" />
           </div>
         </div>        
       </div>
@@ -48,7 +48,7 @@
           <transition name="fade">
             <div v-if="item.isChecked" class="element-wrapper">
               <div class="image-box">
-                <img class="img" :src="item.descImageSrc" />
+                <img class="img" :src="item.imageList[0]" />
               </div>
               <div class="group-4">
                 <div class="text-wrapper">CNK-01-XX-XX</div>
@@ -73,19 +73,17 @@
       <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
       <div class="best-slider">
         <div v-if="bestModel.list?.length > 2" class="overlap-4">
-          <img class="element-3" :src="getCurrentImage(-1)" />
           <img class="element-2" :src="getCurrentImage(-2)" />
-        </div>        
+          <img class="element-3" :src="getCurrentImage(-1)" />
+        </div>
         <div class="overlap-6">
           <div v-for="(item, idx) in bestModel.list" :key="idx" class="group-9" :class="{action: item.isChecked}">
-            <transition name="fade">
-              <div v-if="item.isChecked" class="overlap-group-3">
-                <img class="element-6" :src="item.imageSrc" />
-                <div class="text-wrapper-18">{{ item.model }}</div>
-                <p class="text-wrapper-17">{{ item.title }}</p>
-                <div class="text-wrapper-19">{{ item.price }} Won</div>
-              </div>
-            </transition>
+            <div v-if="item.isChecked" class="overlap-group-3">
+              <img class="element-6" :src="item.imageList[0]" />
+              <div class="text-wrapper-18">{{ item.id }}</div>
+              <p class="text-wrapper-17">{{ `See our best models here.` }}</p>
+              <div class="text-wrapper-19">{{ item.cost.toLocaleString() }} Won</div>
+            </div>
           </div>
           <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
           <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
@@ -117,177 +115,100 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import { dataMixin } from '@/mixins/dataMixin';
 
 export default {
   name: 'HomePage',
-  props: {
-    msg: String
-  },
+  mixins: [dataMixin],
   components: {
     VueperSlides,
     VueperSlide
   },
   data() {
     return {
-      topInfoList: [{
-        src: require("@/assets/img/main1.png"),
-        model: 'CNK-01-XX-XX'
-      },
-      {
-        src: require("@/assets/img/main2.png"),
-        model: 'CNK-02-XX-XX'
-      },
-      {
-        src: require("@/assets/img/main3.png"),
-        model: 'CNK-03-XX-XX'
-      },
-      {
-        src: require("@/assets/img/main4.png"),
-        model: 'CNK-04-XX-XX'
-      },      
-      {
-        src: require("@/assets/img/main5.png"),
-        model: 'CNK-05-XX-XX'
-      }],      
-      newModelList : [{
-        imageSrc: require("@/assets/img/1-2-4.png"),
-        title: 'CNK-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-6-4.png"),
-        isChecked: true
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-3.png"),
-        title: 'CKW-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-12-5.png"),
-        isChecked: false
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-2.png"),
-        title: 'CNK-03-XX-XX',
-        descImageSrc: require("@/assets/img/1-7.png"),
-        isChecked: false
-      },
-      {
-        imageSrc: require("@/assets/img/1-2-1.png"),
-        title: 'CNK-01-XX-XX',
-        descImageSrc: require("@/assets/img/1-11-2.png"),
-        isChecked: false
-      }],      
+      topInfoList: [],
+      newModelList : [],      
       bestModel: {
         selected: {},
         currentIndex: 0,
-        list: [{
-          imageSrc: require('@/assets/img/main1.png'),
-          title: 'See our best models here.',
-          model: 'CNK-01-XX-XX',
-          price: '398,550,000',
-          isChecked: false
-        },
-        {
-          imageSrc: require('@/assets/img/main2.png'),
-          title: 'See our best models here.',
-          model: 'CNK-02-XX-XX',
-          price: '393,550,000',
-          isChecked: false
-        },
-        {
-          imageSrc: require('@/assets/img/main3.png'),
-          title: 'See our best models here.',
-          model: 'CNK-03-XX-XX',
-          price: '392,550,000',
-          isChecked: false
-        },
-        {
-          imageSrc: require('@/assets/img/main4.png'),
-          title: 'See our best models here.',
-          model: 'CNK-04-XX-XX',
-          price: '397,550,000',
-          isChecked: false
-        },
-        {
-          imageSrc: require('@/assets/img/main5.png'),
-          title: 'See our best models here.',
-          model: 'CNK-05-XX-XX',
-          price: '399,550,000',
-          isChecked: false
-        }]
+        list: []
       }
     }
   },
-  mounted() {
-    const { list } = this.bestModel;
-    if (list.length > 0) {
-      list[0].isChecked = true;
-      this.bestModel.selected = list[0];
+  created() {
+    const homeData = this.getHomeData();
+    const { topInfoList, newModelList, bestModelList } = homeData;
+
+    // Top 정보
+    this.topInfoList = topInfoList;
+
+    // 새로운 모델
+    this.newModelList = newModelList.map((item, idx) => {
+      return {
+        ...item,
+        isChecked: idx === 0 ? true : false
+      }
+    });
+
+    // 베스트 모델
+    if (bestModelList.length > 0) {
+      this.bestModel.list = bestModelList.map((item, idx) => ({
+        ...item,
+        isChecked: idx === 0 ? true : false
+      }));
+      this.bestModel.selected = this.bestModel.list[0];
     }
   },
   methods: {
     onNewModel(index) {
-      this.newModelList.forEach((e, i) => {
-        e.isChecked = false;
-        if (index === i) {
-          e.isChecked = true;
-        }
-      })
+      this.newModelList.forEach((item, idx) => {
+        item.isChecked = index === idx;
+      });      
     },    
     goPrev() {
       const { selected, list } = this.bestModel;
-      const currentIndex = list.findIndex((obj) => {
-        return JSON.stringify(obj) === JSON.stringify(selected);
-      });
+      const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
 
       // 체크상태 초기화
-      list.forEach(item => item.isChecked = false)
-      
-      if (currentIndex > 0) {
-        const previousElement  = list[currentIndex - 1]; // 이전 요소 가져오기
-        previousElement.isChecked = true;
-        this.bestModel.selected = previousElement;
-        this.bestModel.currentIndex = currentIndex - 1;
-      } else {
-        // 마지막 요소 가져오기
-        this.bestModel.selected = list[list.length - 1];
-        this.bestModel.currentIndex = list.length - 1;
-        this.bestModel.list[list.length - 1].isChecked = true;
-      }
+      list.forEach(item => item.isChecked = false);
+
+      const prevIndex = (currentIndex - 1 + list.length) % list.length; // 이전 인덱스 계산
+
+      // 이전 요소 가져오기
+      const prevElement = list[prevIndex];
+      prevElement.isChecked = true;
+
+      // 선택된 요소 및 현재 인덱스 업데이트
+      this.bestModel.selected = prevElement;
+      this.bestModel.currentIndex = prevIndex;
     },
     goNext() {
       const { selected, list } = this.bestModel;
-      const currentIndex = list.findIndex((obj) => {
-        return JSON.stringify(obj) === JSON.stringify(selected);
-      });
+      const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
 
       // 체크상태 초기화
-      list.forEach(item => item.isChecked = false)
+      list.forEach(item => item.isChecked = false);
 
-      if (currentIndex < list.length - 1) {
-        const nextElement = list[currentIndex + 1]; // 다음 요소 가져오기
-        nextElement.isChecked = true;
-        this.bestModel.selected = nextElement;
-        this.bestModel.currentIndex = currentIndex + 1;
-      } else {
-        // 첫번째 요소 가져오기
-        this.bestModel.selected = list[0];
-        this.bestModel.currentIndex = 0;
-        this.bestModel.list[0].isChecked = true;
-      }
+      const nextIndex = (currentIndex + 1) % list.length; // 다음 인덱스 계산
+
+      // 다음 요소 가져오기
+      const nextElement = list[nextIndex];
+      nextElement.isChecked = true;
+
+      // 선택된 요소 및 현재 인덱스 업데이트
+      this.bestModel.selected = nextElement;
+      this.bestModel.currentIndex = nextIndex;
     },
     getCurrentImage(index) {
       const { list } = this.bestModel;
       let currentIndex = this.bestModel.currentIndex + index;
       const length = list.length;
-      let imageSrc = list[currentIndex]?.imageSrc;
 
-      if (currentIndex >= list.length) {
-        if (list.length < currentIndex) {
-          currentIndex = currentIndex - list.length
-        } else {
-          currentIndex = list.length - currentIndex;
-        }
-        imageSrc = list[currentIndex]?.imageSrc
-      } else if (currentIndex < 0) {
-        imageSrc = list[length + currentIndex]?.imageSrc;
-      }
+      // 음수 인덱스를 양수로 변환하는 함수
+      const normalizeIndex = (idx) => ((idx % length) + length) % length;
+
+      currentIndex = normalizeIndex(currentIndex);
+      const imageSrc = list[currentIndex]?.imageList[0];
       
       return imageSrc;
     }
@@ -295,7 +216,7 @@ export default {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
 .content {
   height: 100%;
 }
@@ -303,13 +224,13 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .content .subject {
   position: absolute;
-  width: 523px;
-  height: 128px;
-  top: 358px;
-  left: 35%;  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .content .subject .model{
     text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
@@ -323,36 +244,28 @@ export default {
     white-space: nowrap;
 }
 .content .subject .now{
-  position: absolute;
-    top: 90px;
-    left: 127px;
-    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
-    font-family: "Pretendard-Light", Helvetica;
-    font-weight: 300;
-    color: #ffffff;
-    font-size: 32px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+  font-family: "Pretendard-Light", Helvetica;
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
 }
 .content .view {
   position: absolute;
   width: 339px;
   height: 73px;
-  top: 509px;
-  left: 39%;
+  top: 143px;
+  left: 19%;
 }
 .content .view .group {
   position: relative;
-  width: 337px;
-  height: 73px;
   border-radius: 11px;
 }
 .content .view .rectangle {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 337px;
   height: 73px;
   background-color: #ffffff;
@@ -371,6 +284,104 @@ export default {
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
+}
+.best-model {
+  .btn-box {
+    position: relative;
+    margin: 36px 0 0 0;
+    .btn {
+      position: absolute;
+      width: 59px;
+      height: 59px;
+      top: 143px;      
+      background-color: rgba(255, 255, 255, 0.6901960784);
+      border-radius: 29.5px;
+      border: 1px solid;
+      border-color: rgba(149, 149, 149, 0.6901960784);
+      cursor: pointer;
+      z-index: 2;      
+      &.prev {
+        right: 64%;
+        transform: rotate(180deg);
+        img {
+          position: absolute;
+          width: 13px;
+          height: 24px;
+          top: 17px;
+          left: 24px;
+          transform: rotate(-180deg);      
+        }
+      }
+      &.next {
+        left: 64%;
+        img {
+          position: absolute;
+          width: 13px;
+          height: 24px;
+          top: 16px;
+          left: 24px;      
+        }
+      }
+    }
+  }
+  .image {
+    text-align: center;
+    margin: 30px 0 0 0;
+    img {
+      width: 464px;
+      height: 304px;
+      -o-object-fit: cover;
+      object-fit: cover;
+      border-radius: 30px;  
+    }
+  }
+  .vueperslide--active .image {
+    margin: 0;
+    img {
+    width: 577px;
+    height: 355px;
+    object-fit: cover;
+    border-radius: 30px;
+    }
+  }
+  .vueperslide--visible .desc {
+    display: none;
+  }
+  .vueperslide--active .desc {
+    display: block;
+  }
+}
+
+.vueperslides__arrow--prev::before,
+.vueperslides__arrow--next::before {
+  content: "";
+  display: block;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  opacity: 0.6;
+  border-radius: 40px;
+  background-color: #111;
+  position: absolute;
+  z-index: -1;
+}
+
+.vueperslides__arrow--next::before {
+  left: -21px;
+}
+
+.vueperslides__arrow--prev svg {
+  width: 48px;
+  position: absolute;
+  top: 6px;
+  left: 17px;  
+}
+
+.vueperslides__arrow--next svg {
+  width: 48px;
+  position: relative;
+  top: 4px;
+  left: -9px;
 }
 
 </style>

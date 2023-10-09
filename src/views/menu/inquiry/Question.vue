@@ -19,23 +19,23 @@
         <div class="row">
           <div class="th">
             <span class="name">이름</span>
-            <input type="text" placeholder="이름을 입력해주세요"/>
+            <input v-model="state.name" type="text" placeholder="이름을 입력해주세요"/>
           </div>
           <div class="th">
             <span class="name">연락처</span>
-            <input type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
+            <input v-model="state.phone" type="text" placeholder="전화번호를 입력해주세요(기호, 공백 제외)"/>
           </div>
         </div>
         <div class="row">
           <div class="th">
             <span class="name">이메일</span>
-            <input type="text" placeholder="이메일을 입력해주세요"/>
+            <input v-model="state.email" type="text" placeholder="이메일을 입력해주세요"/>
           </div>
         </div>
         <div class="row">
           <div class="th full">
             <span class="name">건축희망모델</span>
-            <select>
+            <select v-model="state.desiredModel">
               <option value="">CNK-01-XX-XX</option>
             </select>
           </div>
@@ -46,11 +46,11 @@
           </div>
           <div class="td">
             <label>
-              <input type="radio"/>
+              <input v-model="state.structure" type="radio" value="1"/>
               <span class="radio">강구조</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.structure" type="radio" value="1"/>
               <span class="radio">목구조</span>
             </label>            
           </div>
@@ -61,27 +61,27 @@
           </div>
           <div class="td">
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="1"/>
               <span class="radio">20평이하</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="2"/>
               <span class="radio">20평대</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="3"/>
               <span class="radio">30평대</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="4"/>
               <span class="radio">40평대</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="5"/>
               <span class="radio">50평대</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.estimatedSquareFootage" type="radio" value="6"/>
               <span class="radio">60평이상</span>
             </label>
           </div>
@@ -92,15 +92,15 @@
           </div>
           <div type="td">
             <label>
-              <input type="radio"/>
+              <input v-model="state.plannedConstructionDate" type="radio" value="1"/>
               <span class="radio">6개월이내</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.plannedConstructionDate" type="radio" value="2"/>
               <span class="radio">1년이내</span>
             </label>
             <label>
-              <input type="radio"/>
+              <input v-model="state.plannedConstructionDate" type="radio" value="3"/>
               <span class="radio">2년이상</span>
             </label>
           </div>
@@ -111,19 +111,19 @@
           </div>
           <div class="td">
             <label>
-              <input v-model="radioValue" type="radio" value="1"/>
+              <input v-model="state.estimatedConstructionCost" type="radio" value="1"/>
               <span class="radio">1-2억</span>
             </label>
             <label>
-              <input v-model="radioValue" type="radio" value="2"/>
+              <input v-model="state.estimatedConstructionCost" type="radio" value="2"/>
               <span class="radio">2-3억</span>
             </label>
             <label>
-              <input v-model="radioValue" type="radio" value="3"/>
+              <input v-model="state.estimatedConstructionCost" type="radio" value="3"/>
               <span class="radio">3-4억</span>
             </label>
             <label>
-              <input v-model="radioValue" type="radio" value="4"/>
+              <input v-model="state.estimatedConstructionCost" type="radio" value="4"/>
               <span class="radio">기타</span>
             </label>
           </div>
@@ -131,13 +131,13 @@
         <div class="row">
           <div class="th full block">
             <span class="name">상담내용</span>
-            <textarea placeholder="상담내용을 자세하게 작성해주세요." />
+            <textarea v-model="state.content" placeholder="상담내용을 자세하게 작성해주세요." />
           </div>
         </div>
         <div class="row">
           <div class="th">
             <label>
-              <input type="checkbox"/>
+              <input :checked="state.privacyConsent === 'Y'" type="checkbox"/>
               <span class="checkbox">개인정보 수집 및 이용에 동의합니다.</span>
             </label>
           </div>
@@ -148,7 +148,7 @@
         </div>
         <div class="row">
           <label>
-            <input type="checkbox"/>
+            <input :checked="state.receiveTextReply === 'Y'" type="checkbox"/>
             <span class="checkbox">문자로 답변을 받겠습니다.</span>
           </label>
         </div>
@@ -175,16 +175,21 @@ export default {
     },
     data() {
       return {
-        radioValue: false,
         phoneHead: '',
         phoneMid: '',
         phoneTail: '',
-        consult: {
-          'customer_name':'',
-          'email':'',
-          'phone':'',
-          'content':'',
-          'category': this.lang == 'ko'? '설계' : 'Design'
+        state: {
+          name: '', // 이름
+          phone: '', // 연락처
+          email: '', // 이메일
+          desiredModel: '', // 건축희망모델
+          content: '', // 내용
+          estimatedSquareFootage: '', // 건축예상평수
+          plannedConstructionDate: '', // 건축예정시기
+          estimatedConstructionCost: '', //건축예상금액
+          structure: '', // 구조
+          privacyConsent: 'N', // 개인정보 수집 및 이용 동의 여부
+          receiveTextReply: 'N' // 문자 답변 여부
         },
         checkPp: false
       }

@@ -1,5 +1,5 @@
 <template>
-    <div class="mobile inquiry">
+    <div id="mobileQuestion" class="mobile inquiry">
       <div class="group">
         <div class="text-wrapper">문의하기</div>
         <div class="text-wrapper-2">최선을 다해 도와드리겠습니다</div>
