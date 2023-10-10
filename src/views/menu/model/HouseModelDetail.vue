@@ -34,10 +34,10 @@
     <div class="content">
       <div class="item-area">
         <div class="imagebox">
-          <img src="@/assets/img/model/detail/_1-12.png" />
+          <img :src="modelDetail.imageList[0]" />
         </div>
         <div class="description">
-          <span>CNK-01-XX-XX</span>
+          <span>{{ modelDetail.id }}</span>
           <span class="short-description-about-model">
             short description about model
           </span>
@@ -60,7 +60,7 @@
       </div>
       <div class="center-area">
         <div class="center-item">
-          <span class="model">CNK-01-XX-XX</span>
+          <span class="model">{{ modelDetail.id }}</span>
           <span>철골구조 프리미엄 주택</span>
           <span class="premium-model">Premium model</span>
           <div class="option-area">
@@ -94,14 +94,14 @@
       </div>
       <div class="center-desc-area">
         <div class="item-area">
-          <img src="@/assets/img/model/detail/_1-11.png" />
+          <img :src="modelDetail.imageList[0]" />
           <div class="desc-area">
             <div class="left">
-              <span class="model">CNK-01-XX-XX</span>
+              <span class="model">{{ modelDetail.id }}</span>
               <span class="name">철골구조 프리미엄 주택</span>
               <span>
                 Premium model | 210.66m²[57PY] | 2Floors | 5Room | 4Toilet
-              </span>            
+              </span>
             </div>
             <div class="right">
               <span>
@@ -225,18 +225,7 @@
         <div class="view-area">
           <div class="image-item">
             <div class="view">
-              <img class="img" src="@/assets/img/model/detail/_1-20.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-26.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-23.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-27.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-21.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-28.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-24.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-29.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-22.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-30.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-25.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-31.png" />
+              <img v-for="(imageAddress, idx) in modelDetail.imageList" :key="idx" class="img" :src="imageAddress" />
             </div>
           </div>
           <div class="video-area">
@@ -247,7 +236,7 @@
             <div class="video">
               <img src="@/assets/img/model/detail/_250723-6-1.png" />
               <img class="play" src="@/assets/img/common/play.svg" />
-            </div>            
+            </div>
           </div>
         </div>
       </div>
@@ -260,15 +249,18 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
+import { dataMixin } from '@/mixins/dataMixin';
 
 export default {
   name: "HouseModelDetail",
+  mixins: [dataMixin],
   components: {
     VueperSlides,
     VueperSlide
   },
   data() {
     return {
+      modelDetail: {},
       selectedFloor: '01',
       modelList: [{
         src: require("@/assets/img/model/detail/_1-35.png"),
@@ -280,6 +272,10 @@ export default {
         src: require("@/assets/img/model/detail/_1-37.png"),
       }]
     };
+  },
+  created() {
+    console.log(this.$route.params.id);
+    this.modelDetail = this.getModelDetail(this.$route.params.id);
   },
   methods: {
     goMenu(menuNm, menuId) {

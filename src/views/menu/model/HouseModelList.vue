@@ -58,7 +58,7 @@
                 :key="idx"
                 class="model-item"
                 :class="{ hidden: item.isHidden }"
-                @click="goDetail()"
+                @click="goDetail(item.id)"
               >
                 <div class="img" :style="getItemStyle(item)"></div>
                 <div class="description">
@@ -238,8 +238,9 @@ export default {
         backgroundSize: '100% 100%',
       };
     },    
-    goDetail() {
-      this.$router.push({ name: 'HouseModelDetail' });
+    goDetail(id) {
+      console.log(id);
+      this.$router.push({ name: 'HouseModelDetail', params: { id } });
     },
     doSearch() {
       const { id, selectedMaterials, selectedAreas } = this.search;

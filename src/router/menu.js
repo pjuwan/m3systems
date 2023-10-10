@@ -19,9 +19,10 @@ export default [
     name: 'MobileHouseModelList'
   },
   {
-    path: '/menu/modelDetail',
+    path: '/menu/modelDetail/:id',
     component: HouseModelDetail,
-    name: 'HouseModelDetail'
+    name: 'HouseModelDetail',
+    props: true
   },
   {
     path: '/mobile/menu/modelDetail',

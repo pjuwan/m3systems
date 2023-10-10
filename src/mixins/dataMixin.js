@@ -58,7 +58,8 @@ export const dataMixin = {
       })
     },
     getModelDetail(id) {
-      return this.getModelList?.find(item => item.id === id);
+      const list = this.getModelList();
+      return list.find(item => item.id === id);
     },
     getHomeData() {
       const { topInfoList, newModelList, bestModelList } = this.homeData;
