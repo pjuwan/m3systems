@@ -51,16 +51,16 @@
                 <img class="img" :src="item.imageList[0]" />
               </div>
               <div class="group-4">
-                <div class="text-wrapper">CNK-01-XX-XX</div>
+                <div class="text-wrapper">{{ item.id }}</div>
                 <p class="p">A building that can be used for any purpose</p>
-                <div class="text-wrapper-2">210.66 m²</div>
+                <div class="text-wrapper-2">{{ `${ item.exclusive_area } m²` }}</div>
                 <img class="line" src="@/assets/img/line-7.svg" />
                 <div class="text-wrapper-2">2 Floors</div>
                 <img class="line" src="@/assets/img/line-8.svg" />
-                <div class="text-wrapper-2">5 Bedrooms</div>
+                <div class="text-wrapper-2">{{ `${item.num_of_room} Bedrooms` }}</div>
                 <img class="line" src="@/assets/img/line-9.svg" />
-                <div class="text-wrapper-2">4 Bathrooms</div>
-                <div class="text-wrapper-6">488,700,000won</div>
+                <div class="text-wrapper-2">{{ `${item.num_of_bath} Bathrooms` }}</div>
+                <div class="text-wrapper-6">{{ `${item.cost.toLocaleString()} won` }}</div>
                 <div class="text-wrapper-7">+ View more</div>
               </div>
             </div>
@@ -217,171 +217,173 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-.content {
-  height: 100%;
-}
-.content img {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.content .subject {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.content .subject .model{
+.mainpage {
+  .content {
+    height: 100%;
+  }
+  .content img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .content .subject {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .content .subject .model{
+      text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+      color: #ffffff;
+      font-size: 75px;
+      font-family: "Pretendard-SemiBold", Helvetica;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0;
+      line-height: normal;
+      white-space: nowrap;
+  }
+  .content .subject .now{
     text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
+    font-family: "Pretendard-Light", Helvetica;
+    font-weight: 300;
     color: #ffffff;
-    font-size: 75px;
-    font-family: "Pretendard-SemiBold", Helvetica;
-    font-weight: 600;
+    font-size: 32px;
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
     white-space: nowrap;
-}
-.content .subject .now{
-  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
-  font-family: "Pretendard-Light", Helvetica;
-  font-weight: 300;
-  color: #ffffff;
-  font-size: 32px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-.content .view {
-  position: absolute;
-  width: 339px;
-  height: 73px;
-  top: 143px;
-  left: 19%;
-}
-.content .view .group {
-  position: relative;
-  border-radius: 11px;
-}
-.content .view .rectangle {
-  width: 337px;
-  height: 73px;
-  background-color: #ffffff;
-  border-radius: 11px;
-  box-shadow: inset 0px 0px 15px 3px rgba(0, 0, 0, 0.5019607843);
-}
-.content .view .text {
-  position: absolute;
-  top: 17px;
-  left: 113px;
-  font-family: "Pretendard-ExtraLight", Helvetica;
-  font-weight: 200;
-  color: #686868;
-  font-size: 32px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-}
-.best-model {
-  .btn-box {
+  }
+  .content .view {
+    position: absolute;
+    width: 339px;
+    height: 73px;
+    top: 143px;
+    left: 19%;
+  }
+  .content .view .group {
     position: relative;
-    margin: 36px 0 0 0;
-    .btn {
-      position: absolute;
-      width: 59px;
-      height: 59px;
-      top: 143px;      
-      background-color: rgba(255, 255, 255, 0.6901960784);
-      border-radius: 29.5px;
-      border: 1px solid;
-      border-color: rgba(149, 149, 149, 0.6901960784);
-      cursor: pointer;
-      z-index: 2;      
-      &.prev {
-        right: 64%;
-        transform: rotate(180deg);
-        img {
-          position: absolute;
-          width: 13px;
-          height: 24px;
-          top: 17px;
-          left: 24px;
-          transform: rotate(-180deg);      
-        }
-      }
-      &.next {
-        left: 64%;
-        img {
-          position: absolute;
-          width: 13px;
-          height: 24px;
-          top: 16px;
-          left: 24px;      
-        }
-      }
-    }
+    border-radius: 11px;
   }
-  .image {
+  .content .view .rectangle {
+    width: 337px;
+    height: 73px;
+    background-color: #ffffff;
+    border-radius: 11px;
+    box-shadow: inset 0px 0px 15px 3px rgba(0, 0, 0, 0.5019607843);
+  }
+  .content .view .text {
+    position: absolute;
+    top: 17px;
+    left: 113px;
+    font-family: "Pretendard-ExtraLight", Helvetica;
+    font-weight: 200;
+    color: #686868;
+    font-size: 32px;
     text-align: center;
-    margin: 30px 0 0 0;
-    img {
-      width: 464px;
-      height: 304px;
-      -o-object-fit: cover;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  .best-model {
+    .btn-box {
+      position: relative;
+      margin: 36px 0 0 0;
+      .btn {
+        position: absolute;
+        width: 59px;
+        height: 59px;
+        top: 143px;      
+        background-color: rgba(255, 255, 255, 0.6901960784);
+        border-radius: 29.5px;
+        border: 1px solid;
+        border-color: rgba(149, 149, 149, 0.6901960784);
+        cursor: pointer;
+        z-index: 2;      
+        &.prev {
+          right: 64%;
+          transform: rotate(180deg);
+          img {
+            position: absolute;
+            width: 13px;
+            height: 24px;
+            top: 17px;
+            left: 24px;
+            transform: rotate(-180deg);      
+          }
+        }
+        &.next {
+          left: 64%;
+          img {
+            position: absolute;
+            width: 13px;
+            height: 24px;
+            top: 16px;
+            left: 24px;      
+          }
+        }
+      }
+    }
+    .image {
+      text-align: center;
+      margin: 30px 0 0 0;
+      img {
+        width: 464px;
+        height: 304px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        border-radius: 30px;  
+      }
+    }
+    .vueperslide--active .image {
+      margin: 0;
+      img {
+      width: 577px;
+      height: 355px;
       object-fit: cover;
-      border-radius: 30px;  
+      border-radius: 30px;
+      }
+    }
+    .vueperslide--visible .desc {
+      display: none;
+    }
+    .vueperslide--active .desc {
+      display: block;
     }
   }
-  .vueperslide--active .image {
-    margin: 0;
-    img {
-    width: 577px;
-    height: 355px;
-    object-fit: cover;
-    border-radius: 30px;
-    }
-  }
-  .vueperslide--visible .desc {
-    display: none;
-  }
-  .vueperslide--active .desc {
+  
+  .vueperslides__arrow--prev::before,
+  .vueperslides__arrow--next::before {
+    content: "";
     display: block;
+    width: 78px;
+    height: 78px;
+    flex-shrink: 0;
+    opacity: 0.6;
+    border-radius: 40px;
+    background-color: #111;
+    position: absolute;
+    z-index: -1;
   }
-}
-
-.vueperslides__arrow--prev::before,
-.vueperslides__arrow--next::before {
-  content: "";
-  display: block;
-  width: 78px;
-  height: 78px;
-  flex-shrink: 0;
-  opacity: 0.6;
-  border-radius: 40px;
-  background-color: #111;
-  position: absolute;
-  z-index: -1;
-}
-
-.vueperslides__arrow--next::before {
-  left: -21px;
-}
-
-.vueperslides__arrow--prev svg {
-  width: 48px;
-  position: absolute;
-  top: 6px;
-  left: 17px;  
-}
-
-.vueperslides__arrow--next svg {
-  width: 48px;
-  position: relative;
-  top: 4px;
-  left: -9px;
+  
+  .vueperslides__arrow--next::before {
+    left: -21px;
+  }
+  
+  .vueperslides__arrow--prev svg {
+    width: 48px;
+    position: absolute;
+    top: 6px;
+    left: 17px;  
+  }
+  
+  .vueperslides__arrow--next svg {
+    width: 48px;
+    position: relative;
+    top: 4px;
+    left: -9px;
+  }
 }
 
 </style>
