@@ -1,7 +1,7 @@
 <template>
   <div class="mobile house-model">
     <div class="container">
-      <div class="top-area">
+      <div class="top-area" :style="getTopStyle()">
         <div class="content-title">
           <label class="name">{{ state.modelTitle }}</label>
           <label>{{ state.modelDesc }}</label>
@@ -29,15 +29,8 @@
         </div>                        
       </div>
       <div class="model-list">
-        <!-- 컨텐츠 표시 -->
         <div class="model-content">
           <div class="model-box">
-            <!-- 모델 검색 조건 -->
-            <div class="search">
-              <span :class="{on: search.latestSort === '01'}" @click="search.latestSort = '01'">최신순</span>
-              <span :class="{on: search.latestSort === '02'}" @click="search.latestSort = '02'">인기순</span>
-              <span class="low-price" :class="{on: search.latestSort === '03'}" @click="search.latestSort = '03'">낮은가격순</span>
-            </div>
             <div class="model">
               <div v-for="item in displayedItems" :key="item.id" class="model-item" @click="goDetail(item.id)">
                 <div v-if="item.imageList.length > 0" class="img">
@@ -85,21 +78,19 @@
         </div>      
       </div>        
     </div>
-    <div class="custom-home-recommendation">
-      <a href="https://m3systems.co.kr/use-case/plan" target="_blank" rel="noopener noreferrer">
-        <div class="more-area">
-          <div class="rectangle"></div>
-          <img src="@/assets/img/image-6.png" />
-          <div class="text-how-area">
-            <p class="text">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-            <span class="text">맞춤 주택 추천받기</span>
+    <div class="overlap-group-wrapper" style="display:none">
+      <div class="overlap-6">
+        <div class="image">
+          <div class="group-8">
+            <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
+            <div class="text-wrapper-13">맞춤 주택 추천받기</div>
           </div>
-          <div class="text-more-area">
-            <div class="text">더 알아보기</div>
-          </div>
+          <div class="group-7">
+            <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
+          </div>              
         </div>
-      </a>
-    </div>
+      </div>
+    </div>    
     <div class="modal" :class="{active: isModal}">
       <div class="modal-content">
         <div class="modal-header">
@@ -157,17 +148,17 @@ export default {
       itemsPerPage: 8, // 페이지 당 아이템 수
       currentPage: 1, // 현재 페이지
       materials: [
-        { value: 2, label: '강구조', isDisabled: false },
-        { value: 1, label: '목구조', isDisabled: false },
-        { value: 3, label: '철근콘크리트', isDisabled: true }
+        { value: '2', label: '강구조', isDisabled: false },
+        { value: '1', label: '목구조', isDisabled: false },
+        { value: '3', label: '철근콘크리트', isDisabled: true }
       ],
       areas: [
-        { value: 1, label: '33㎡(10PY) 이하' },
-        { value: 2, label: '33㎡~66㎡(10~20PY)' },
-        { value: 3, label: '66㎡~99㎡(20~30PY)' },
-        { value: 4, label: '99㎡~132㎡(30~40PY)' },
-        { value: 5, label: '132㎡(40PY)이상' }
-      ],      
+        { value: '01', label: '33㎡(10PY) 이하' },
+        { value: '02', label: '33㎡~66㎡(10~20PY)' },
+        { value: '03', label: '66㎡~99㎡(20~30PY)' },
+        { value: '04', label: '99㎡~132㎡(30~40PY)' },
+        { value: '05', label: '132㎡(40PY)이상' }
+      ],
       state: {
         modelTitle: '',
         modelDesc: '',
@@ -175,7 +166,6 @@ export default {
       },
       search: {
         id: '',
-        latestSort: '01',
         selectedMaterials: [],
         minCost: null,
         maxCost: null,
@@ -218,6 +208,8 @@ export default {
     menuId(newVal, oldVal) {
       console.log(newVal, oldVal);
       this.state = this.getModelData(newVal);
+      this.clearSearch();
+      this.doSearch();      
     },
   },
   created() {
@@ -251,15 +243,29 @@ export default {
       this.isModal = false;
       document.body.classList.remove('hidden');
     },
+    getTopStyle() {
+      return {
+        backgroundImage: `url(${this.state.imageSrc})`,
+        backgroundSize: '100% 100%'
+      };
+    },
     goDetail(id) {
       this.$router.push({ name: 'MobileHouseModelDetail', params: { id: id } });
     },
     clearSearch() {
       this.search = this.$options.data().search;
-    },    
+    },
     doSearch() {
+      console.log('dddd')
       const { id, selectedMaterials, selectedAreas } = this.search;
       let items = this.getModelList();
+
+      // 메뉴에 따른 모델 분류
+      if (this.menuId === 'M201') {
+        items = items.filter(item => item.type === "PREMIUM_MODEL");
+      } else if (this.menuId === 'M202') {
+        items = items.filter(item => item.type === "STANDARD_MODEL");
+      }      
 
       // ID 검색
       if (id !== '') {

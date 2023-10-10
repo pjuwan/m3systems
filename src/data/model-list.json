@@ -4,35 +4,44 @@
     "exclusive_area": 33,
     "num_of_room": 2,
     "num_of_bath": 2,
-    "material": 1,
-    "storey_attic": 0,
+    "material": "1",
+    "storey_attic": "0",
     "roof": "f",
-    "cost": 250000000,
+    "cost": 190000000,
     "create_dtm": "2023-10-08 08:18:00",
-    "rank": 1
+    "rank": 3,
+    "type": "PREMIUM_MODEL",
+    "model_desc": "CNK-12-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+    "option_desc": "CNK-12-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   },
   {
     "id": "OTS-19-00-00",
     "exclusive_area": 41,
     "num_of_room": 3,
     "num_of_bath": 2,
-    "material": 1,
-    "storey_attic": 0,
+    "material": "1",
+    "storey_attic": "0",
     "roof": "f",
-    "cost": 190000000,
-    "create_dtm": "2023-10-06 08:18:00",
-    "rank": 3
+    "cost": 250000000,
+    "create_dtm": "2023-10-09 08:18:00",
+    "rank": 2,
+    "type": "PREMIUM_MODEL",
+    "model_desc": "OTS-19-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+    "option_desc": "OTS-19-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   },
   {
     "id": "PRD-09-00-00",
     "exclusive_area": 19,
     "num_of_room": 1,
     "num_of_bath": 1,
-    "material": 2,
-    "storey_attic": 0,
+    "material": "2",
+    "storey_attic": "0",
     "roof": "f",
     "cost": 300000000,
     "create_dtm": "2023-10-05 08:18:00",
-    "rank": 2
+    "rank": 1,
+    "type": "PREMIUM_MODEL",
+    "model_desc": "PRD-09-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+    "option_desc": "PRD-09-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   }
 ]

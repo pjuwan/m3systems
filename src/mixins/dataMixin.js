@@ -13,15 +13,15 @@ export const dataMixin = {
   methods: {
     getArea(area) {
       if (area < 33) {
-        area = 1;
+        return '01';
       } else if (area >= 33 && area <= 66) {
-        area = 2;
+        return '02';
       } else if (area >= 66 && area <= 99) {
-        area = 3;
+        return '03';
       } else if (area >= 99 && area <= 132) {
-        area = 4;
+        return '04';
       } else if (area > 132) {
-        area = 5;
+        return '05';
       }
     },
     getModelData(menuId) {
@@ -46,6 +46,13 @@ export const dataMixin = {
           imageSrc: require('@/assets/img/model/allmodel.png'),
           modelType: 'standard'
         };        
+      }
+    },
+    getModelName(type) {
+      if (type === 'PREMIUM_MODEL') {
+        return 'Premium Model';
+      } else if (type === 'STANDARD_MODEL') {
+        return 'Standard Model';
       }
     },
     getModelList() {

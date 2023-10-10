@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile">
+  <div id="mobileHomePage" class="mobile">
     <div class="div">
       <!-- autoplay 설정가능 -->
       <vueper-slides

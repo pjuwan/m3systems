@@ -42,10 +42,10 @@
             short description about model
           </span>
           <div class="txt">
-            210.66m²[57PY] | 2Floors | 5Room | 4Toilet
+            {{ modelSpec }}
           </div>          
           <div class="price-area">
-            <span class="price">488,700,000</span><span>원</span>
+            <span class="price">{{ modelDetail.cost.toLocaleString() }}</span><span>원</span>
             <div class="help">
               <span class="i">i</span>
               <span class="round"></span>
@@ -61,63 +61,57 @@
       <div class="center-area">
         <div class="center-item">
           <span class="model">{{ modelDetail.id }}</span>
-          <span>철골구조 프리미엄 주택</span>
-          <span class="premium-model">Premium model</span>
+          <!--<span>철골구조 프리미엄 주택</span>-->
+          <span class="premium-model">{{ modelName }}</span>
           <div class="option-area">
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/area-1.png" />
               </div>
-              <span>210.66m²[57PY]</span>
+              <span>{{`${(modelDetail.exclusive_area * 3.3).toFixed(2)}m² [${modelDetail.exclusive_area}PY]`}}</span>
             </div>
+            <!--
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/tile.png" />
               </div>
               <span>2 Floors</span>
             </div>
+            -->
             <div class="option">
               <div class="option-item">
                 <div class="ellipse-39"></div>
                 <img src="@/assets/img/model/detail/room.png" />
               </div>
-              <span>5 Room</span>
-            </div>            
+              <span>{{`${modelDetail.num_of_room}Room`}}</span>
+            </div>
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/public-toilet.png" />
               </div>
-              <span>4 Toilet</span>
+              <span>{{`${modelDetail.num_of_bath}Toliet`}}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="center-desc-area">
         <div class="item-area">
-          <img :src="modelDetail.imageList[0]" />
+          <img :src="modelDetail.imageList[1]" />
           <div class="desc-area">
             <div class="left">
               <span class="model">{{ modelDetail.id }}</span>
               <span class="name">철골구조 프리미엄 주택</span>
               <span>
-                Premium model | 210.66m²[57PY] | 2Floors | 5Room | 4Toilet
+                {{ `${modelName} | ${modelSpec}` }}
               </span>
             </div>
             <div class="right">
-              <span>
-                CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry&#039;s standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type specimen
-                book. It has survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-              </span>
+              <span>{{ modelDetail.model_desc }}</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="floor-plan-area">
+      <div class="floor-plan-area" style="display: none;">
         <span class="title">FLOOR PLAN</span>
         <div class="floor-area">
           <div class="group">
@@ -185,9 +179,9 @@
           :touchable="false"
           :bullets="false">
           <vueper-slide
-            v-for="(slide, i) in modelList"
+            v-for="(slide, i) in options"
             :key="i"
-            :image="slide.src"
+            :image="slide"
             @click.native="$refs.vueperslides1.goToSlide(i)">
           </vueper-slide>
         </vueper-slides>        
@@ -201,11 +195,11 @@
           :bullets="false"
           :arrows="false">
           <vueper-slide
-            v-for="(slide, i) in modelList"
+            v-for="(slide, i) in options"
             :key="i">
             <template v-slot:content>
-              <div class="item">
-                <img :src="slide.src">
+              <div class="slide-area">
+                <img :src="slide">
               </div>
             </template>
             <template #arrow-left>
@@ -217,7 +211,7 @@
           </vueper-slide>
         </vueper-slides>
         <div class="text-item">
-          <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
+          <span>{{ modelDetail.option_desc }}</span>
       </div>
       </div>
       <div class="more-views-area">
@@ -225,10 +219,10 @@
         <div class="view-area">
           <div class="image-item">
             <div class="view">
-              <img v-for="(imageAddress, idx) in modelDetail.imageList" :key="idx" class="img" :src="imageAddress" />
+              <img v-for="(src, idx) in moreViews" :key="idx" class="img" :src="src" />
             </div>
           </div>
-          <div class="video-area">
+          <div class="video-area" style="display: none;">
             <div class="video">
               <img src="@/assets/img/model/detail/_250723-6-1.png" />
               <img class="play" src="@/assets/img/common/play.svg" />
@@ -250,6 +244,7 @@
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
+import store from '@/store'
 
 export default {
   name: "HouseModelDetail",
@@ -261,21 +256,36 @@ export default {
   data() {
     return {
       modelDetail: {},
-      selectedFloor: '01',
-      modelList: [{
-        src: require("@/assets/img/model/detail/_1-35.png"),
-      },
-      {
-        src: require("@/assets/img/model/detail/_1-36.png"),
-      },
-      {
-        src: require("@/assets/img/model/detail/_1-37.png"),
-      }]
+      selectedFloor: '01'
     };
   },
   created() {
     console.log(this.$route.params.id);
     this.modelDetail = this.getModelDetail(this.$route.params.id);
+  },
+  computed: {
+    menuId() {
+      return store.state.menuId;
+    },    
+    modelSpec() {
+      const { exclusive_area, num_of_room, num_of_bath } = this.modelDetail;
+      const exclusiveArea = `${(exclusive_area * 3.3).toFixed(2)}m² [${exclusive_area}PY]`;
+      const numOfRoom = `${num_of_room}Room`;
+      const numOfBath = `${num_of_bath}Toliet`;
+
+      return [exclusiveArea, numOfRoom, numOfBath].join(" | ");
+    },
+    modelName() {
+      return this.getModelName(this.modelDetail.type);
+    },
+    // OPTIONS 항목은 3번째 이미지부터 3개의 데이터
+    options() {
+      return this.modelDetail.imageList.slice(2, 5);
+    },
+    // MORE VIEWS 이미지는 6번째부터 나머지 이미지
+    moreViews() {
+      return this.modelDetail.imageList.slice(5);
+    }
   },
   methods: {
     goMenu(menuNm, menuId) {
@@ -614,7 +624,7 @@ export default {
     justify-content: center;
     .item-area {
       display: inline-flex;
-      width: 61%;
+      width: 62%;
       text-align: center;
       flex-direction: column;
       .desc-area {
@@ -682,7 +692,7 @@ export default {
       position: relative;
       justify-content: center;
       .group {
-        width: 61%;
+        width: 62%;
         display: inline-flex;
         justify-content: center;
         span {
@@ -784,6 +794,7 @@ export default {
   .carousel-area {
     text-align: center;
     display: block;    
+    margin-top: 134px;
     .title {
       color: #000000;
       color: #000;
@@ -822,7 +833,7 @@ export default {
         font-size: 17px;
         font-weight: 500;
         line-height: 25px;
-        width: 61%;
+        width: 62%;
       }
     }
   }
@@ -850,10 +861,10 @@ export default {
         justify-content: center;
         display: inline-flex;
         .view {
-          width: 61%;
+          width: 62%;
           .img {
             width: 378px;
-            margin: 0 2px;
+            margin: 7px 7px 7px;
           }
         }
       }
@@ -880,6 +891,7 @@ export default {
   .btn-area {
     display: block;
     text-align: center;
+    margin: 80px 0 0 0;
     .btn {
       width: 247px;
       height: 72px;
@@ -1010,9 +1022,12 @@ span {
   }  
 }
 
-.item {
+.slide-area {
   display: block;
-  text-align: center;  
+  text-align: center;
+  img {
+    width: 100%;
+  }
 }
 
 .ellipse-12 {

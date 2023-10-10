@@ -10,7 +10,7 @@
         <div class="content-item">
           <div class="search">
             <div class="item-area">
-              <input type="text"/>
+              <input v-model="search.id" type="text"/>
               <img src="@/assets/img/model/find.svg" @click="doSearch()" />
             </div>
           </div>
@@ -19,7 +19,7 @@
               <span class="title">소재 | Material</span>
               <div class="item-area">
                 <label v-for="material in materials" :key="material.value">
-                  <input v-model="search.selectedMaterials" type="checkbox" :value="material.value" :disabled="material.isDisabled">
+                  <input v-model="search.selectedMaterials" type="checkbox" :value="material.value" :disabled="material.isDisabled" @click="searchMaterial">
                   <span class="checkbox">{{ material.label }}</span>
                 </label>
               </div>            
@@ -27,15 +27,15 @@
             <div class="row">
               <span class="title">가격 | Price</span>
               <div class="item-area price">
-                <input type="text"/><span class="txt">부터~</span><input type="text"/>
-                <button>적용</button>
+                <input v-model="search.minCost" type="number"/><span class="txt">부터~</span><input v-model="search.maxCost" type="number"/>
+                <button @click="doSearch()">적용</button>
               </div>
             </div>
             <div class="row last">
               <span class="title">면적 | Area</span>
               <div class="item-area extent">
                 <label v-for="area in areas" :key="area.value">
-                  <input v-model="search.selectedAreas" type="checkbox" :value="area.value">
+                  <input v-model="search.selectedAreas" type="checkbox" :value="area.value" @click="searchArea">
                   <span class="checkbox">{{ area.label }}</span>
                 </label>
               </div>
@@ -48,10 +48,10 @@
         <div class="model-content">
           <div class="model-box">
             <!-- 모델 검색 조건 -->
-            <div class="search">
-              <span :class="{on: search.latestSort === '01'}" @click="search.latestSort = '01'">최신순</span>
-              <span :class="{on: search.latestSort === '02'}" @click="search.latestSort = '02'">인기순</span>
-              <span class="low-price" :class="{on: search.latestSort === '03'}" @click="search.latestSort = '03'">낮은가격순</span>
+            <div class="search" v-if="displayedItems.length > 0">
+              <span :class="{on: search.sortOrder === 'latest'}" @click="searchModelsBySorting('latest')">최신순</span>
+              <span :class="{on: search.sortOrder === 'rank'}" @click="searchModelsBySorting('rank')">인기순</span>
+              <span class="low-price" :class="{on: search.sortOrder === 'lowPrice'}" @click="searchModelsBySorting('lowPrice')">낮은가격순</span>
             </div>
             <div class="model">
               <div v-for="(item, idx) in displayedItems"
@@ -65,7 +65,7 @@
                   <span class="name">{{ item.id }}</span>
                   <span class="text">A building that can be used for any purpose {{ item.content }}</span>
                   <div class="option">
-                    <span><!--210.66m²[57PY]-->{{ `[${item.exclusive_area}PY]` }}</span>
+                    <span>{{`${(item.exclusive_area * 3.3).toFixed(2)}m² [${item.exclusive_area}PY]`}}</span>
                     <span>{{ `${item.storey_attic === 0 ? 1 : 2} Floors` }}</span>
                     <span>{{ `${item.num_of_room} Bedrooms` }}</span>
                     <span>{{ `${item.num_of_bath} Bathrooms` }}</span>
@@ -85,7 +85,7 @@
           </div>
         </div>
         <!-- 페이지네이션 -->
-        <div class="pagination">
+        <div class="pagination" v-if="displayedItems.length > 0">
           <button class="btn first" @click="gotoPage(1)" :disabled="currentPage === 1"></button>
           <button class="btn prev" @click="prevPage" :disabled="currentPage === 1"></button>
           <div class="page-group">
@@ -133,16 +133,16 @@ export default {
       itemsPerPage: 8, // 페이지 당 아이템 수
       currentPage: 1, // 현재 페이지
       materials: [
-        { value: 2, label: '강구조', isDisabled: false },
-        { value: 1, label: '목구조', isDisabled: false },
-        { value: 3, label: '철근콘크리트', isDisabled: true }
+        { value: '2', label: '강구조', isDisabled: false },
+        { value: '1', label: '목구조', isDisabled: false },
+        { value: '3', label: '철근콘크리트', isDisabled: true }
       ],
       areas: [
-        { value: 1, label: '33㎡(10PY) 이하' },
-        { value: 2, label: '33㎡~66㎡(10~20PY)' },
-        { value: 3, label: '66㎡~99㎡(20~30PY)' },
-        { value: 4, label: '99㎡~132㎡(30~40PY)' },
-        { value: 5, label: '132㎡(40PY)이상' }
+        { value: '01', label: '33㎡(10PY) 이하' },
+        { value: '02', label: '33㎡~66㎡(10~20PY)' },
+        { value: '03', label: '66㎡~99㎡(20~30PY)' },
+        { value: '04', label: '99㎡~132㎡(30~40PY)' },
+        { value: '05', label: '132㎡(40PY)이상' }
       ],      
       state: {
         modelTitle: '',
@@ -151,7 +151,7 @@ export default {
       },
       search: {
         id: '',
-        latestSort: '01',
+        sortOrder: 'latest',
         selectedMaterials: [],
         minCost: null,
         maxCost: null,
@@ -166,10 +166,11 @@ export default {
       const endIndex = startIndex + this.itemsPerPage;
       const items = this.items.slice(startIndex, endIndex)
 
+      // 홀수일 경우 dummy 를 생성하여 공간 생성
       if (items.length & 1) {
         items.push({
           ...items[0],
-          isHidden: true 
+          isHidden: true
         });
       }
 
@@ -207,6 +208,8 @@ export default {
     menuId(newVal, oldVal) {
       console.log(newVal, oldVal);
       this.state = this.getModelData(newVal);
+      this.clearSearch();
+      this.doSearch();
     },
   },
   mounted() {
@@ -237,14 +240,58 @@ export default {
         backgroundImage: `url(${item.imageList[0]})`,
         backgroundSize: '100% 100%',
       };
-    },    
+    },
     goDetail(id) {
       console.log(id);
       this.$router.push({ name: 'HouseModelDetail', params: { id } });
     },
+    clearSearch() {
+      this.search = this.$options.data().search;
+    },    
+    searchModelsBySorting(value) {
+      this.search.sortOrder = value;
+      this.doSearch();
+    },
+    searchMaterial(event) {
+      const value = event.target.value;
+      const checked = event.target.checked;
+
+      if (checked) {
+        this.search.selectedMaterials.push(value);
+      } else {
+        const index = this.search.selectedMaterials.indexOf(value);
+        if (index !== -1) {
+          this.search.selectedMaterials.splice(index, 1);
+        }
+      }
+
+      this.doSearch();
+    },
+    searchArea(event) {
+      const value = event.target.value;
+      const checked = event.target.checked;
+
+      if (checked) {
+        this.search.selectedAreas.push(value);
+      } else {
+        const index = this.search.selectedAreas.indexOf(value);
+        if (index !== -1) {
+          this.search.selectedAreas.splice(index, 1);
+        }
+      }
+
+      this.doSearch();
+    },
     doSearch() {
-      const { id, selectedMaterials, selectedAreas } = this.search;
+      const { id, selectedMaterials, selectedAreas, sortOrder } = this.search;
       let items = this.getModelList();
+
+      // 메뉴에 따른 모델 분류
+      if (this.menuId === 'M201') {
+        items = items.filter(item => item.type === "PREMIUM_MODEL");
+      } else if (this.menuId === 'M202') {
+        items = items.filter(item => item.type === "STANDARD_MODEL");
+      }
 
       // ID 검색
       if (id !== '') {
@@ -273,7 +320,16 @@ export default {
           }
         });
         items = items.filter(item => selectedAreas.includes(item.area));
-      }      
+      }
+
+      // 모델 정렬
+      if (sortOrder === 'latest') {
+        items.sort((a, b) => new Date(b.create_dtm) - new Date(a.create_dtm));
+      } else if (sortOrder === 'rank') {
+        items.sort((a, b) => a.rank - b.rank);
+      } else if (sortOrder === 'lowPrice') {
+        items.sort((a, b) => a.cost - b.cost);
+      }
 
       this.items = items;
     }    

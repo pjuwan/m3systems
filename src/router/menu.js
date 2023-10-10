@@ -21,11 +21,10 @@ export default [
   {
     path: '/menu/modelDetail/:id',
     component: HouseModelDetail,
-    name: 'HouseModelDetail',
-    props: true
+    name: 'HouseModelDetail'
   },
   {
-    path: '/mobile/menu/modelDetail',
+    path: '/mobile/menu/modelDetail/:id',
     component: MobileHouseModelDetail,
     name: 'MobileHouseModelDetail'
   },

@@ -24,27 +24,4 @@ const router = new Router({
   ],
 });
 
-router.afterEach((to, from) => {
-  console.log(router.options.history);
-  /*
-    const menuStore = useMenuStore();
-    const pageStore = usePageStore();
-    menuStore.setActiveMenu(to);
-    if (router.options.history.state?.dataTableState) {
-      pageStore.updatePageState(router.options.history.state?.dataTableState);
-    }
-    if (router.options.history.state?.searchState) {
-      pageStore.updatePageState({
-        searchState: router.options.history.state?.searchState,
-      });
-    }
-
-    const authRequired = !publicRoutes.includes(to.name);
-    const cdpAuthenticated = sessionStorage.getItem("cdpAuthenticated");
-    if (authRequired && !cdpAuthenticated) {
-      location.href = "/";
-    }
-  */
-});
-
 export default router;

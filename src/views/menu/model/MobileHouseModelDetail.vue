@@ -22,19 +22,19 @@
     <div class="content">
       <div class="item-area">
         <div class="imagebox">
-          <img src="@/assets/img/model/detail/_1-12.png" />
+          <img :src="modelDetail.imageList[0]" />
         </div>
         <div class="description">
-          <span class="type">Premium model</span>
-          <span class="model">CNK-01-XX-XX</span>
+          <span class="type">{{ modelName }}</span>
+          <span>{{ modelDetail.id }}</span>
           <span class="short-description-about-model">
             short description about model
           </span>
           <div class="txt">
-            210.66m²[57PY] | 2Floors | 5Room | 4Toilet
+            {{ modelSpec }}
           </div>          
           <div class="price-area">
-            <span class="price">488,700,000</span><span>WON</span>
+            <span class="price">{{ modelDetail.cost.toLocaleString() }}</span><span>WON</span>
             <div class="help">
               <span class="i">i</span>
               <span class="round"></span>
@@ -64,60 +64,54 @@
       </div>
       <div class="center-area">
         <div class="center-item">
-          <span class="model">CNK-01-XX-XX</span>
-          <span>철골구조 프리미엄 주택</span>
-          <span class="premium-model">Premium model</span>
+          <span class="model">{{ modelDetail.id }}</span>
+          <!--<span>철골구조 프리미엄 주택</span>-->
+          <span class="premium-model">{{ modelName }}</span>
           <div class="option-area">
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/area-1.png" />
               </div>
-              <span>210.66m²[57PY]</span>
+              <span>{{`${(modelDetail.exclusive_area * 3.3).toFixed(2)}m²[${modelDetail.exclusive_area}PY]`}}</span>
             </div>
+            <!--
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/tile.png" />
               </div>
               <span>2 Floors</span>
             </div>
+            -->
             <div class="option">
               <div class="option-item">
                 <div class="ellipse-39"></div>
                 <img src="@/assets/img/model/detail/room.png" />
               </div>
-              <span>5 Room</span>
+              <span>{{`${modelDetail.num_of_room} Room`}}</span>
             </div>            
             <div class="option">
               <div class="option-item">
                 <img src="@/assets/img/model/detail/public-toilet.png" />
               </div>
-              <span>4 Toilet</span>
+              <span>{{`${modelDetail.num_of_bath} Toliet`}}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="center-desc-area">
         <div class="item-area">
-          <img src="@/assets/img/model/detail/_1-11.png" />
+          <img :src="modelDetail.imageList[1]" />
           <div class="desc-area">
-            <span class="model">CNK-01-XX-XX</span>
-            <span class="name">철골구조 프리미엄 주택</span>
+            <span class="model">{{ modelDetail.id }}</span>
+            <!--<span class="name">철골구조 프리미엄 주택</span>-->
             <span class="option">
-              Premium model | 210.66m²[57PY] | 2Floors | 5Room | 4Toilet
+              {{ `${modelName} | ${modelSpec}` }}
             </span>
-            <span>
-              CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry&#039;s standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen
-              book. It has survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-            </span>
+            <span>{{ modelDetail.model_desc }}</span>
           </div>
         </div>
       </div>
-      <div class="floor-plan-area">
+      <div class="floor-plan-area" style="display: none;">
         <span class="title">FLOOR PLAN</span>
         <div class="floor-area">
           <div class="group">
@@ -174,7 +168,7 @@
           transition-speed="250"          
         >
           <vueper-slide
-            v-for="(src, i) in modelList[0]?.imageList"
+            v-for="(src, i) in options"
             :key="i">
             <template v-slot:content>
               <div class="item">
@@ -184,7 +178,7 @@
           </vueper-slide>
         </vueper-slides>
         <div class="text-item">
-          <span>CNK-000’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</span>
+          <span>{{ modelDetail.option_desc }}</span>
         </div>
       </div>
       <div class="more-views-area">
@@ -192,18 +186,7 @@
         <div class="view-area">
           <div class="image-item">
             <div class="view">
-              <img class="img" src="@/assets/img/model/detail/_1-20.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-26.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-23.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-27.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-21.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-28.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-24.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-29.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-22.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-30.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-25.png" />
-              <img class="img" src="@/assets/img/model/detail/_1-31.png" />
+              <img v-for="(src, idx) in moreViews" :key="idx" class="img" :src="src" />
             </div>
           </div>
           <div class="video-area" style="display: none">
@@ -225,22 +208,48 @@
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
+import store from '@/store'
 
 export default {
   name: "MobileHouseModelDetail",
+  mixins: [dataMixin],
   components: {
     VueperSlides,
     VueperSlide,
   },
-  mixins: [dataMixin],
   data() {
     return {
-      selectedFloor: '01',
-      modelList: this.getModelList()
+      modelDetail: {},
+      selectedFloor: '01'
     };
   },
-  mounted() {
+  created() {
     console.log(this.modelList)
+    this.modelDetail = this.getModelDetail(this.$route.params.id);
+  },
+  computed: {
+    menuId() {
+      return store.state.menuId;
+    },    
+    modelSpec() {
+      const { exclusive_area, num_of_room, num_of_bath } = this.modelDetail;
+      const exclusiveArea = `${(exclusive_area * 3.3).toFixed(2)}m² [${exclusive_area}PY]`;
+      const numOfRoom = `${num_of_room}Room`;
+      const numOfBath = `${num_of_bath}Toliet`;
+
+      return [exclusiveArea, numOfRoom, numOfBath].join(" | ");
+    },
+    modelName() {
+      return this.getModelName(this.modelDetail.type);
+    },
+    // OPTIONS 항목은 3번째 이미지부터 3개의 데이터
+    options() {
+      return this.modelDetail.imageList.slice(2, 5);
+    },
+    // MORE VIEWS 이미지는 6번째부터 나머지 이미지
+    moreViews() {
+      return this.modelDetail.imageList.slice(5);
+    }
   },
   methods: {
     goMenu(menuNm) {
@@ -514,18 +523,19 @@ export default {
         flex-direction: column;
         padding: 13px;
         span {
-          color: #585858;
+          color: #161616;
+          text-align: justify;
           font-family: Pretendard;
-          font-size: 10px;
+          font-size: 12px;
           font-style: normal;
           font-weight: 300;
-          line-height: normal;
-          text-align: left;
+          line-height: 20px; /* 166.667% */
         }
         .model {
           color: #000;
           font-size: 23px;
           font-weight: 600;
+          margin: 9px 0;
         }
         .name {
           color: #373737;
@@ -667,6 +677,7 @@ export default {
   .carousel-area {
     text-align: center;
     display: block;
+    margin-top: 33px;
     span {
       color: #161616;
       text-align: justify;
@@ -726,7 +737,6 @@ export default {
         display: inline-flex;
         .view {
           width: 90%;
-          text-align: center;
           .img {
             width: 48%;
             margin: 0 2px;
