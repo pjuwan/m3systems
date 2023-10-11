@@ -111,9 +111,9 @@
             <div class="row">
               <span class="title">가격 | Price</span>
               <div class="item-area price">
-                <div><input v-model="search.minCost" type="text" placeholder="최저금액"/></div>
+                <div><input v-model="search.minCost" type="number" step="10000000" placeholder="최저금액"/></div>
                 <span class="txt">~</span>
-                <div><input v-model="search.maxCost" type="text" placeholder="최대금액"/></div>
+                <div><input v-model="search.maxCost" type="number" step="10000000" placeholder="최대금액"/></div>
               </div>
             </div>
             <div class="row last">

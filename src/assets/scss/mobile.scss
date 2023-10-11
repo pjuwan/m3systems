@@ -421,7 +421,8 @@
                     margin: 2px 149px 2px 0;
                   }
                 }
-                input[type=text] {
+                input[type=text],
+                input[type=number] {
                   border-radius: 4px;
                   border: 1.5px solid #BFBFBF;
                   min-width: 210px;
