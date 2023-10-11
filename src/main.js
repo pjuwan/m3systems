@@ -7,8 +7,8 @@ import "@/assets/scss/common.scss"
 import "@/assets/scss/style.scss"
 import "@/assets/scss/mobile.scss"
 
-// Local Storage에서 menuId 로드
-const savedMenuId = localStorage.getItem('menuId');
+// session Storage에서 menuId 로드
+const savedMenuId = sessionStorage.getItem('menuId');
 if (savedMenuId) {
   store.commit('setMenuId', savedMenuId);
 }

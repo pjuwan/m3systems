@@ -18,7 +18,7 @@ export default new Vuex.Store({
     },
     setMenuId(state, value) {
       state.menuId = value;
-      localStorage.setItem('menuId', value);
+      sessionStorage.setItem('menuId', value);
     }
   },
 });
