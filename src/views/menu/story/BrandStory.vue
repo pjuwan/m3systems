@@ -458,17 +458,17 @@ export default {
       }
       &.one {
         left: 14%;
-        animation: box-ani-left 1s linear forwards;
+        animation: box-ani-left 3s linear forwards;
         animation-delay: 2s;
       }
       &.two {
         left: 41%;
-        animation: box-ani-center 1s linear forwards;
+        animation: box-ani-center 3s linear forwards;
         animation-delay: 2s;
       }
       &.three {
         left: 68%; 
-        animation: box-ani-right 1s linear forwards;
+        animation: box-ani-right 3s linear forwards;
         animation-delay: 2s;
       }
     }
