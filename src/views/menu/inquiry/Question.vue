@@ -50,7 +50,7 @@
               <span class="radio">강구조</span>
             </label>
             <label>
-              <input v-model="state.structure" type="radio" value="1"/>
+              <input v-model="state.structure" type="radio" value="2"/>
               <span class="radio">목구조</span>
             </label>            
           </div>
