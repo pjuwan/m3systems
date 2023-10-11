@@ -1013,6 +1013,7 @@ span {
   height: 443px;
   left: 0px;
   top: 0px;
+  text-align: center;
   .top {
     display: flex;
     padding: 9.5% 0 0 0;
