@@ -209,12 +209,13 @@ export default {
       console.log(newVal, oldVal);
       this.state = this.getModelData(newVal);
       this.clearSearch();
-      this.doSearch();      
+      this.doSearch();
     },
   },
   created() {
     this.items = this.getModelList();
     this.state = this.getModelData(this.menuId);
+    this.doSearch();
   },
   methods: {
     // 다음 페이지로 이동
@@ -256,7 +257,6 @@ export default {
       this.search = this.$options.data().search;
     },
     doSearch() {
-      console.log('dddd')
       const { id, selectedMaterials, selectedAreas } = this.search;
       let items = this.getModelList();
 
@@ -265,7 +265,7 @@ export default {
         items = items.filter(item => item.type === "PREMIUM_MODEL");
       } else if (this.menuId === 'M202') {
         items = items.filter(item => item.type === "STANDARD_MODEL");
-      }      
+      }
 
       // ID 검색
       if (id !== '') {
