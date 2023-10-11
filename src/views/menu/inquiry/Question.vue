@@ -33,11 +33,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="th full">
+          <div class="th">
             <span class="name">건축희망모델</span>
-            <select v-model="state.desiredModel">
-              <option value="">CNK-01-XX-XX</option>
-            </select>
+            <input v-model="state.desiredModel" type="text" placeholder="CNK-01-XX-XX"/>
           </div>
         </div>
         <div class="row line">
