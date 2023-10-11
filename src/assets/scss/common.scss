@@ -98,6 +98,12 @@ textarea {
   top: 62%;
   right: 6%;
   z-index: 1;
+  img {
+    width: 64px;
+  }
+  &.mobile img {
+    width: 47px;
+  }
 }
 
 .header {

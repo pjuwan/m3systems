@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isScrolltoTop" class="scroll-to-top" @click="scrollToTop()">
+  <div v-if="isScrolltoTop" class="scroll-to-top" :class="{mobile: isMobile}" @click="scrollToTop()">
     <img src="@/assets/img/common/top.svg" />
   </div>
 </template>
@@ -11,7 +11,10 @@ export default {
   computed: {
     isScrolltoTop() {
       return store.state.isScrolltoTop;
-    }
+    },
+    isMobile() {
+      return store.state.isMobile;
+    }    
   },  
   methods: {
     scrollToTop() {

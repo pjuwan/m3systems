@@ -9,6 +9,7 @@
     <template v-else>
       <Header />
       <router-view />
+      <ScrollToTopButton />
       <Footer />
     </template>
   </div>

@@ -141,26 +141,18 @@
 <script>
 import VueScrollSnap from "vue-scroll-snap";
 import { VueperSlides, VueperSlide } from 'vueperslides';
-import store from '@/store'
-// import 'vueperslides/dist/vueperslides.css';
+import store from '@/store';
   
 export default {
   name: 'MobileBrandStroy',
-  props: {
-  },
   components: {
     VueScrollSnap,
     VueperSlides,
     VueperSlide
   },
-  data() {
-    return {
-    }
-  },
-  created() {
-    store.commit('setScrolltoTop', false);
-  },
   mounted() {
+    store.commit('setScrolltoTop', false);
+
     document.body.classList.add('hidden');
     const animatedBox = document.getElementById('animatedBox');
     

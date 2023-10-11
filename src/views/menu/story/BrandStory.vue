@@ -103,17 +103,14 @@
 </template>
 <script>
 import VueScrollSnap from "vue-scroll-snap";
-  
+import store from '@/store';
+
 export default {
   name: 'BrandStroy',
-  props: {
-  },
-  components: {VueScrollSnap},  
-  data() {
-    return {
-    }
-  },
+  components: {VueScrollSnap},
   mounted() {
+    store.commit('setScrolltoTop', false);
+
     document.body.classList.add('hidden');
     const animatedBox = document.getElementById('animatedBox');
 
@@ -132,6 +129,7 @@ export default {
   },
   beforeDestroy() {
     document.body.classList.remove('hidden');
+    store.commit('setScrolltoTop', true);
   },
   methods: {
   }
