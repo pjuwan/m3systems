@@ -1,5 +1,5 @@
 <template>
-  <div class="model-detail-page">
+  <div id="mobileHouseModelDetail" class="model-detail-page">
     <div class="top-area">
       <div class="top">
         <div class="item">
@@ -46,7 +46,7 @@
             <button @click="goMenu('MobileQuestion')">문의하기</button>
           </div>
           <div v-if="isShowCostInfo" class="modal">
-            <div class="overlap" @click="closeCostInfo"></div>
+            <div class="overlap" @click="closeCostInfo()"></div>
             <div class="modal-content">
               <div class="modal-header">
                 <p>가격정보</p>
@@ -217,11 +217,13 @@
         </div>
       </div>
     </div>
-    <div v-if="isShowCarouselInfo" class="modal carousel-modal">
-      <div class="overlap" @click="closeCarouselInfo"></div>
+    <div v-if="isShowCarouselInfo" class="carousel-modal">
+      <div class="overlap"></div>
       <div class="modal-content">
         <div class="modal-header">
-          <p>가격정보</p>
+          <div class="btn-area">
+            <img src="@/assets/img/model/x.svg" @click="closeCarouselInfo"/>
+          </div>
         </div>
         <div class="modal-body">
           <vueper-slides
@@ -243,7 +245,7 @@
         </vueper-slides>
         </div>
       </div>
-    </div>      
+    </div>
   </div>
 </template>
 <script>
@@ -309,12 +311,12 @@ export default {
     },
     closeCarouselInfo() {
       this.isShowCarouselInfo = false;
-    }    
+    }
   },
 };
 </script>
-<style scoped lang="scss">
-.model-detail-page {
+<style lang="scss">
+#mobileHouseModelDetail {
   background: #ffffff;
   width: 100%;
   position: relative;
@@ -935,13 +937,18 @@ export default {
     }
   }
   .carousel-modal {
+    position: fixed;
+    top: 40%;
+    width: 100%;
+    height: 100%;
+    z-index: 2;       
     .overlap {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgb(225 225 225 / 70%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -952,7 +959,35 @@ export default {
       z-index: 2;
       width: 100%;
       height: 100%;    
+      .modal-header {
+        .btn-area {
+          background: black;
+          padding-left: 10px;
+          height: 28px;
+          align-items: center;
+          display: flex;
+        }
+        img {
+          width: 17px;
+          height: 17px;
+        }
+      }
+      .modal-body .item {
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
+  .vueperslides__arrow--prev svg {
+    color: black;
+    width: 59px;          
+  }
+  .vueperslides__arrow--next svg {
+    color: black;
+    width: 59px;
+  }  
 }
 </style>
