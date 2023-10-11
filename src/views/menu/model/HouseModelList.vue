@@ -27,7 +27,7 @@
             <div class="row">
               <span class="title">가격 | Price</span>
               <div class="item-area price">
-                <input v-model="search.minCost" type="number"/><span class="txt">부터~</span><input v-model="search.maxCost" type="number"/>
+                <input v-model="search.minCost" type="number" step="10000000"/><span class="txt">부터~</span><input v-model="search.maxCost" type="number" step="10000000"/>
                 <button @click="doSearch()">적용</button>
               </div>
             </div>
