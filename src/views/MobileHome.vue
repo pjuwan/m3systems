@@ -52,11 +52,9 @@
                   <img class="img" :src="item.imageList[0]" />
                   <div class="text-wrapper">{{ item.title }}</div>
                   <p class="p">A building that can be used for any purpose</p>
-                  <p class="element-m-floors">
-                    210.66 m²&nbsp;&nbsp;|&nbsp;&nbsp;2 Floors&nbsp;&nbsp;|&nbsp;&nbsp;5
-                    Bedrooms&nbsp;&nbsp;|&nbsp;&nbsp;4 Bathrooms
+                  <p class="element-m-floors">{{ modelSpec(item) }}
                   </p>
-                  <div class="text-wrapper-2">488,700,000won</div>
+                  <div class="text-wrapper-2">{{ `${item.cost.toLocaleString()}won`}}</div>
                 </div>
               </div>
             </transition>
@@ -148,6 +146,14 @@ export default {
     }
   },
   methods: {
+    modelSpec(item) {
+      const { exclusive_area, num_of_room, num_of_bath } = item;
+      const exclusiveArea = `${(exclusive_area * 3.3).toFixed(2)}m² [${exclusive_area}PY]`;
+      const numOfRoom = `${num_of_room}Room`;
+      const numOfBath = `${num_of_bath}Toliet`;
+  
+      return [exclusiveArea, numOfRoom, numOfBath].join(" | ");
+    },
     onNewModel(index) {
       this.newModelList.forEach((item, idx) => {
         item.isChecked = index === idx;

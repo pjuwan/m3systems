@@ -53,10 +53,8 @@
               <div class="group-4">
                 <div class="text-wrapper">{{ item.id }}</div>
                 <p class="p">A building that can be used for any purpose</p>
-                <div class="text-wrapper-2">{{ `${ item.exclusive_area } m²` }}</div>
+                <div class="text-wrapper-2">{{ `${(item.exclusive_area * 3.3).toFixed(2)}m²` }}</div>
                 <img class="line" src="@/assets/img/line-7.svg" />
-                <div class="text-wrapper-2">2 Floors</div>
-                <img class="line" src="@/assets/img/line-8.svg" />
                 <div class="text-wrapper-2">{{ `${item.num_of_room} Bedrooms` }}</div>
                 <img class="line" src="@/assets/img/line-9.svg" />
                 <div class="text-wrapper-2">{{ `${item.num_of_bath} Bathrooms` }}</div>
