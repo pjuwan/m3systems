@@ -768,8 +768,11 @@
                 .text {
                   color: #7D7D7D;
                 }
-                .option span {
-                  font-weight: 500;                
+                .option {
+                  display: inline-flex;
+                  span {
+                    font-weight: 500;
+                  }
                 }
                 .more-area {
                   display: inline-flex;

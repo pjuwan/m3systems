@@ -44,7 +44,6 @@
                       <!--210.66m²[57PY]-->
                       {{ `[${item.exclusive_area}PY]` }}
                     </span>
-                    <span>{{ `${item.storey_attic === 0 ? 1 : 2} Floors` }}</span>
                     <span>{{ `${item.num_of_room} Bedrooms` }}</span>
                     <span>{{ `${item.num_of_bath} Bathrooms` }}</span>
                   </div>

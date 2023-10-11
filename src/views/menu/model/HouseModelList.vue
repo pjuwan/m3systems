@@ -66,7 +66,6 @@
                   <span class="text">A building that can be used for any purpose {{ item.content }}</span>
                   <div class="option">
                     <span>{{`${(item.exclusive_area * 3.3).toFixed(2)}m² [${item.exclusive_area}PY]`}}</span>
-                    <span>{{ `${item.storey_attic === 0 ? 1 : 2} Floors` }}</span>
                     <span>{{ `${item.num_of_room} Bedrooms` }}</span>
                     <span>{{ `${item.num_of_bath} Bathrooms` }}</span>
                   </div>
