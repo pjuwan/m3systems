@@ -75,7 +75,7 @@
       <div class="center-area">
         <div class="center-item">
           <span class="model">{{ modelDetail.id }}</span>
-          <span>철골구조 프리미엄 주택</span>
+          <span>강구조 프리미엄 주택</span>
           <span class="premium-model">{{ modelName }}</span>
           <div class="option-area">
             <div class="option">
@@ -114,7 +114,7 @@
           <div class="desc-area">
             <div class="left">
               <span class="model">{{ modelDetail.id }}</span>
-              <span class="name">철골구조 프리미엄 주택</span>
+              <span class="name">강구조 프리미엄 주택</span>
               <span>
                 {{ `${modelName} | ${modelSpec}` }}
               </span>
