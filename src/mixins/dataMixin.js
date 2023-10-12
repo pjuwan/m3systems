@@ -50,18 +50,26 @@ export const dataMixin = {
     },
     getModelName(type) {
       if (type === 'PREMIUM_MODEL') {
-        return 'Premium Model';
+        return {
+          typeNm: '프리미엄',
+          modelNm: 'Premium Model'
+        }
       } else if (type === 'STANDARD_MODEL') {
-        return 'Standard Model';
+        return {
+          typeNm: '스탠다드',
+          modelNm: 'Standard Model'
+        }
       }
     },
     getModelList() {
       return modelList.map((item) => {
         const imageInfo = imageList?.find(findItem => findItem.id === item.id);
+        const modelInfo = this.getModelName(item.type);
         return {
           ...item,
           material_name: item.material === '1' ? '목구조' : '강구조',
-          type_name: item.type === 'PREMIUM_MODEL' ? '프리미엄' : '스탠다드',
+          type_name: modelInfo.typeNm,
+          model_name: modelInfo.modelNm,
           imageList: imageInfo.imageList
         }
       })

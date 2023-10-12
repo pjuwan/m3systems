@@ -76,7 +76,7 @@
         <div class="center-item">
           <span class="model">{{ modelDetail.id }}</span>
           <span>{{ `${modelDetail.material_name} ${modelDetail.type_name} 주택` }}</span>
-          <span class="premium-model">{{ modelName }}</span>
+          <span class="premium-model">{{ modelDetail.model_name }}</span>
           <div class="option-area">
             <div class="option">
               <div class="option-item">
@@ -116,7 +116,7 @@
               <span class="model">{{ modelDetail.id }}</span>
               <span class="name">{{ `${modelDetail.material_name} ${modelDetail.type_name} 주택` }}</span>
               <span>
-                {{ `${modelName} | ${modelSpec}` }}
+                {{ `${modelDetail.model_name} | ${modelSpec}` }}
               </span>
             </div>
             <div class="right">
@@ -319,9 +319,6 @@ export default {
       const numOfBath = `${num_of_bath}Toliet`;
 
       return [exclusiveArea, numOfRoom, numOfBath].join(" | ");
-    },
-    modelName() {
-      return this.getModelName(this.modelDetail.type);
     },
     // OPTIONS 항목은 3번째 이미지부터 3개의 데이터
     options() {
