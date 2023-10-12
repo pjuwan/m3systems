@@ -24,4 +24,14 @@ const router = new Router({
   ],
 });
 
+// 페이지 상단으로 스크롤하는 함수
+function scrollToTop() {
+  window.scrollTo(0, 0); // 가로 스크롤 위치와 세로 스크롤 위치를 (0, 0)으로 설정
+}
+
+// 페이지 이동 후 페이지를 상단으로 스크롤
+router.afterEach((to, from) => {
+  scrollToTop();
+});
+
 export default router;
