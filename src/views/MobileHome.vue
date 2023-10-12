@@ -49,7 +49,7 @@
             <transition name="fade">
               <div v-if="item.isChecked" class="group">
                 <div class="overlap-group-2">
-                  <img class="img" :src="item.imageList[0]" />
+                  <img class="img" :src="item.imageList[0]" @click="goDetail(item.id)" />
                   <div class="text-wrapper">{{ item.title }}</div>
                   <p class="p">A building that can be used for any purpose</p>
                   <p class="element-m-floors">{{ modelSpec(item) }}
@@ -71,7 +71,7 @@
             <div class="frame-2">
               <div class="prev" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg"/></div>
               <div class="layer">
-                <img class="source best" :src="bestModel.selected?.imageList[0]"/>
+                <img class="source best" :src="bestModel.selected?.imageList[0]" @click="goDetail(bestModel.selected.id)"/>
               </div>
               <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg"/></div>
             </div>
@@ -102,6 +102,7 @@
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
+import store from '@/store';
 
 export default {
   name: 'MobileHomePage',
@@ -192,6 +193,10 @@ export default {
       // 선택된 요소 및 현재 인덱스 업데이트
       this.bestModel.selected = nextElement;
       this.bestModel.currentIndex = nextIndex;
+    },
+    goDetail(id) {
+      store.commit('setMenuId', 'M200'); // 전체메뉴로 설정
+      this.$router.push({ name: 'MobileHouseModelDetail', params: { id: id } });
     }
   }
 }

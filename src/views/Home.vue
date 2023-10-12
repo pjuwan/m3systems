@@ -15,7 +15,7 @@
               <div class="view">
                 <div class="group">
                   <div class="rectangle"></div>
-                  <div class="text">보러가기</div>
+                  <div class="text" @click="goDetail(top.id)">보러가기</div>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
           >
           <transition name="fade">
             <div v-if="item.isChecked" class="element-wrapper">
-              <div class="image-box">
+              <div class="image-box" @click="goDetail(item.id)">
                 <img class="img" :src="item.imageList[0]" />
               </div>
               <div class="group-4">
@@ -77,7 +77,7 @@
         <div class="overlap-6">
           <div v-for="(item, idx) in bestModel.list" :key="idx" class="group-9" :class="{action: item.isChecked}">
             <div v-if="item.isChecked" class="overlap-group-3">
-              <img class="element-6" :src="item.imageList[0]" />
+              <img class="element-6" :src="item.imageList[0]" @click="goDetail(item.id)"/>
               <div class="text-wrapper-18">{{ item.id }}</div>
               <p class="text-wrapper-17">{{ `See our best models here.` }}</p>
               <div class="text-wrapper-19">{{ item.cost.toLocaleString() }} Won</div>
@@ -111,9 +111,10 @@
 </div>
 </template>
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
+import store from '@/store';
 
 export default {
   name: 'HomePage',
@@ -162,7 +163,7 @@ export default {
       this.newModelList.forEach((item, idx) => {
         item.isChecked = index === idx;
       });      
-    },    
+    },
     goPrev() {
       const { selected, list } = this.bestModel;
       const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
@@ -209,6 +210,10 @@ export default {
       const imageSrc = list[currentIndex]?.imageList[0];
       
       return imageSrc;
+    },
+    goDetail(id) {
+      store.commit('setMenuId', 'M200'); // 전체메뉴로 설정
+      this.$router.push({ name: 'HouseModelDetail', params: { id: id } });
     }
   }
 }
@@ -283,6 +288,7 @@ export default {
     letter-spacing: 0;
     line-height: normal;
     white-space: nowrap;
+    cursor: pointer;
   }
   .best-model {
     .btn-box {
