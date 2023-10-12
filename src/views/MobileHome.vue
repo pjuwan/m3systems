@@ -82,19 +82,8 @@
           </div>
         </div>
       </div>
-      <div class="overlap-group-wrapper">
-        <div class="overlap-6">
-          <div class="image">
-            <div class="group-8">
-              <p class="text-wrapper-14">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-              <div class="text-wrapper-13">맞춤 주택 추천받기</div>
-            </div>
-            <div class="group-7">
-              <div class="overlap-group-4"><div class="text-wrapper-12">더 알아보기</div></div>
-            </div>              
-          </div>
-        </div>
-      </div>
+      <!-- 맞춤 주택 추천받기 -->
+      <custom-home-recommendation />
     </div> 
   </div>
 </template>
@@ -103,13 +92,15 @@ import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
 import store from '@/store';
+import CustomHomeRecommendation from '@/components/CustomHomeRecommendation.vue';
 
 export default {
   name: 'MobileHomePage',
   mixins: [dataMixin],
   components: {
     VueperSlides,
-    VueperSlide
+    VueperSlide,
+    CustomHomeRecommendation
   },
   data() {
     return {

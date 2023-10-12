@@ -35,22 +35,30 @@
           </div>
           <div class="flexcontainer">
             <p class="text">
-              <span class="text-wrapper-3">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+              <span class="text-wrapper-3" @click="isShowTermsOfService = true">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
               <span class="text-wrapper-4">|</span>
-              <span class="text-wrapper-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보처리방침침 </span>
+              <span class="text-wrapper-3" @click="isShowPrivecyPolicy = true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보처리방침침 </span>
             </p>
             <p class="text">Copyright 2023 m3systems.All Rights Reserved.</p>
           </div>
         </div>        
       </div>
     </div>
+    <privacy-policy v-if="isShowPrivecyPolicy" @close="isShowPrivecyPolicy = false"/>
+    <terms-of-service v-if="isShowTermsOfService" @close="isShowTermsOfService = false"/>
   </div>
 </template>
 <script>
+import PrivacyPolicy from '@/components/PrivacyPolicy.vue';
+import TermsOfService from '@/components/TermsOfService.vue';
+
 export default {
   name: 'MobileFooter',
+  components: { PrivacyPolicy, TermsOfService },
   data() {
     return {
+      isShowPrivecyPolicy: false,
+      isShowTermsOfService: false
     }
   },
   methods: {

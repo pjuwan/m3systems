@@ -418,7 +418,6 @@
 }
 
 .custom-home-recommendation {
-  display: none;
   width: 100%;
   height: 394px;
   .more-area {
@@ -1071,9 +1070,34 @@
         display: inline-flex;
         width: 100%;
         padding: 20px 0 20px 0;
+        input[type=text] {
+          font-family: "Pretendard-Light", Helvetica;
+          font-weight: 300;
+          color: #999999;
+          font-size: 19.5px;
+          letter-spacing: 0;
+          line-height: normal;
+          white-space: nowrap;
+          border: 0px;
+          border-bottom: 1px solid #c5c5c5;
+          width: 100%;
+          padding: 0 0 10px 0;
+        }
+        select {
+          width: 43%;
+          height: 49px;
+          font-family: "Pretendard-Light", Helvetica;
+          font-weight: 300;
+          color: #2d2d2d;
+          font-size: 19.5px;
+          letter-spacing: 0;
+          line-height: normal;
+          white-space: nowrap;
+        }
         .th {
-          width: 50%;
+          width: 12%;
           display: inline-flex;
+          min-width: 167px;
           &.full {
             width: 100%;
             display: inline-flex;
@@ -1096,30 +1120,6 @@
             width: 11px;
             margin: 0 0 8px 10px;
           }
-          input[type=text] {
-            font-family: "Pretendard-Light", Helvetica;
-            font-weight: 300;
-            color: #999999;
-            font-size: 19.5px;
-            letter-spacing: 0;
-            line-height: normal;
-            white-space: nowrap;
-            border: 0px;
-            border-bottom: 1px solid #c5c5c5;
-            width: 100%;
-            padding: 0 0 10px 0;
-          }
-          select {
-            width: 43%;
-            height: 49px;
-            font-family: "Pretendard-Light", Helvetica;
-            font-weight: 300;
-            color: #2d2d2d;
-            font-size: 19.5px;
-            letter-spacing: 0;
-            line-height: normal;
-            white-space: nowrap;
-          }
           div {
             width: 12%;
           }
@@ -1132,6 +1132,9 @@
         }
         .th:not(:first-of-type) {
           padding-left: 2%;
+        }
+        .td {
+          width: 88%;
         }
         &.line {
           display: inline-flex;
@@ -1148,7 +1151,27 @@
           label {
             margin: 0 145px 0 0;
           }
-        }          
+        }
+        .column {
+          width: 50%;
+          display: inline-flex;          
+          .th {
+            width: 23%;
+          }
+        }  
+        .privacy {
+          width: 100%;
+          display: inline-flex;
+        }      
+        .view {
+          margin-left: 360px;
+          cursor: pointer;         
+          img {
+            margin: 0 0 0 10px;
+            position: relative;
+            top: 2px;            
+          } 
+        }
       }
 
       .btn-area {

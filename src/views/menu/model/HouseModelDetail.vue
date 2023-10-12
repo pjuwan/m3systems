@@ -72,6 +72,8 @@
           </div>            
         </div>
       </div>
+      <!-- 맞춤 주택 추천받기 -->
+      <custom-home-recommendation />      
       <div class="center-area">
         <div class="center-item">
           <span class="model">{{ modelDetail.id }}</span>
@@ -286,6 +288,7 @@
 import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 import { dataMixin } from '@/mixins/dataMixin';
+import CustomHomeRecommendation from '@/components/CustomHomeRecommendation.vue';
 import store from '@/store'
 
 export default {
@@ -293,7 +296,8 @@ export default {
   mixins: [dataMixin],
   components: {
     VueperSlides,
-    VueperSlide
+    VueperSlide,
+    CustomHomeRecommendation
   },
   data() {
     return {
@@ -429,7 +433,7 @@ export default {
       display: flex;
       width: 100%;
       justify-content: center;
-      padding: 25px 0;
+      margin: 25px 0 45px 0;
       .imagebox {
         width: 36%;
         display: inline-flex;
@@ -587,7 +591,7 @@ export default {
     }
     .center-area {
       background: #F3F3F3;
-      margin: 25px 0;
+      margin: 45px 0 25px 0;
       display: block;
       .center-item {
         padding: 20px 0;

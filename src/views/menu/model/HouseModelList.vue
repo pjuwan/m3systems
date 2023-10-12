@@ -102,30 +102,21 @@
         </div>      
       </div>        
     </div>
-    <div class="custom-home-recommendation">
-      <a href="https://m3systems.co.kr/use-case/plan" target="_blank" rel="noopener noreferrer">
-        <div class="more-area">
-          <div class="rectangle"></div>
-          <img src="@/assets/img/image-6.png" />
-          <div class="text-how-area">
-            <p class="text">나에게 딱 맞는 집은 어떤 집일까 ?</p>
-            <span class="text">맞춤 주택 추천받기</span>
-          </div>
-          <div class="text-more-area">
-            <div class="text">더 알아보기</div>
-          </div>
-        </div>
-      </a>
-    </div>
+    <!-- 맞춤 주택 추천받기 -->
+    <custom-home-recommendation />    
   </div>
 </template>
 <script> 
 import store from '@/store'
 import { dataMixin } from '@/mixins/dataMixin';
+import CustomHomeRecommendation from '@/components/CustomHomeRecommendation.vue';
 
 export default {
   name: 'HouseModelList',
   mixins: [dataMixin],
+  components: {
+    CustomHomeRecommendation
+  },  
   data() {
     return {
       items: [], // 전체 아이템 목록
