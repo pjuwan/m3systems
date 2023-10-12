@@ -12,7 +12,8 @@
     "rank": 3,
     "type": "PREMIUM_MODEL",
     "model_desc": "목구조의 프리미엄 라인업 주택으로, 아이가 있는 부부에 적합한 모델입니다. 외부에서 바라볼 때는 모던한 박스의 형태를 띄고 있습니다. 이 모델은 프라이빗한 중정(안뜰)을 감싸는 형태로 공간들이 배치되어있는 것이 특징입니다. 거실, 안방, 다용도실 등 집안의 3면에서 중정을 바라볼 수 있게 설계되었습니다. 특히 중정에는 한옥식 툇마루와 투명한 처마를 배치하여 외부에 드러나지 않으면서도 실외의 느낌을 얻을 수 있습니다.    처마와 이어진 거실 천장 일부도 가림막이 있는 유리로 설계되어, 원하실 때 개방감 있는 거실을 만끽하실 수 있습니다.",
-    "option_desc": "프라이빗한 안뜰을 가진 모던한 박스타입 주택"
+    "model_title": "프라이빗한 안뜰을 가진 모던한 박스타입 주택",
+    "option_desc": "CWK-12-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   },
   {
     "id": "OTS-19-00-00",
@@ -27,6 +28,7 @@
     "rank": 2,
     "type": "PREMIUM_MODEL",
     "model_desc": "OTS-19-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+    "model_title": "short description about model",
     "option_desc": "OTS-19-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   },
   {
@@ -42,6 +44,7 @@
     "rank": 1,
     "type": "PREMIUM_MODEL",
     "model_desc": "PRD-09-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets",
+    "model_title": "short description about model",
     "option_desc": "PRD-09-00-00’S Description blahblahblah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's"
   }
 ]

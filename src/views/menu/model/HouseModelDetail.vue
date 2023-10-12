@@ -27,7 +27,7 @@
       </div>
       <div class="model-area">
         <select>
-          <option>프리미엄 모델</option>
+          <option>{{ `${modelDetail.type_name} 모델` }}</option>
         </select>
       </div>
     </div>
@@ -39,7 +39,7 @@
         <div class="description">
           <span>{{ modelDetail.id }}</span>
           <span class="short-description-about-model">
-            short description about model
+            {{ modelDetail.model_title }}
           </span>
           <div class="txt">
             {{ modelSpec }}
@@ -75,7 +75,7 @@
       <div class="center-area">
         <div class="center-item">
           <span class="model">{{ modelDetail.id }}</span>
-          <span>강구조 프리미엄 주택</span>
+          <span>{{ `${modelDetail.material_name} ${modelDetail.type_name} 주택` }}</span>
           <span class="premium-model">{{ modelName }}</span>
           <div class="option-area">
             <div class="option">
@@ -114,7 +114,7 @@
           <div class="desc-area">
             <div class="left">
               <span class="model">{{ modelDetail.id }}</span>
-              <span class="name">강구조 프리미엄 주택</span>
+              <span class="name">{{ `${modelDetail.material_name} ${modelDetail.type_name} 주택` }}</span>
               <span>
                 {{ `${modelName} | ${modelSpec}` }}
               </span>

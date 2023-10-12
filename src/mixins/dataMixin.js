@@ -60,6 +60,8 @@ export const dataMixin = {
         const imageInfo = imageList?.find(findItem => findItem.id === item.id);
         return {
           ...item,
+          material_name: item.material === '1' ? '목구조' : '강구조',
+          type_name: item.type === 'PREMIUM_MODEL' ? '프리미엄' : '스탠다드',
           imageList: imageInfo.imageList
         }
       })
