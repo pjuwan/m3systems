@@ -543,8 +543,7 @@ export default {
             line-height: normal;          
           }
           .modal-content {
-            background: url('@/assets/img/model/modal-box.svg');            
-            background: url(http://localhost:8080/img/modal-box.569434e8.svg);
+            background: url('@/assets/img/model/modal-box.svg');
             background-repeat: no-repeat;
             background-size: 410px 200px;
             background-position: left center;
