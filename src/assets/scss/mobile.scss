@@ -408,7 +408,8 @@
                   gap: 2%;
                   display: inline-flex;
                   flex-direction: column;
-                  text-align: center;                  
+                  text-align: center;
+                  align-items: center;
                   button {
                     margin: 0 0 0 10px;
                   }
@@ -422,7 +423,8 @@
                   }
                 }
                 input[type=text],
-                input[type=number] {
+                input[type=number],
+                select {
                   border-radius: 4px;
                   border: 1.5px solid #BFBFBF;
                   min-width: 210px;

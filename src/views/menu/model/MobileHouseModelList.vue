@@ -96,9 +96,15 @@
             <div class="row">
               <span class="title">가격 | Price</span>
               <div class="item-area price">
-                <div><input v-model="search.minCost" type="number" step="10000000" placeholder="최저금액"/></div>
+                <select v-model="search.minCost">
+                  <option value=null>최저금액</option>
+                  <option v-for="amount in amounts" :key="amount" :value="amount">{{ amount.toLocaleString('ko-KR') }}</option>
+                </select>
                 <span class="txt">~</span>
-                <div><input v-model="search.maxCost" type="number" step="10000000" placeholder="최대금액"/></div>
+                <select v-model="search.maxCost">
+                  <option value=null>최대금액</option>
+                  <option v-for="amount in amounts" :key="amount" :value="amount">{{ amount.toLocaleString('ko-KR') }}</option>
+                </select>
               </div>
             </div>
             <div class="row last">
@@ -189,6 +195,18 @@ export default {
     },
     menuId() {
       return store.state.menuId;
+    },
+    amounts() {
+      const minAmount = 50000000; // 5천만원
+      const maxAmount = 500000000; // 5억원
+      const step = 50000000; // 5천만원 단위
+
+      const amounts = [];
+      for (let amount = minAmount; amount <= maxAmount; amount += step) {
+        amounts.push(amount);
+      }
+
+      return amounts;
     }
   },
   watch: {
