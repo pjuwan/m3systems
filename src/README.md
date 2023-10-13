@@ -2,46 +2,44 @@
 
 ## 목차
 
-### 1. [개요](#1-개요)
-### 2. [프로젝트 구조](#2-프로젝트-구조)
-### 3. [환경 설정](#3-환경-설정)
-### 4. [Vue Router 설정](#4-vue-router-설정)
-### 5. [Vuex 설정](#5-vuex-설정)
-### 6. [컴포넌트 개발](#6-컴포넌트-개발)
-### 7. [데이터 관리](#7-데이터-관리)
-### 8. [배포](#8-배포)
-### 9. [유지 보수](#9-유지-보수)
-### 10. [운영 및 모니터링](#10-운영-및-모니터링)
+1. [개요](#1-개요)
+2. [프로젝트 구조](#2-프로젝트-구조)
+3. [환경 설정](#3-환경-설정)
+4. [Vue Router 설정](#4-vue-router-설정)
+5. [Vuex 설정](#5-vuex-설정)
+6. [컴포넌트 개발](#6-컴포넌트-개발)
+7. [데이터 관리](#7-데이터-관리)
+8. [참고 사항](#8-참고-사항)
+
 
 <br>
 
-# 1. 개요
+## 1 개요
 
-#### 이 메뉴얼은 Vue를 사용한 가칭 ("`M House`") 프로젝트를 개발 및 운영자를 위한 가이드입니다.
+#### 이 메뉴얼은 Vue를 사용한 가칭 "`M House`" 프로젝트를 개발 및 운영자를 위한 가이드입니다.
 
 #### Vue2를 사용하여 필요한 정보를 제공합니다.
 
 <br>
 
-## 2. 프로젝트 구조
+## 2 프로젝트 구조
 
 #### M House 프로젝트의 기본 구조는 다음과 같습니다:
-
-### M3SYSTEMS/
-#### ├── public/
-#### ├── src/
-#### │ ├── assets/
-#### │ ├── components/
-#### │ ├── data/
-#### │ ├── mixins/
-#### │ ├── router/
-#### │ ├── store/
-#### │ ├── views/
-#### │ ├── App.vue
-#### │ └── main.js
-#### ├── package.json
-#### ├── README.md
-#### └── vue.config.js
+    M3SYSTEMS/
+    ├── public/
+    ├── src/
+    │ ├── assets/
+    │ ├── components/
+    │ ├── data/
+    │ ├── mixins/
+    │ ├── router/
+    │ ├── store/
+    │ ├── views/
+    │ ├── App.vue
+    │ └── main.js
+    ├── package.json
+    ├── README.md
+    └── vue.config.js
 
 <br>
 
@@ -65,20 +63,21 @@
 
 ### 프로젝트를 설정하려면 다음 단계를 따릅니다:
 
-### 1. **Node.js 설치**: [https://nodejs.org/ko/blog/release/v16.13.2]
+### 1) **Node.js 설치**: [https://nodejs.org/ko/blog/release/v16.13.2]
 #### &nbsp; - Vue 구동을 위한 Node Version은 16.13.2 을 설치
-### 2. **개발환경 구동방법**:
+### 2) **개발환경 구동방법**:
 #### &nbsp; - 소스 경로를 VSCode에서 지정
 #### &nbsp; - VScode 프로젝트 경로에서 TERMINAL 입력
     npm install
-### 3. **개발 서버 실행:**
+### 3) **개발 서버 실행:**
 #### &nbsp; - 개발 서비스 (80 PORT) 가동
     npm run serve -- --port 80
-# 4. Vue Router 설정
-### Vue Router를 사용하여 페이지 라우팅을 설정합니다. router/index.js 파일에서 라우트를 정의하고 페이지 컴포넌트를 연결합니다. 
-### 기존 Lagacy 구조를 참고하여 동일한 방식으로 진행하였습니다.
 
 <br>
+
+## 4. Vue Router 설정
+### Vue Router를 사용하여 페이지 라우팅을 설정합니다. router/index.js 파일에서 라우트를 정의하고 페이지 컴포넌트를 연결합니다. 
+### 기존 Lagacy 구조를 참고하여 동일한 방식으로 진행하였습니다.
 
 ***예제) router/index.js:***
 
@@ -105,8 +104,6 @@
 #### &nbsp; - PC : HouseModelList
 #### &nbsp; - 모바일 : MobileHouseModelList
 
-<br>
-
 ***예제) router/main.js:***
 
     {
@@ -124,13 +121,9 @@
 
 ### Vuex를 사용하여 상태 관리를 설정합니다. store/index.js 파일에서 상태, 변이, 액션 및 모듈을 정의합니다. 중앙 store에서 PC, Mobile 여부 등을 판단합니다.
 
-<br>
-
 #### - `setMobileStatus`: innerWidth 768px 기준으로 Mobile 여부에 대한 설정
 #### - `setScrolltoTop`: 스크롤을 보여줄지에 대한 설정
 #### - `setMenuId`: 현재 메뉴 위치 설정
-
-<br>
 
 ***예제) store/index.js:***
 
@@ -160,8 +153,6 @@
 
 #### &nbsp; - Vue 파일 작성시 라우터 네이밍 규칙에 맞춰 파일명 생성시 name 값을 PC / Mobile 구분해 줍니다. 
 
-<br>
-
 ***예) HouseModelList에서의 name값***
 
     export default {
@@ -178,7 +169,7 @@
 
 ### Vuex를 사용하여 데이터 상태를 관리하고 Json 파일을 통해 모델정보, 이미지목록 등을 관리하고 있습니다.
 
-### Data/
+### 경로 Data/
 #### &nbsp; - home.json
 #### &nbsp; - model-image.json
 #### &nbsp; - model-list.json
@@ -228,7 +219,7 @@
       }
     ]
 
-#### - `model-list.json`: 홈화면 상단 "이미지목록", "새로운 모델", "베스트모델" 을 Json 모델 id로 관리합니다.
+#### - `model-list.json`: 모델에 대한 정보들을 관리하는 Json 파일입니다.
 
     [
       {
@@ -250,14 +241,10 @@
 
 <br>
 
-## 8. 유지 보수
+## 8. 참고 사항
 
-#### 앱의 유지 보수를 위해 정기적인 코드 리뷰, 테스트 및 버전 업데이트를 수행합니다.
-
-<br>
-
-## 9. 운영 및 모니터링
-
-#### 운영 환경에서 애플리케이션의 성능, 로깅 및 오류 모니터링을 설정하고 관리합니다. 로깅 서비스 및 모니터링 도구를 사용하여 애플리케이션의 상태를 추적하고 문제를 식별합니다.
+#### 자세한 사용 방법은 아래 사이트에서 확인 가능합니다.
 
     Vue.js 공식 문서: https://vuejs.org/
+    Vueper Slides: https://antoniandre.github.io/vueper-slides/
+    Vue Snap: https://github.com/angelomelonas/vue-scroll-snap
