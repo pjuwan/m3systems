@@ -31,7 +31,9 @@
                 <img class="vector" src="@/assets/img/vector-27.svg" />
               </div>
             </a>
-            <img class="img" src="@/assets/img/rectangle-131.png" />
+            <a href="https://blog.naver.com/m3systems" target="_blank">
+              <img class="img" src="@/assets/img/rectangle-131.png" />
+            </a>
           </div>
           <div class="flexcontainer">
             <p class="text">
@@ -65,9 +67,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-  a {
-    display: inline-flex;
-    padding: 3px 0;    
-  }
-</style>

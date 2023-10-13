@@ -75,9 +75,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-  a {
-    display: inline-flex;
-    padding: 3px 0;    
-  }
-</style>
