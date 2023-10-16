@@ -32,13 +32,13 @@
         <div class="indicator">
           <div v-for="(item, idx) in newModelList"
             :key="idx"
-            class="div-2"
+            class="image-box"
             :class="{ 'active': item.isChecked }"
             @click="onNewModel(idx)"
           >
             <img :src="item.imageList[0]" />
           </div>
-        </div>        
+        </div>
       </div>
       <div class="frame">
         <div class="source" v-for="(item, idx) in newModelList"
@@ -75,11 +75,13 @@
           <img :src="getCurrentImage(-1)" />
         </div>
         <div class="main-area">
-          <div class="center-image" v-if="item.isChecked" v-for="(item, idx) in bestModel.list" :key="idx">
-            <img :src="item.imageList[0]" @click="goDetail(item.id)"/>
-            <span class="id">{{ item.id }}</span>
-            <p>{{ `See our best models here.` }}</p>
-            <div class="cost">{{ item.cost.toLocaleString() }} Won</div>
+          <div class="center-image" v-for="(item, idx) in bestModel.list" :key="idx">
+            <template v-if="item.isChecked">
+              <img :src="item.imageList[0]" @click="goDetail(item.id)"/>
+              <span class="id">{{ item.id }}</span>
+              <p>{{ `See our best models here.` }}</p>
+              <span class="cost">{{ item.cost.toLocaleString() }} Won</span>
+            </template>
           </div>
           <div class="prev" @click="goPrev()"><img src="@/assets/img/prev.svg" /></div>
           <div class="next" @click="goNext()"><img src="@/assets/img/next.svg" /></div>
@@ -205,4 +207,3 @@ export default {
   }
 }
 </script>
-

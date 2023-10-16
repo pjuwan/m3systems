@@ -26,59 +26,54 @@
         </vueper-slide>
       </vueper-slides>
       <div class="new-model">
-        <div class="text-wrapper1">새로운 모델</div>
-        <div class="text-wrapper2">새로운 모델을 만나보세요</div>
-      </div>      
-      <div class="carousel">
-        <div class="indicator">
-          <div v-for="(item, idx) in newModelList"
-            :key="idx"
-            class="div-2"
-            :class="{ 'active': item.isChecked }"
-            @click="onNewModel(idx)"
-          >
-            <img class="element" :src="item.imageList[0]" />
+        <div class="title">새로운 모델</div>
+        <div class="desc">새로운 모델을 만나보세요</div>
+        <div class="carousel">
+          <div class="indicator">
+            <div v-for="(item, idx) in newModelList"
+              :key="idx"
+              class="image-box"
+              :class="{ 'active': item.isChecked }"
+              @click="onNewModel(idx)"
+            >
+              <img :src="item.imageList[0]" />
+            </div>
           </div>
-        </div>
-        <div class="frame">
-          <div v-for="(item, idx) in newModelList"
-            :key="idx"
-            class="source"
-            :class="{ 'active': item.isChecked }"
-          >
-            <transition name="fade">
-              <div v-if="item.isChecked" class="group">
-                <div class="overlap-group-2">
-                  <img class="img" :src="item.imageList[0]" @click="goDetail(item.id)" />
-                  <div class="text-wrapper">{{ item.title }}</div>
-                  <p class="p">A building that can be used for any purpose</p>
-                  <p class="element-m-floors">{{ modelSpec(item) }}
-                  </p>
-                  <div class="text-wrapper-2">{{ `${item.cost.toLocaleString()}won`}}</div>
+          <div class="frame">
+            <div v-for="(item, idx) in newModelList"
+              :key="idx"
+              class="source"
+              :class="{ 'active': item.isChecked }"
+            >
+              <transition name="fade">
+                <div v-if="item.isChecked" class="fade-wrapper">
+                  <div class="image-box">
+                    <img class="img" :src="item.imageList[0]" @click="goDetail(item.id)" />
+                    <div class="title">{{ item.title }}</div>
+                    <p>A building that can be used for any purpose</p>
+                    <p class="model-spce">{{ modelSpec(item) }}</p>
+                    <span class="cost">{{ `${item.cost.toLocaleString()}won`}}</span>
+                  </div>
                 </div>
-              </div>
-            </transition>
+              </transition>
+            </div>
           </div>
         </div>
       </div>
-      <div class="best-slider">
-        <div class="overlap-3">
-          <div class="group-5">
-            <div class="text-wrapper-6">베스트 모델</div>
-            <p class="text-wrapper-5">지금 가장 인기있는 모델을 만나보세요</p>
-          </div>          
-          <div class="carousel-2">
-            <div class="frame-2">
-              <div class="prev" @click="goPrev()"><img class="vector-4" src="@/assets/img/prev.svg"/></div>
-              <div class="layer">
-                <img class="source best" :src="bestModel.selected?.imageList[0]" @click="goDetail(bestModel.selected.id)"/>
-              </div>
-              <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/next.svg"/></div>
+      <div class="best-model">
+        <div class="best-model-title">베스트 모델</div>
+        <p>지금 가장 인기있는 모델을 만나보세요</p>
+        <div class="main-area">
+          <div class="center-image">
+            <div class="prev" @click="goPrev()"><img src="@/assets/img/prev.svg"/></div>
+            <div class="layer">
+              <img class="best" :src="bestModel.selected?.imageList[0]" @click="goDetail(bestModel.selected.id)"/>
             </div>
-            <div class="group-6">
-              <div class="text-wrapper-8">{{ bestModel.selected?.id }}</div>
-              <div class="text-wrapper-7">{{ `${ bestModel.selected?.cost.toLocaleString() } Won` }}</div>
-            </div>
+            <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/next.svg"/></div>
+          </div>
+          <div class="desc-area">
+            <span>{{ bestModel.selected?.id }}</span>
+            <span class="cost">{{ `${ bestModel.selected?.cost.toLocaleString() } Won` }}</span>
           </div>
         </div>
       </div>
@@ -192,43 +187,3 @@ export default {
   }
 }
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-.content {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  .subject {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    .text-area {
-      display: flex;
-      flex-direction: column;    
-    }
-    span {
-      text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
-      font-family: "Pretendard-Light", Helvetica;
-      font-weight: 600;
-      color: #ffffff;
-      font-size: 38px;
-      text-align: center;
-      letter-spacing: 0;
-      line-height: normal;
-      white-space: nowrap;    
-    }
-    span:last-child {
-      font-size: 23px;
-    }
-  }
-  img {
-    display: flex;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }  
-}
-</style>

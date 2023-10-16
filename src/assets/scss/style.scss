@@ -118,21 +118,25 @@
       height: 150px;
       display: inline-flex;
       margin: 25px 0 23px 0;
+      justify-content: center;
       .indicator {
-        display: flex;
-        width: 100%;
+        display: inline-flex;
         gap: 16px;
-        justify-content: center;
         position: relative;
-        align-self: stretch;
-        img {
-          width: 120px;
-          height: 120px;
-          object-fit: cover;
-          cursor: pointer;
-          border-radius: 408.244px;
-          box-shadow: 0px 4.19788px 4.19788px 0px rgba(0, 0, 0, 0.25);    
-        }  
+        .image-box {
+          opacity: 0.5;
+          &.active{
+            opacity: 1;
+          }
+          img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 408.244px;
+            box-shadow: 0px 4.19788px 4.19788px 0px rgba(0, 0, 0, 0.25);    
+          }  
+        }
       }      
     }    
     .frame {
@@ -355,6 +359,7 @@
             white-space: nowrap;
           }
           .cost {
+            display: block;
             font-family: "Pretendard-SemiBold", Helvetica;
             font-weight: 600;
             color: #6a6a6a;
@@ -480,13 +485,6 @@
   overflow: hidden;
   width: 100%;
   position: relative;
-}
-
-.home .div-2 {
-  opacity: 0.5;
-  &.active{
-    opacity: 1;
-  }
 }
 
 .home .ellipse {
