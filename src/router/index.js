@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import MobileHome from '@/views/MobileHome.vue'
 import Menu from './menu'
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -31,6 +32,10 @@ function scrollToTop() {
 
 // 페이지 이동 후 페이지를 상단으로 스크롤
 router.afterEach((to, from) => {
+  if (!(from.params?.id || to.params?.id)) {
+    store.commit('setSearch', null);
+    store.commit('setCurrentPage', null);
+  }
   scrollToTop();
 });
 

@@ -39,7 +39,6 @@ export default {
   },
   mounted() {
     const userAgent = navigator.userAgent;
-    console.log(userAgent);
 
     // 사용자 에이전트 문자열을 기반으로 PC 또는 모바일 판단
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {

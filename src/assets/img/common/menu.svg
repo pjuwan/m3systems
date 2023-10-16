@@ -1,0 +1,19 @@
+<svg width="25" height="17" viewBox="0 0 25 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="25" height="17" fill="#232323"/>
+<g id="menu_kor" clip-path="url(#clip0_0_1)">
+<rect width="360" height="800" transform="translate(-315 -16)" fill="white"/>
+<rect id="Rectangle 72" x="-315" y="-16" width="360" height="800" fill="#282828"/>
+<g id="Group 148">
+<g id="Group 149">
+<rect id="Rectangle 94" width="25.0004" height="2.64812" rx="1.32406" fill="white"/>
+<rect id="Rectangle 95" y="7.16663" width="25.0004" height="2.64812" rx="1.32406" fill="white"/>
+<rect id="Rectangle 96" y="14.3331" width="25.0004" height="2.64812" rx="1.32406" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="360" height="800" fill="white" transform="translate(-315 -16)"/>
+</clipPath>
+</defs>
+</svg>

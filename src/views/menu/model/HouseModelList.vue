@@ -1,10 +1,10 @@
 <template>
   <div id="modelList">
     <div class="container" :class="getClassNm">
-      <img :src="state.imageSrc" />
+      <img :src="state?.imageSrc" />
       <div class="content-title">
-        <label class="name">{{ state.modelTitle }}</label>
-        <label>{{ state.modelDesc }}</label>
+        <label class="name">{{ state?.modelTitle }}</label>
+        <label>{{ state?.modelDesc }}</label>
       </div>
       <div class="content">
         <div class="content-item">
@@ -129,7 +129,7 @@ export default {
     return {
       items: [], // 전체 아이템 목록
       itemsPerPage: 8, // 페이지 당 아이템 수
-      currentPage: 1, // 현재 페이지
+      currentPage: store.state?.currentPage || 1, // 현재 페이지
       materials: [
         { value: '2', label: '강구조', isDisabled: false },
         { value: '1', label: '목구조', isDisabled: false },
@@ -144,15 +144,17 @@ export default {
       ],      
       state: {
         modelTitle: '', // 모델 메뉴 제목 (전체, 프리미엄, 스탠다드)
-        modelDesc: '' // 모델 메뉴 설명
+        modelDesc: '', // 모델 메뉴 설명
+        imageSrc: '', // 모델 메뉴 이미지
+        modelType: '', // 접속한 모델 타입 구분
       },
       search: {
-        id: '', // 검색할 모델명
-        sortOrder: 'latest', //  검색 유형 (최신순, 인기순, 낮은가격순)
-        selectedMaterials: [], // 소재 선택값
-        minCost: null, // 최저금액
-        maxCost: null, // 최고금액
-        selectedAreas: [] // 면적 선택값
+        id: store.state.search?.id || '', // 검색할 모델명
+        sortOrder: store.state.search?.sortOrder || 'latest', //  검색 유형 (최신순, 인기순, 낮은가격순)
+        selectedMaterials: store.state.search?.selectedMaterials || [], // 소재 선택값
+        minCost: store.state.search?.minCost || null, // 최저금액
+        maxCost: store.state.search?.maxCost || null, // 최고금액
+        selectedAreas: store.state.search?.selectedAreas || [] // 면적 선택값
       },
     }
   },
@@ -200,7 +202,7 @@ export default {
     /* 모델 메뉴 구분자 클래스명 */
     getClassNm() {
       return {
-        full: this.state.modelType !== 'all', // 변수명을 클래스명으로 사용
+        full: this.state?.modelType !== 'all', // 변수명을 클래스명으로 사용
       };
     },
     /* 검색 금액 부분 표시값 */
@@ -220,14 +222,23 @@ export default {
   watch: {
     menuId(newVal, oldVal) {
       console.log(newVal, oldVal);
+
+      // 메뉴 이동시 검색상태 초기화
+      store.commit('setSearch', null);
+      store.commit('setCurrentPage', 1);
+
+      // 변경된 정보 불러오기
       this.state = this.getModelData(newVal);
       this.clearSearch();
       this.doSearch();
     },
   },
-  mounted() {
-    this.items = this.getModelList();
+  created() {
+    this.items = this.getModelList(); 
     this.state = this.getModelData(this.menuId);
+
+    // 초기검색
+    this.doSearch();
   },
   methods: {
     /* 페이징 - 다음 페이지로 이동 */
@@ -257,13 +268,14 @@ export default {
     },
     /* 상세 페이지 이동 */
     goDetail(id) {
-      console.log(id);
+      store.commit('setSearch', this.search);
+      store.commit('setCurrentPage', this.currentPage);
       this.$router.push({ name: 'HouseModelDetail', params: { id } });
     },
     /* 검색 버튼 초기화 */
     clearSearch() {
       this.search = this.$options.data().search;
-    },    
+    },
     /* 최신순, 인기순, 낮은가격순 정렬 */
     searchModelsBySorting(value) {
       this.search.sortOrder = value;

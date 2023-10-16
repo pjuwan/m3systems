@@ -139,7 +139,7 @@ export default {
     return {
       items: [], // 전체 아이템 목록
       itemsPerPage: 8, // 페이지 당 아이템 수
-      currentPage: 1, // 현재 페이지
+      currentPage: store.state?.currentPage || 1, // 현재 페이지
       materials: [
         { value: '2', label: '강구조', isDisabled: false },
         { value: '1', label: '목구조', isDisabled: false },
@@ -154,14 +154,16 @@ export default {
       ],
       state: {
         modelTitle: '', // 모델 메뉴 제목 (전체, 프리미엄, 스탠다드)
-        modelDesc: '' // 모델 메뉴 설명
+        modelDesc: '', // 모델 메뉴 설명
+        imageSrc: '', // 모델 메뉴 이미지
+        modelType: '', // 접속한 모델 타입 구분        
       },
       search: {
-        id: '', // 검색할 모델명
-        selectedMaterials: [], // 소재 선택값
-        minCost: null, // 최저금액
-        maxCost: null, // 최고금액
-        selectedAreas: [] // 면적 선택값
+        id: store.state.search?.id || '', // 검색할 모델명
+        selectedMaterials: store.state.search?.selectedMaterials || [], // 소재 선택값
+        minCost: store.state.search?.minCost || null, // 최저금액
+        maxCost: store.state.search?.maxCost || null, // 최고금액
+        selectedAreas: store.state.search?.selectedAreas || [] // 면적 선택값
       },
       isFilterModal: false // 모달 필터 선택 여부
     }
@@ -214,6 +216,12 @@ export default {
   watch: {
     menuId(newVal, oldVal) {
       console.log(newVal, oldVal);
+      
+      // 메뉴 이동시 검색상태 초기화
+      store.commit('setSearch', null);
+      store.commit('setCurrentPage', 1);
+      
+      // 변경된 정보 불러오기
       this.state = this.getModelData(newVal);
       this.clearSearch();
       this.doSearch();
@@ -222,6 +230,8 @@ export default {
   created() {
     this.items = this.getModelList();
     this.state = this.getModelData(this.menuId);
+
+    // 초기검색
     this.doSearch();
   },
   methods: {
@@ -262,11 +272,19 @@ export default {
     },
     /* 상세 페이지 이동 */
     goDetail(id) {
+      store.commit('setSearch', this.search);
+      store.commit('setCurrentPage', this.currentPage);
       this.$router.push({ name: 'MobileHouseModelDetail', params: { id: id } });
     },
     /* 검색 초기화 */
     clearSearch() {
-      this.search = this.$options.data().search;
+      this.search = {
+        id: '',
+        selectedMaterials: [],
+        minCost: null,
+        maxCost: null,
+        selectedAreas: []
+      }  
     },
     /* 검색 */
     doSearch() {

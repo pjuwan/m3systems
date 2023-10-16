@@ -21,7 +21,7 @@
     </div>
     <div class="nav">
       <div class="home">
-        <span @click="goMenu('Home', '')">
+        <span @click="goMenu('Home')">
           <img src="@/assets/img/model/detail/home.png" />
         </span>
       </div>
@@ -309,7 +309,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.params.id);
     this.modelDetail = this.getModelDetail(this.$route.params.id);
   },
   computed: {
@@ -337,8 +336,7 @@ export default {
   },
   methods: {
     /* 메뉴 이동 */
-    goMenu(menuNm, menuId) {
-      this.menuId = menuId;
+    goMenu(menuNm) {
       this.$router.push({ name: menuNm });
     },
     /* 가격정보 팝업 보이기 */

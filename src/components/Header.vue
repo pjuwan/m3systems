@@ -11,7 +11,7 @@
         @mouseover="isHovered = true"
         @mouseleave="isHovered = false"
       >
-        <span :class="{selected: menuId.startsWith('M2')}" @click="goMenu('HouseModelList', 'M200')">전체모델</span>
+        <span :class="{selected: menuId?.startsWith('M2')}" @click="goMenu('HouseModelList', 'M200')">전체모델</span>
         <div class="dropdown" :class="{ 'hovered': isHovered }" @mouseover="isHovered = true" @mouseleave="isHovered = false">
           <span class="name" @click="goMenu('HouseModelList', 'M201')">프리미엄 모델</span>
           <span class="name" @click="goMenu('HouseModelList', 'M202')">스탠다드 모델</span>

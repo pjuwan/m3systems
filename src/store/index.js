@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     isMobile: false,
     isScrolltoTop: true,
-    menuId: ''
+    menuId: '',
+    search: null,
+    currentPage: 1
   },
   mutations: {
     /* innerWidth 768px 기준으로 Mobile 여부에 대한 설정 */
@@ -22,6 +24,14 @@ export default new Vuex.Store({
     setMenuId(state, value) {
       state.menuId = value;
       sessionStorage.setItem('menuId', value);
+    },
+    /* 검색 상태 유지 */
+    setSearch(state, value) {
+      state.search = value;
+    },
+    /* 현재 페이징 현재페이지 유지 */
+    setCurrentPage(state, value) {
+      state.currentPage = value;
     }
   },
 });

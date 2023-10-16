@@ -11,7 +11,7 @@
           <span>시간은 흘러가지만,</span>
           <span>행복은 여기에 머무릅니다.</span>
         </div>
-        <div id="animatedBox">
+        <div id="mobileAnimatedBox">
           <div class="box one">
             <div class="round"></div>
             <span>시간</span>
@@ -154,10 +154,10 @@ export default {
     store.commit('setScrolltoTop', false);
 
     document.body.classList.add('hidden');
-    const animatedBox = document.getElementById('animatedBox');
+    const mobileAnimatedBox = document.getElementById('mobileAnimatedBox');
     
     // Box 애니메이션 종료 직후 설정
-    animatedBox.addEventListener('animationend', () => {
+    mobileAnimatedBox.addEventListener('animationend', () => {
       const circleArea = document.getElementById('circleArea');
       const circleAreaText = document.getElementById('circleAreaText');
       // 원형 먼저 나타나도록 설정

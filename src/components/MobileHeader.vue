@@ -5,13 +5,7 @@
         <div class="overlap-group">
           <div class="logo-area">
             <div class="title" @click="goMenu('MobileHome', '')">M House</div>
-            <div class="more-menu" @click="showMenuList()">
-              <div class="btn-area">
-                <div class="rectangle"></div>
-                <div class="rectangle"></div>
-                <div class="rectangle"></div>
-              </div>
-            </div>
+            <img @click="showMenuList()" src="@/assets/img/common/menu.svg"/>
           </div>
           <ul class="menu-list">
             <li>
@@ -22,6 +16,7 @@
               <ul class="submenu">
                 <li>
                   <span @click="goMenu('MobileHouseModelList', 'M201')">프리미엄모델</span>
+                </li>
                 <li>
                   <span @click="goMenu('MobileHouseModelList', 'M202')">스탠다드모델</span>
                 </li>

@@ -1509,7 +1509,7 @@
   }
 
   // 위에서 아래로 이동 (모든 원형 동시 적용)
-  @keyframes box-down {
+  @keyframes mobile-box-down {
     from {
       transform: translate(0, 0);
     }
@@ -1520,7 +1520,7 @@
   }
 
   // 왼쪽에서 오른쪽 아래로 이동
-  @keyframes box-ani-left {
+  @keyframes mobile-box-ani-left {
     to {
       transform: translate(100px, 200px);
       opacity: 0;
@@ -1528,7 +1528,7 @@
   }
 
   // 위에서 아래로 이동
-  @keyframes box-ani-center {
+  @keyframes mobile-box-ani-center {
     to {
       transform: translate(0, 200px);
       opacity: 0;
@@ -1536,14 +1536,14 @@
   }
 
   // 오른쪽에서 왼쪽 아래로 이동
-  @keyframes box-ani-right {
+  @keyframes mobile-box-ani-right {
     to {
       transform: translate(-100px, 200px);
       opacity: 0;
     }
   }
 
-  #animatedBox {
+  #mobileAnimatedBox {
     display: block;
     margin: 15px 0;
     .box {
@@ -1575,17 +1575,17 @@
       }
       &.one {
         left: 7%;
-        animation: box-down 2s linear forwards, box-ani-left 0.5s linear forwards;
+        animation: mobile-box-down 2s linear forwards, mobile-box-ani-left 0.5s linear forwards;
         animation-delay: 2s, 3s;
       }
       &.two {
         left: 39%;
-        animation: box-down 2s linear forwards, box-ani-center 0.5s linear forwards;
+        animation: mobile-box-down 2s linear forwards, mobile-box-ani-center 0.5s linear forwards;
         animation-delay: 2s, 3s;
       }
       &.three {
         left: 70%; 
-        animation: box-down 2s linear forwards, box-ani-right 0.5s linear forwards;
+        animation: mobile-box-down 2s linear forwards, mobile-box-ani-right 0.5s linear forwards;
         animation-delay: 2s, 3s;
       }
     }
