@@ -28,7 +28,7 @@
             </div>
             <a href="https://www.youtube.com/@m3systems537" target="_blank" rel="noopener noreferrer">
               <div class="vector-wrapper">
-                <img class="vector" src="@/assets/img/vector-27.svg" />
+                <img class="vector" src="@/assets/img/youbube.svg" />
               </div>
             </a>
             <a href="https://blog.naver.com/m3systems" target="_blank">

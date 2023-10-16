@@ -2,7 +2,7 @@
   <div class="header" :class="{ 'hovered': isHovered }">
     <h2 class="logo" @click="goMenu('Home', '')">M House</h2>
     <div class="menu">
-      <!--<img class="earth-globe" src="@/assets/img/earth-globe-1-1.png" />-->
+      <!--<img class="earth-globe" src="@/assets/img/earth-globe.png" />-->
       <div class="name">
         <span :class="{selected: menuId === 'M100'}" @click="goMenu('BrandStory', 'M100')">브랜드스토리</span>
       </div>

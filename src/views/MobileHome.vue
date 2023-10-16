@@ -69,11 +69,11 @@
           </div>          
           <div class="carousel-2">
             <div class="frame-2">
-              <div class="prev" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg"/></div>
+              <div class="prev" @click="goPrev()"><img class="vector-4" src="@/assets/img/prev.svg"/></div>
               <div class="layer">
                 <img class="source best" :src="bestModel.selected?.imageList[0]" @click="goDetail(bestModel.selected.id)"/>
               </div>
-              <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg"/></div>
+              <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/next.svg"/></div>
             </div>
             <div class="group-6">
               <div class="text-wrapper-8">{{ bestModel.selected?.id }}</div>

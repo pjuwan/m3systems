@@ -1,5 +1,5 @@
 <template>
-<div class="mainpage">
+<div id="home" class="home">
   <div class="container">
     <!-- autoplay 설정가능 -->
     <vueper-slides fade :touchable="false" fixed-height="915px">
@@ -25,8 +25,8 @@
     </vueper-slides>
     <div class="new-carousel">
       <div class="header-area">
-        <div class="text-wrapper1">새로운 모델</div>
-        <div class="text-wrapper2">새로운 모델을 만나보세요</div>
+        <div class="title">새로운 모델</div>
+        <div class="desc">새로운 모델을 만나보세요</div>
       </div>
       <div class="carousel">
         <div class="indicator">
@@ -36,7 +36,7 @@
             :class="{ 'active': item.isChecked }"
             @click="onNewModel(idx)"
           >
-            <img class="element" :src="item.imageList[0]" />
+            <img :src="item.imageList[0]" />
           </div>
         </div>        
       </div>
@@ -46,20 +46,20 @@
             :class="{ 'active': item.isChecked }"
           >
           <transition name="fade">
-            <div v-if="item.isChecked" class="element-wrapper">
+            <div v-if="item.isChecked" class="fade-wrapper">
               <div class="image-box" @click="goDetail(item.id)">
                 <img class="img" :src="item.imageList[0]" />
               </div>
-              <div class="group-4">
-                <div class="text-wrapper">{{ item.id }}</div>
+              <div class="desc-area">
+                <div class="id">{{ item.id }}</div>
                 <p class="p">A building that can be used for any purpose</p>
-                <div class="text-wrapper-2">{{ `${(item.exclusive_area * 3.3).toFixed(2)}m²` }}</div>
-                <img class="line" src="@/assets/img/line-7.svg" />
-                <div class="text-wrapper-2">{{ `${item.num_of_room} Bedrooms` }}</div>
-                <img class="line" src="@/assets/img/line-9.svg" />
-                <div class="text-wrapper-2">{{ `${item.num_of_bath} Bathrooms` }}</div>
-                <div class="text-wrapper-6">{{ `${item.cost.toLocaleString()} won` }}</div>
-                <div class="text-wrapper-7">+ View more</div>
+                <span>{{ `${(item.exclusive_area * 3.3).toFixed(2)}m²` }}</span>
+                <img class="line" src="@/assets/img/underline.svg" />
+                <span>{{ `${item.num_of_room} Bedrooms` }}</span>
+                <img class="line" src="@/assets/img/underline.svg" />
+                <span>{{ `${item.num_of_bath} Bathrooms` }}</span>
+                <div class="cost">{{ `${item.cost.toLocaleString()} won` }}</div>
+                <div class="more">+ View more</div>
               </div>
             </div>
           </transition>
@@ -67,28 +67,26 @@
       </div>
     </div>
     <div class="best-model">
-      <div class="text-wrapper-20">베스트 모델</div>
-      <p class="text-wrapper-21">지금 가장 인기있는 모델을 만나보세요</p>
-      <div class="best-slider">
-        <div v-if="bestModel.list?.length > 2" class="overlap-4">
-          <img class="element-2" :src="getCurrentImage(-2)" />
-          <img class="element-3" :src="getCurrentImage(-1)" />
+      <div class="best-model-title">베스트 모델</div>
+      <p>지금 가장 인기있는 모델을 만나보세요</p>
+      <div v-if="bestModel.list?.length > 0" class="best-slider">
+        <div v-if="bestModel.list?.length > 2" class="left-image">
+          <img :src="getCurrentImage(-2)" />
+          <img :src="getCurrentImage(-1)" />
         </div>
-        <div class="overlap-6">
-          <div v-for="(item, idx) in bestModel.list" :key="idx" class="group-9" :class="{action: item.isChecked}">
-            <div v-if="item.isChecked" class="overlap-group-3">
-              <img class="element-6" :src="item.imageList[0]" @click="goDetail(item.id)"/>
-              <div class="text-wrapper-18">{{ item.id }}</div>
-              <p class="text-wrapper-17">{{ `See our best models here.` }}</p>
-              <div class="text-wrapper-19">{{ item.cost.toLocaleString() }} Won</div>
-            </div>
+        <div class="main-area">
+          <div class="center-image" v-if="item.isChecked" v-for="(item, idx) in bestModel.list" :key="idx">
+            <img :src="item.imageList[0]" @click="goDetail(item.id)"/>
+            <span class="id">{{ item.id }}</span>
+            <p>{{ `See our best models here.` }}</p>
+            <div class="cost">{{ item.cost.toLocaleString() }} Won</div>
           </div>
-          <div class="group-10" @click="goNext()"><img class="vector-3" src="@/assets/img/vector-1-3.svg" /></div>
-          <div class="group-11" @click="goPrev()"><img class="vector-4" src="@/assets/img/vector-1-2.svg" /></div>
+          <div class="prev" @click="goPrev()"><img src="@/assets/img/prev.svg" /></div>
+          <div class="next" @click="goNext()"><img src="@/assets/img/next.svg" /></div>
         </div>
-        <div v-if="bestModel.list?.length > 2" class="overlap-5">
-          <img class="element-4" :src="getCurrentImage(1)" />
-          <img class="element-5" :src="getCurrentImage(2)" />
+        <div v-if="bestModel.list?.length > 2" class="right-image">
+          <img :src="getCurrentImage(1)" />
+          <img :src="getCurrentImage(2)" />
         </div>
       </div>
     </div>
@@ -207,176 +205,4 @@ export default {
   }
 }
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-.mainpage {
-  .content {
-    height: 100%;
-  }
-  .content img {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .content .subject {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .content .subject .model{
-      text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
-      color: #ffffff;
-      font-size: 75px;
-      font-family: "Pretendard-SemiBold", Helvetica;
-      font-weight: 600;
-      text-align: center;
-      letter-spacing: 0;
-      line-height: normal;
-      white-space: nowrap;
-  }
-  .content .subject .now{
-    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5019607843);
-    font-family: "Pretendard-Light", Helvetica;
-    font-weight: 300;
-    color: #ffffff;
-    font-size: 32px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-  }
-  .content .view {
-    position: absolute;
-    width: 339px;
-    height: 73px;
-    top: 143px;
-    left: 19%;
-  }
-  .content .view .group {
-    position: relative;
-    border-radius: 11px;
-  }
-  .content .view .rectangle {
-    width: 337px;
-    height: 73px;
-    background-color: #ffffff;
-    border-radius: 11px;
-    box-shadow: inset 0px 0px 15px 3px rgba(0, 0, 0, 0.5019607843);
-  }
-  .content .view .text {
-    position: absolute;
-    top: 17px;
-    left: 113px;
-    font-family: "Pretendard-ExtraLight", Helvetica;
-    font-weight: 200;
-    color: #686868;
-    font-size: 32px;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: normal;
-    white-space: nowrap;
-    cursor: pointer;
-  }
-  .best-model {
-    .btn-box {
-      position: relative;
-      margin: 36px 0 0 0;
-      .btn {
-        position: absolute;
-        width: 59px;
-        height: 59px;
-        top: 143px;      
-        background-color: rgba(255, 255, 255, 0.6901960784);
-        border-radius: 29.5px;
-        border: 1px solid;
-        border-color: rgba(149, 149, 149, 0.6901960784);
-        cursor: pointer;
-        z-index: 2;      
-        &.prev {
-          right: 64%;
-          transform: rotate(180deg);
-          img {
-            position: absolute;
-            width: 13px;
-            height: 24px;
-            top: 17px;
-            left: 24px;
-            transform: rotate(-180deg);      
-          }
-        }
-        &.next {
-          left: 64%;
-          img {
-            position: absolute;
-            width: 13px;
-            height: 24px;
-            top: 16px;
-            left: 24px;      
-          }
-        }
-      }
-    }
-    .image {
-      text-align: center;
-      margin: 30px 0 0 0;
-      img {
-        width: 464px;
-        height: 304px;
-        -o-object-fit: cover;
-        object-fit: cover;
-        border-radius: 30px;  
-      }
-    }
-    .vueperslide--active .image {
-      margin: 0;
-      img {
-      width: 577px;
-      height: 355px;
-      object-fit: cover;
-      border-radius: 30px;
-      }
-    }
-    .vueperslide--visible .desc {
-      display: none;
-    }
-    .vueperslide--active .desc {
-      display: block;
-    }
-  }
-  
-  .vueperslides__arrow--prev::before,
-  .vueperslides__arrow--next::before {
-    content: "";
-    display: block;
-    width: 78px;
-    height: 78px;
-    flex-shrink: 0;
-    opacity: 0.6;
-    border-radius: 40px;
-    background-color: #111;
-    position: absolute;
-    z-index: -1;
-  }
-  
-  .vueperslides__arrow--next::before {
-    left: -21px;
-  }
-  
-  .vueperslides__arrow--prev svg {
-    width: 48px;
-    position: absolute;
-    top: 6px;
-    left: 17px;  
-  }
-  
-  .vueperslides__arrow--next svg {
-    width: 48px;
-    position: relative;
-    top: 4px;
-    left: -9px;
-  }
-}
 
-</style>
