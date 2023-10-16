@@ -99,20 +99,21 @@ export default {
   },
   data() {
     return {
-      topInfoList: [],
-      newModelList : [],      
-      bestModel: {
-        selected: null,
-        currentIndex: 0,
-        list: []
+      topInfoList: [], // Top 모델 정보 리스트
+      newModelList : [], // 새로운모델 정보 리스트
+      bestModel: { // 베스트 모델 정보
+        selected: null, // 현재 선택된 정보
+        currentIndex: 0, // 현재 선택된 위치
+        list: [] // 베스트 모델 정보 리스트
       }
     };
   },
   created() {
+    /* Json HomeData 설정 부분 */
     const homeData = this.getHomeData();
     const { topInfoList, newModelList, bestModelList } = homeData;
 
-    // Top 정보
+    // Top 최상위 영역 모델 정보
     this.topInfoList = topInfoList;
 
     // 새로운 모델
@@ -133,6 +134,7 @@ export default {
     }
   },
   methods: {
+    /* 모바일 새로운 모델 상세 정보 */
     modelSpec(item) {
       const { exclusive_area, num_of_room, num_of_bath } = item;
       const exclusiveArea = `${(exclusive_area * 3.3).toFixed(2)}m² [${exclusive_area}PY]`;
@@ -141,11 +143,13 @@ export default {
   
       return [exclusiveArea, numOfRoom, numOfBath].join(" | ");
     },
+    /* 새로운 모델 현재 선택된 정보 */
     onNewModel(index) {
       this.newModelList.forEach((item, idx) => {
         item.isChecked = index === idx;
       });      
     },    
+    /* 베스트 모델 이전 버튼 */
     goPrev() {
       const { selected, list } = this.bestModel;
       const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
@@ -163,6 +167,7 @@ export default {
       this.bestModel.selected = prevElement;
       this.bestModel.currentIndex = prevIndex;
     },
+    /* 베스트 모델 다음 버튼 */
     goNext() {
       const { selected, list } = this.bestModel;
       const currentIndex = list.findIndex(obj => JSON.stringify(obj) === JSON.stringify(selected));
@@ -180,6 +185,7 @@ export default {
       this.bestModel.selected = nextElement;
       this.bestModel.currentIndex = nextIndex;
     },
+    /* 모델 상세 이동 */
     goDetail(id) {
       store.commit('setMenuId', 'M200'); // 전체메뉴로 설정
       this.$router.push({ name: 'MobileHouseModelDetail', params: { id: id } });

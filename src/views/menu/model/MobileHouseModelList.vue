@@ -76,7 +76,7 @@
     </div>
     <!-- 맞춤 주택 추천받기 -->
     <custom-home-recommendation />
-    <div class="modal" :class="{active: isModal}">
+    <div class="modal" :class="{active: isFilterModal}">
       <div class="modal-content">
         <div class="modal-header">
           <img src="@/assets/img/common/close.svg" @click="hiddenModal()"/>
@@ -153,31 +153,31 @@ export default {
         { value: '05', label: '132㎡(40PY)이상' }
       ],
       state: {
-        modelTitle: '',
-        modelDesc: '',
-        classNm: ''
+        modelTitle: '', // 모델 메뉴 제목 (전체, 프리미엄, 스탠다드)
+        modelDesc: '' // 모델 메뉴 설명
       },
       search: {
-        id: '',
-        selectedMaterials: [],
-        minCost: null,
-        maxCost: null,
-        selectedAreas: []
+        id: '', // 검색할 모델명
+        selectedMaterials: [], // 소재 선택값
+        minCost: null, // 최저금액
+        maxCost: null, // 최고금액
+        selectedAreas: [] // 면적 선택값
       },
-      isModal: false
+      isFilterModal: false // 모달 필터 선택 여부
     }
   },
   computed: {
-    // 현재 페이지에 표시할 아이템 목록 계산
+    /* 현재 페이지에 표시할 아이템 목록 계산 */
     displayedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
       return this.items.slice(startIndex, endIndex);
     },
-    // 전체 페이지 수 계산
+    /* 전체 페이지 수 계산 */
     totalPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
+    /* 페이지당 표시되는 범위 */
     pagingRange() {
       const perPageNum = 5; // 페이지당 표시되는 항목 수
       const pageGroup = Math.ceil(this.currentPage / perPageNum);
@@ -193,9 +193,11 @@ export default {
 
       return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
     },
+    /* 현재 메뉴 ID */
     menuId() {
       return store.state.menuId;
     },
+    /* 검색 금액 부분 표시값 */
     amounts() {
       const minAmount = 50000000; // 5천만원
       const maxAmount = 500000000; // 5억원
@@ -223,44 +225,50 @@ export default {
     this.doSearch();
   },
   methods: {
-    // 다음 페이지로 이동
+    /* 페이징 - 다음 페이지로 이동 */
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
       }
     },
-    // 이전 페이지로 이동
+    /* 페이징 - 이전 페이지로 이동 */
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
       }
     },
-    // 특정 페이지로 이동
+    /* 페이징 - 특정 페이지로 이동 */
     gotoPage(pageNumber) {
       if (pageNumber >= 1 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
     },
+    /* 검색 필터 모달 보이기 */
     showModal() {
-      this.isModal = true;
+      this.isFilterModal = true;
       document.body.classList.add('hidden');
     },
+    /* 검색 필터 모달 감추기 */
     hiddenModal() {
-      this.isModal = false;
+      this.isFilterModal = false;
       document.body.classList.remove('hidden');
     },
+    /* 선택한 모델 메뉴 이미지 */
     getTopStyle() {
       return {
         backgroundImage: `url(${this.state.imageSrc})`,
         backgroundSize: '100% 100%'
       };
     },
+    /* 상세 페이지 이동 */
     goDetail(id) {
       this.$router.push({ name: 'MobileHouseModelDetail', params: { id: id } });
     },
+    /* 검색 초기화 */
     clearSearch() {
       this.search = this.$options.data().search;
     },
+    /* 검색 */
     doSearch() {
       const { id, selectedMaterials, selectedAreas } = this.search;
       let items = this.getModelList();

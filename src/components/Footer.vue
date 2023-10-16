@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="group">
-      <div class="overlap">
+      <div class="content">
         <div class="left">
           <img class="rectangle" src="@/assets/img/rectangle-129.png" />
           <div class="div">주식회사 엠쓰리시스템즈</div>
@@ -46,9 +46,9 @@
             </a>
           </div>
           <p class="p">
-            <span class="text-wrapper-3" @click="isShowTermsOfService = true">이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-            <span class="text-wrapper-4">|</span>
-            <span class="text-wrapper-3" @click="isShowPrivecyPolicy = true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보처리방침침 </span>
+            <span @click="isShowTermsOfService = true">이용약관</span>
+            <span class="txt">|</span>
+            <span @click="isShowPrivecyPolicy = true">개인정보처리방침</span>
           </p>
           <p class="text-wrapper">Copyright 2023 m3systems.All Rights Reserved.</p>
         </div>
@@ -67,11 +67,9 @@ export default {
   components: { PrivacyPolicy, TermsOfService },
   data() {
     return {
-      isShowPrivecyPolicy: false,
-      isShowTermsOfService: false
+      isShowPrivecyPolicy: false, // 개인정보처리방침 팝업 여부
+      isShowTermsOfService: false // 이용약관 팝업 여부
     }
-  },
-  methods: {
   }
 }
 </script>

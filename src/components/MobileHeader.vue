@@ -3,24 +3,34 @@
     <div class="menu-kor">
       <div class="overlap-group-wrapper">
         <div class="overlap-group">
-          <div class="div">
+          <div class="logo-area">
             <div class="title" @click="goMenu('MobileHome', '')">M House</div>
-            <div class="group-wrapper" @click="showMenuList()">
-              <div class="group-2">
+            <div class="more-menu" @click="showMenuList()">
+              <div class="btn-area">
                 <div class="rectangle"></div>
-                <div class="rectangle-2"></div>
-                <div class="rectangle-3"></div>
+                <div class="rectangle"></div>
+                <div class="rectangle"></div>
               </div>
             </div>
           </div>
-          <div class="text-wrapper-2" @click="goMenu('MobileBrandStory', 'M100')">브랜드스토리</div>
-          <div class="menu-wrapper" @click="goMenu('MobileHouseModelList', 'M200')">전체모델</div>
-          <div class="div-wrapper">
-            <div class="text-wrapper" @click="goMenu('MobileQuestion', 'M300')">문의하기</div>
-          </div>
-          <div class="text-wrapper-4" @click="goMenu('MobileHouseModelList', 'M201')">프리미엄모델</div>
-          <div class="text-wrapper-5" @click="goMenu('MobileHouseModelList', 'M202')">스탠다드모델</div>
-          <div class="group"><div class="text-wrapper">English</div></div>
+          <ul class="menu-list">
+            <li>
+              <span @click="goMenu('MobileBrandStory', 'M100')">브랜드스토리</span>
+            </li>
+            <li>
+              <span @click="goMenu('MobileHouseModelList', 'M200')">전체모델</span>
+              <ul class="submenu">
+                <li>
+                  <span @click="goMenu('MobileHouseModelList', 'M201')">프리미엄모델</span>
+                <li>
+                  <span @click="goMenu('MobileHouseModelList', 'M202')">스탠다드모델</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span @click="goMenu('MobileQuestion', 'M300')">문의하기</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="model_page">
+  <div id="modelList">
     <div class="container" :class="getClassNm">
       <img :src="state.imageSrc" />
       <div class="content-title">
@@ -143,22 +143,21 @@ export default {
         { value: '05', label: '132㎡(40PY)이상' }
       ],      
       state: {
-        modelTitle: '',
-        modelDesc: '',
-        classNm: ''
+        modelTitle: '', // 모델 메뉴 제목 (전체, 프리미엄, 스탠다드)
+        modelDesc: '' // 모델 메뉴 설명
       },
       search: {
-        id: '',
-        sortOrder: 'latest',
-        selectedMaterials: [],
-        minCost: null,
-        maxCost: null,
-        selectedAreas: []
+        id: '', // 검색할 모델명
+        sortOrder: 'latest', //  검색 유형 (최신순, 인기순, 낮은가격순)
+        selectedMaterials: [], // 소재 선택값
+        minCost: null, // 최저금액
+        maxCost: null, // 최고금액
+        selectedAreas: [] // 면적 선택값
       },
     }
   },
   computed: {
-    // 현재 페이지에 표시할 아이템 목록 계산
+    /* 현재 페이지에 표시할 아이템 목록 계산 */
     displayedItems() {
       const startIndex = (this.currentPage - 1) * this.itemsPerPage;
       const endIndex = startIndex + this.itemsPerPage;
@@ -174,10 +173,11 @@ export default {
 
       return items;
     },
-    // 전체 페이지 수 계산
+    /* 전체 페이지 수 계산 */
     totalPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
+    /* 페이지당 표시되는 범위 */
     pagingRange() {
       const perPageNum = 10; // 페이지당 표시되는 항목 수
       const pageGroup = Math.ceil(this.currentPage / perPageNum);
@@ -193,14 +193,17 @@ export default {
 
       return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
     },
+    /* 현재 메뉴 ID */
     menuId() {
       return store.state.menuId;
     },
+    /* 모델 메뉴 구분자 클래스명 */
     getClassNm() {
       return {
         full: this.state.modelType !== 'all', // 변수명을 클래스명으로 사용
       };
     },
+    /* 검색 금액 부분 표시값 */
     amounts() {
       const minAmount = 50000000; // 5천만원
       const maxAmount = 500000000; // 5억원
@@ -227,41 +230,46 @@ export default {
     this.state = this.getModelData(this.menuId);
   },
   methods: {
-    // 다음 페이지로 이동
+    /* 페이징 - 다음 페이지로 이동 */
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
       }
     },
-    // 이전 페이지로 이동
+    /* 페이징 - 이전 페이지로 이동 */
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
       }
     },
-    // 특정 페이지로 이동
+    /* 페이징 - 특정 페이지로 이동 */
     gotoPage(pageNumber) {
       if (pageNumber >= 1 && pageNumber <= this.totalPages) {
         this.currentPage = pageNumber;
       }
     },
+    /* 모델 목록 이미지 */
     getItemStyle(item) {
       return {
         backgroundImage: `url(${item.imageList[0]})`,
         backgroundSize: '100% 100%',
       };
     },
+    /* 상세 페이지 이동 */
     goDetail(id) {
       console.log(id);
       this.$router.push({ name: 'HouseModelDetail', params: { id } });
     },
+    /* 검색 버튼 초기화 */
     clearSearch() {
       this.search = this.$options.data().search;
     },    
+    /* 최신순, 인기순, 낮은가격순 정렬 */
     searchModelsBySorting(value) {
       this.search.sortOrder = value;
       this.doSearch();
     },
+    /* 소재 검색 */
     searchMaterial(event) {
       const value = event.target.value;
       const checked = event.target.checked;
@@ -277,6 +285,7 @@ export default {
 
       this.doSearch();
     },
+    /* 면적 검색 */
     searchArea(event) {
       const value = event.target.value;
       const checked = event.target.checked;
@@ -292,6 +301,7 @@ export default {
 
       this.doSearch();
     },
+    /* 검색 */
     doSearch() {
       const { id, selectedMaterials, selectedAreas, sortOrder } = this.search;
       let items = this.getModelList();

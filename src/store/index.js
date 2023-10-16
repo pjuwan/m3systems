@@ -10,12 +10,15 @@ export default new Vuex.Store({
     menuId: ''
   },
   mutations: {
+    /* innerWidth 768px 기준으로 Mobile 여부에 대한 설정 */
     setMobileStatus(state) {
       state.isMobile = window.innerWidth <= 768;
     },
+    /* 스크롤을 보여줄지에 대한 설정 */
     setScrolltoTop(state, value) {
       state.isScrolltoTop = value;
     },
+    /* 현재 메뉴 위치 설정 */
     setMenuId(state, value) {
       state.menuId = value;
       sessionStorage.setItem('menuId', value);
