@@ -58,6 +58,7 @@ export default {
     goMenu(menuNm, menuId) {
       this.showMenu = false;
       store.commit('setMenuId', menuId);
+      store.commit('searchParams', null);
       document.body.classList.remove('hidden');
       this.$router.push({ name: menuNm });
     }

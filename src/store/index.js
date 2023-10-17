@@ -25,13 +25,10 @@ export default new Vuex.Store({
       state.menuId = value;
       sessionStorage.setItem('menuId', value);
     },
-    /* 검색 상태 유지 */
-    setSearch(state, value) {
-      state.search = value;
-    },
-    /* 현재 페이징 현재페이지 유지 */
-    setCurrentPage(state, value) {
-      state.currentPage = value;
+    /* 검색 상태 관리 */
+    searchParams(state, value) {
+      state.search = value?.search || null;
+      state.currentPage = value?.currentPage || 1;
     }
   },
 });

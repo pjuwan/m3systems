@@ -224,8 +224,7 @@ export default {
       console.log(newVal, oldVal);
 
       // 메뉴 이동시 검색상태 초기화
-      store.commit('setSearch', null);
-      store.commit('setCurrentPage', 1);
+      store.commit('searchParams', null);
 
       // 변경된 정보 불러오기
       this.state = this.getModelData(newVal);
@@ -268,8 +267,10 @@ export default {
     },
     /* 상세 페이지 이동 */
     goDetail(id) {
-      store.commit('setSearch', this.search);
-      store.commit('setCurrentPage', this.currentPage);
+      store.commit('searchParams', {
+        search: this.search, // 검색 조건
+        currentPage: this.currentPage // 현재 페이지
+      });
       this.$router.push({ name: 'HouseModelDetail', params: { id } });
     },
     /* 검색 버튼 초기화 */

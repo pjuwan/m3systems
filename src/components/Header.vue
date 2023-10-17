@@ -42,6 +42,7 @@ export default {
   methods: {
     goMenu(menuNm, menuId) {
       store.commit('setMenuId', menuId);
+      store.commit('searchParams', null);
       this.$router.push({ name: menuNm });
     }
   }  

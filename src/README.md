@@ -124,8 +124,7 @@
 #### - `setMobileStatus`: innerWidth 768px 기준으로 Mobile 여부에 대한 설정
 #### - `setScrolltoTop`: 스크롤을 보여줄지에 대한 설정
 #### - `setMenuId`: 현재 메뉴 위치 설정
-#### - `setSearch`: 검색 상태 유지
-#### - `setCurrentPage`: 현재 페이징 현재페이지 유지
+#### - `searchParams`: 검색 상태 유지
 
 ***예제) store/index.js:***
 
@@ -149,13 +148,10 @@
           state.menuId = value;
           sessionStorage.setItem('menuId', value);
         },
-        /* 검색 상태 유지 */
-        setSearch(state, value) {
-          state.search = value;
-        },
-        /* 현재 페이징 현재페이지 유지 */
-        setCurrentPage(state, value) {
-          state.currentPage = value;
+        /* 검색 상태 관리 */
+        searchParams(state, value) {
+          state.search = value?.search || null;
+          state.currentPage = value?.currentPage || 1;
         }
       },
     });

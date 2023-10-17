@@ -30,12 +30,13 @@ function scrollToTop() {
   window.scrollTo(0, 0); // 가로 스크롤 위치와 세로 스크롤 위치를 (0, 0)으로 설정
 }
 
-// 페이지 이동 후 페이지를 상단으로 스크롤
+// 페이지 이동 후 처리
 router.afterEach((to, from) => {
+  // 모델 ID 존재시 검색상태 유지
   if (!(from.params?.id || to.params?.id)) {
-    store.commit('setSearch', null);
-    store.commit('setCurrentPage', null);
+    store.commit('searchParams', null);
   }
+
   scrollToTop();
 });
 
