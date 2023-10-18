@@ -17,12 +17,14 @@
       </div>
       <div class="right">
         <div class="box">
-          <div class="overlap-group-wrapper">
-            <div class="overlap-group">
-              <div class="ellipse-2"></div>
-              <div class="ellipse"></div>
+          <a href="https://www.instagram.com/m3s.korea" target="_blank">
+            <div class="overlap-group-wrapper">
+              <div class="overlap-group">
+                <div class="ellipse-2"></div>
+                <div class="ellipse"></div>
+              </div>
             </div>
-          </div>
+          </a>
           <a href="https://www.youtube.com/@m3systems537" target="_blank" rel="noopener noreferrer">
             <div class="vector-wrapper">
               <img class="vector" src="@/assets/img/youbube.svg" />

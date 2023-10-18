@@ -172,6 +172,27 @@
     export default {
       name: 'MobileHouseModelList',
 
+### PC 및 모바일용 SCSS 파일
+
+### 프로젝트의 스타일시트(SCSS) 파일은 PC와 Mobile 화면용으로 나뉘어져 있습니다. 각각의 스타일시트 파일은 해당 화면 크기에 최적화된 스타일을 정의합니다.
+
+#### &nbsp; - PC용 SCSS 파일은 대화면 브라우징 환경에 대한 스타일을 정의합니다. 이 파일은 주로 다음과 같은 특징을 갖습니다:
+
+- 대화면 해상도 및 넓은 화면에 대한 스타일 정의
+- 데스크톱 브라우저에서의 레이아웃 및 디자인 스타일
+
+#### &nbsp; - Mobile용 SCSS 파일은 작은 화면 크기 및 모바일 브라우징 환경에 스타일을 정의합니다. 이 파일은 주로 다음과 같은 특징을 갖습니다:
+  
+- 작은 화면에 최적화된 스타일 정의
+- 모바일 브라우저에서의 레이아웃 및 디자인 스타일
+
+### 경로 assets/scss
+    /* main.js 스타일 정의 */
+    import "@/assets/scss/globals.scss" -- 글로벌 SCSS 파일
+    import "@/assets/scss/common.scss" -- 공통 SCSS 파일
+    import "@/assets/scss/style.scss" -- PC용 SCSS 파일
+    import "@/assets/scss/mobile.scss" -- Mobile용 SCSS 파일
+
 <br>
 
 ## 7. 데이터 관리

@@ -618,3 +618,247 @@ textarea {
     margin: 0 0 5px 0;
   }  
 }
+
+// 모달 팝업
+.modalDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  .modal-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;  
+    position: relative;
+    z-index: 2;    
+    .modal-content {
+      width: 50%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      pointer-events: auto;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 3px solid rgba(0, 0, 0, 0.2);
+      border-radius: 0.6rem;
+      outline: 0;
+      .modal-header {
+        width: 100%;
+        text-align: right;
+        display: inline-block;
+        margin: 12px 0;
+        padding-right: 15px;
+        .circle {
+          position: relative;
+          width: 29px;
+          height: 29px;
+          background-color: #a6a6a6;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 0;
+        }
+
+        .circle::before,
+        .circle::after {
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 15px;
+          background-color: #fff;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .circle::before {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .circle::after {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        .btn-area {
+          background: black;
+          padding-left: 10px;
+          width: 60%;
+          height: 63px;
+          align-items: center;
+          display: flex;
+        }
+      }
+      .modal-body {
+        flex-direction: column;
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+        .subject {
+          text-align: center;
+          span {
+            font-family: "Noto Sans KR";
+            font-weight: bold;
+            letter-spacing: -1px;            
+            font-size: 20.8px;
+            line-height: 31.2px;
+            text-size-adjust: 100%;
+            margin-top: 31px;
+          }
+        }
+        .text-area {
+          display: inline-flex;
+          justify-content: center;
+          width: 100%;          
+          margin-top: 29px;          
+          .text {
+            color: #111;
+            width: 90%;            
+            height: 500px;
+            border: 1px solid rgb(217, 217, 217);
+            overflow-x: hidden;
+            padding: 22px;
+            p {
+              font-family: "Noto Sans KR";
+              font-weight: bold;
+              letter-spacing: -1px;              
+              font-size: 13.6px;
+              line-height: 21.4px;                          
+            }
+          }
+        }
+      }
+      .modal-footer {
+        display: inline-flex;
+        justify-content: center;
+        margin: 15px 0 25px 0;
+        .btn-area .btn {
+          width: 150px;
+          height: 37px;
+          border: 0px;
+          background-color: rgb(79, 89, 98);
+          color: rgb(255, 255, 255);
+          font-size: .85rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &.mobile {
+    .modal-content {
+      width: 98%;
+    }
+  }
+}
+
+// 맞춤 주택 추천받기
+#customHomeRecommendation {
+  width: 100%;
+  height: 150px;
+  display: inline-flex;
+  margin-top: 20px;
+  a {
+    width: 100%;
+  }
+  span {
+    font-family: Pretendard;
+    font-weight: 500;
+    color: #262626;
+    font-size: 6.9px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }    
+  .more-area {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: inline-flex;
+    justify-content: center;      
+    .image {
+      width: 100%;
+      height: 137px;
+      background: linear-gradient(270deg, white 6%, rgba(255, 255, 255, 0) 40%), url('@/assets/img/image-6.png');
+      background-size: 313px 121px;
+      background-position: -26px 16px;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: self-end;
+      justify-content: center;
+    }
+    .text-how-item {
+      color: #262626;
+      line-height: normal;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-right: 6px;
+      p {
+        display: flex;
+        font-family: Pretendard;
+        font-weight: 200;
+        font-size: 11.6px;
+        letter-spacing: 0;
+      }
+      span {
+        font-weight: 500;
+        font-size: 15.8px;
+      }        
+    }
+
+    .text-more-item {
+      width: 72.556px;
+      height: 16.075px;
+      background-color: #000000;
+      border-radius: 9.49px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      span {
+        font-family: Pretendard;
+        font-weight: 500;;
+        color: #fff;
+        font-size: 6.9px;
+        text-align: center;
+        letter-spacing: 0;
+        line-height: normal;
+        white-space: nowrap;
+      }
+    }
+  }
+  &.pc {
+    height: 394px;
+    .image {
+      height: 394px;
+      background: linear-gradient(270deg, white 6%, rgba(255, 255, 255, 0) 40%), url('@/assets/img/image-6.png');
+      background-repeat: no-repeat;
+      background-size: 1215px 394px;        
+      p {
+        font-size: 44px;          
+      }
+      span {
+        color: #262626;
+        font-size: 60px;
+        text-align: left;
+      }
+      .text-how-item {
+        gap: 5px;
+        margin-right: 95px;          
+      }
+      .text-more-item {
+        width: 226px;
+        height: 61px;
+        border-radius: 30.5px;
+        span {
+          color: white;
+          font-size: 26px;
+        }
+      }
+    }
+  }
+}
