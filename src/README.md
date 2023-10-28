@@ -25,7 +25,7 @@
 ## 2 프로젝트 구조
 
 #### M House 프로젝트의 기본 구조는 다음과 같습니다:
-    M3SYSTEMS/
+    M-HOUSE/
     ├── public/
     ├── src/
     │ ├── assets/
