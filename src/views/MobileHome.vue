@@ -14,7 +14,7 @@
           :key="i">
           <template v-slot:content>
             <div class="content">
-              <img :src="top?.imageList?.[0]">
+              <img :src="require(`@/assets/img/plan/${top?.imageList?.[0]}`)">
               <div class="subject">
                 <div class="text-area">
                   <span>{{ top?.id }}</span>
@@ -36,7 +36,7 @@
               :class="{ 'active': item.isChecked }"
               @click="onNewModel(idx)"
             >
-              <img :src="item.imageList[0]" />
+              <img :src="require(`@/assets/img/plan/${item.imageList[0]}`)" />
             </div>
           </div>
           <div class="frame">
@@ -48,7 +48,7 @@
               <transition name="fade">
                 <div v-if="item.isChecked" class="fade-wrapper">
                   <div class="image-box">
-                    <img class="img" :src="item.imageList[0]" @click="goDetail(item.id)" />
+                    <img class="img" :src="require(`@/assets/img/plan/${item.imageList[0]}`)" @click="goDetail(item.id)" />
                     <div class="title">{{ item.title }}</div>
                     <p>A building that can be used for any purpose</p>
                     <p class="model-spce">{{ modelSpec(item) }}</p>
@@ -67,7 +67,7 @@
           <div class="center-image">
             <div class="prev" @click="goPrev()"><img src="@/assets/img/prev.svg"/></div>
             <div class="layer">
-              <img class="best" :src="bestModel.selected?.imageList[0]" @click="goDetail(bestModel.selected.id)"/>
+              <img class="best" :src="require(`@/assets/img/plan/${bestModel.selected?.imageList[0]}`)" @click="goDetail(bestModel.selected.id)"/>
             </div>
             <div class="next" @click="goNext()"><img class="vector-3" src="@/assets/img/next.svg"/></div>
           </div>

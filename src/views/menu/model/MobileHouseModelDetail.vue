@@ -22,7 +22,7 @@
     <div class="content">
       <div class="item-area">
         <div class="imagebox">
-          <img :src="modelDetail.imageList[0]" />
+          <img :src="require(`@/assets/img/plan/${modelDetail.imageList[0]}`)" />
         </div>
         <div class="description">
           <span class="type">{{ modelDetail.model_name }}</span>
@@ -102,7 +102,7 @@
       </div>
       <div class="center-desc-area">
         <div class="item-area">
-          <img :src="modelDetail.imageList[1]" />
+          <img :src="require(`@/assets/img/plan/${modelDetail.imageList[1]}`)" />
           <div class="desc-area">
             <span class="model">{{ modelDetail.id }}</span>
             <span class="name">{{ `${modelDetail.material_name} ${modelDetail.type_name} 주택` }}</span>
@@ -113,7 +113,7 @@
           </div>
         </div>
       </div>
-      <div class="floor-plan-area" style="display: none;">
+      <div class="floor-plan-area">
         <span class="title">FLOOR PLAN</span>
         <div class="floor-area">
           <div class="group">
@@ -174,7 +174,7 @@
             :key="i">
             <template v-slot:content>
               <div class="item">
-                <img :src="src" width="100%" height="100%">
+                <img :src="require(`@/assets/img/plan/${src}`)" width="100%" height="100%">
               </div>
             </template>
           </vueper-slide>
@@ -188,7 +188,7 @@
         <div class="view-area">
           <div class="image-item">
             <div class="view">
-              <img v-for="(src, idx) in moreViews" :key="idx" class="img" :src="src" @click="showCarouselInfo" />
+              <img v-for="(src, idx) in moreViews" :key="idx" class="img" :src="require(`@/assets/img/plan/${src}`)" @click="showCarouselInfo" />
             </div>
           </div>
           <div class="video-area" style="display: none">
@@ -225,7 +225,7 @@
           <vueper-slide v-for="(src, i) in moreViews" :key="i">
             <template v-slot:content>
               <div class="item">
-                <img :src="src" width="100%" height="100%">
+                <img :src="require(`@/assets/img/plan/${src}`)" width="100%" height="100%">
               </div>
             </template>
           </vueper-slide>

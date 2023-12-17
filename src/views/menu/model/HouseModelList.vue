@@ -260,8 +260,9 @@ export default {
     },
     /* 모델 목록 이미지 */
     getItemStyle(item) {
+      const imageSrc = require(`@/assets/img/plan/${item.imageList[0]}`);
       return {
-        backgroundImage: `url(${item.imageList[0]})`,
+        backgroundImage: `url(${imageSrc})`,
         backgroundSize: '100% 100%',
       };
     },

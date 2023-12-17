@@ -6,7 +6,7 @@
           <label class="name">{{ state.modelTitle }}</label>
           <label>{{ state.modelDesc }}</label>
         </div>
-      </div>      
+      </div>
       <div class="content">
         <div class="content-item">
           <div class="search">
@@ -34,7 +34,7 @@
             <div class="model">
               <div v-for="item in displayedItems" :key="item.id" class="model-item" @click="goDetail(item.id)">
                 <div v-if="item.imageList.length > 0" class="img">
-                  <img :src="item?.imageList[0]">
+                  <img :src="require(`@/assets/img/plan/${item?.imageList[0]}`)">
                 </div>
                 <div class="description">
                   <span class="name">{{ item.id }}</span>

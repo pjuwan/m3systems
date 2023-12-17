@@ -36,7 +36,7 @@ export const dataMixin = {
         return {
           modelTitle: 'PREMIUM MODEL',
           modelDesc: '고품격 모델을 만나보세요',
-          imageSrc: require('@/assets/img/model/premium.png'),
+          imageSrc: require('@/assets/img/model/allmodel.png'),
           modelType: 'premium'
         };
       } else if (menuId === 'M202') {
@@ -70,7 +70,9 @@ export const dataMixin = {
           material_name: item.material === '1' ? '목구조' : '강구조',
           type_name: modelInfo.typeNm,
           model_name: modelInfo.modelNm,
-          imageList: imageInfo.imageList
+          imageList: imageInfo.imageList,
+          optionList: imageInfo.optionList,
+          floorList: imageInfo.floorList
         }
       })
     },

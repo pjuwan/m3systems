@@ -8,7 +8,7 @@
         :key="i">
         <template v-slot:content>
           <div class="content">
-            <img :src="top.imageList[0]" />
+            <img :src="require(`@/assets/img/plan/${top.imageList[0]}`)" />
             <div class="subject">
               <div class="model">{{ top.id }}</div>
               <div class="now">지금 바로 만나보세요</div>
@@ -36,7 +36,7 @@
             :class="{ 'active': item.isChecked }"
             @click="onNewModel(idx)"
           >
-            <img :src="item.imageList[0]" />
+            <img :src="require(`@/assets/img/plan/${item.imageList[0]}`)" />
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
           <transition name="fade">
             <div v-if="item.isChecked" class="fade-wrapper">
               <div class="image-box" @click="goDetail(item.id)">
-                <img class="img" :src="item.imageList[0]" />
+                <img class="img" :src="require(`@/assets/img/plan/${item.imageList[0]}`)" />
               </div>
               <div class="desc-area">
                 <div class="id">{{ item.id }}</div>
@@ -71,13 +71,13 @@
       <p>지금 가장 인기있는 모델을 만나보세요</p>
       <div v-if="bestModel.list?.length > 0" class="best-slider">
         <div v-if="bestModel.list?.length > 2" class="left-image">
-          <img :src="getCurrentImage(-2)" />
-          <img :src="getCurrentImage(-1)" />
+          <img :src="require(`@/assets/img/plan/${getCurrentImage(-2)}`)" />
+          <img :src="require(`@/assets/img/plan/${getCurrentImage(-1)}`)" />
         </div>
         <div class="main-area">
           <div class="center-image" v-for="(item, idx) in bestModel.list" :key="idx">
             <template v-if="item.isChecked">
-              <img :src="item.imageList[0]" @click="goDetail(item.id)"/>
+              <img :src="require(`@/assets/img/plan/${item.imageList[0]}`)" @click="goDetail(item.id)"/>
               <span class="id">{{ item.id }}</span>
               <p>{{ `See our best models here.` }}</p>
               <span class="cost">{{ item.cost.toLocaleString() }} Won</span>
@@ -87,8 +87,8 @@
           <div class="next" @click="goNext()"><img src="@/assets/img/next.svg" /></div>
         </div>
         <div v-if="bestModel.list?.length > 2" class="right-image">
-          <img :src="getCurrentImage(1)" />
-          <img :src="getCurrentImage(2)" />
+          <img :src="require(`@/assets/img/plan/${getCurrentImage(1)}`)" />
+          <img :src="require(`@/assets/img/plan/${getCurrentImage(2)}`)" />
         </div>
       </div>
     </div>
