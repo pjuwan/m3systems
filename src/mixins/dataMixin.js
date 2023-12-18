@@ -36,14 +36,14 @@ export const dataMixin = {
         return {
           modelTitle: 'PREMIUM MODEL',
           modelDesc: '고품격 모델을 만나보세요',
-          imageSrc: require('@/assets/img/model/allmodel.png'),
+          imageSrc: require('@/assets/img/model/premium.png'),
           modelType: 'premium'
         };
       } else if (menuId === 'M202') {
         return {
           modelTitle: 'STANDARD MODEL',
           modelDesc: '실속있는 모델을 만나보세요',
-          imageSrc: require('@/assets/img/model/allmodel.png'),
+          imageSrc: require('@/assets/img/model/standard.jpg'),
           modelType: 'standard'
         };        
       }
